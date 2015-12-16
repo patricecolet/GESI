@@ -1,7 +1,7 @@
 # GESI
 ##Gestionnaire d'Environnement Sonore Interactif
 
-###Installation (linux only)
+###Installation (GNU/linux only)
 
 
 
