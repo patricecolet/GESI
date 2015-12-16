@@ -1,7 +1,0 @@
-zone "gesi.tdl" { 
-  type master;    
-  file "/etc/bind/db.gesi.tdl";  
-//  allow-transfer { localhost; cloudns; };
-  allow-query { any; };
-  notify yes;
-};
