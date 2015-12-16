@@ -6,7 +6,8 @@ SQLITE database is used to share memory between puredata and web server running 
 * python-flask 
 * lua51-sql-sqlite3
 * pd-vanilla
-we use flask_utils to simplify url notation in html templates
+* 
+flask_utils is used to simplify url notation in html templates
 ```
 $ git clone https://github.com/dantezhu/flask_util_js.git
 $ cd flask_util_js/
