@@ -21,8 +21,10 @@ install  these puredata externals with [deken](https://github.com/pure-data/deke
 * pdlua
 * zexy
 * ggee
+* mrpeach
+* mediasettings
 
-don't forget to enable externals in puredata File->Preference->Startup
+in puredata Edit->Preference->Startup add pdlua zexy and in Edit->Preference->Path add ~/pd-externals/mrpeach ~/pd-externals/mediasettings ~/pd-externals/ggee
 
 This archive contains everything else
 
