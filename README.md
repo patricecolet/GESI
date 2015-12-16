@@ -1,14 +1,14 @@
 # GESI
 ##Gestionnaire d'Environnement Sonore Interactif
 
-###Installation
+###Installation (GNU/linux only)
 
-tested on linux
 
-A sqlite database is used to share memory between puredata and web server, and the web server is running with python and flask module, so we need to install
+
+SQLITE database is used to share memory between puredata and web server running with python and flask module, so we need to install
 * python-flask 
 * lua51-sql-sqlite3
-* [puredata](https://puredata.info/downloads/pure-data)
+* pd-vanilla
 
 we use flask_utils to simplify url notation in html templates
 ```
@@ -26,9 +26,48 @@ install  these puredata externals with [deken](https://github.com/pure-data/deke
 
 in puredata Edit->Preference->Startup add *pdlua zexy* and in Edit->Preference->Path add *~/pd-externals/mrpeach ~/pd-externals/mediasettings ~/pd-externals/ggee*
 
-This archive contains everything else
+get scripts and patch, run web server
+```
+$ cd webserver
+$ git clone https://github.com/patricecolet/GESI.git
+$ cd GESI/webserver
+$ sudo python ./gesidb.py &
+```
+, and puredata in another shell
+```
+$ cd GESI/pdpatch
+$ pd gesi-arduino.pd &
+```
 
+GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
+the folder containing sounds must be at GESI root directory, like this:
+```
+gesi
+-/gesidb
+-/pdpatch
+-/sons
+--/[environment1]
+---/largo
+----/[sound01.wav]
+----/[sound02.wav]
+----/...
+---/adagio
+----/[sound101.wav]
+----/...
+---/moderato
+---/allegro
+---/presto
+--/[environment2]
+---/largo
+---/...
+--/[environment3]
+--/...
+```
+An archive containing samples is here: http://megalego.free.fr/gesi/sons.zip.
 
+Create *gesi/sons* folder if it's not there, download and extract sons.zip into *sons* folder.
+
+Now we can rebuild database by accessing localhost/update in web browser, after a few minutes...
 
 
 
