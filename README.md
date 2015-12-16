@@ -3,37 +3,33 @@
 
 #GESI Framework
 
-get Puredata
+tested on linux
 
-https://puredata.info/downloads/pure-data
+A sqlite database is used to share memory between puredata and web server, and the web server is running with python, so we need to install
 
-install recent version and keep a track of m_pd.h and s_stuff.h 
-to compile externals
+* python 
+* [lua51-sql-sqlite3](https://www.google.fr/#q=lua51-sql-sqlite3)
+* [puredata](https://puredata.info/downloads/pure-data)
 
-pdlua is necessary to edit sqlite files
 
-get pdlua sources:
-https://puredata.info/downloads/pdlua
-compile pdlua:
-```
-$ tar -xvf pdlua-0.6.tar-gz
-$ cd pdlua/src
-$ make
-```
-if there are complains about threepic, remove it from Makefile,
-if it doesn't find s_stuff.h, copy it to src folder:
-```
-cp  /usr/local/include/pd/*.h .
-```
-This should be installed in /home/pd-externals, if it doesn't exist create it *$ mdir ~/pd-externals*, 
-and put pdlua.pd_linux in it.
+A sqlite database is used to share memory between puredata and web server, and the web server is running with python, so we need to install
 
-Open puredata and go to preférences-->path and add ~/pd-external dir
-close puredata, copy pdlua external:
+* python 
+* pdlua51-sql-sqlite3
 
-```
-cp pdlua.pd_linux ~/pd-externals/
-```
+we need to install puredata externals, [deken](https://github.com/pure-data/deken) will give some help.
+follow instructions and install
+
+* pdlua
+* zexy
+* ggee
+
+don't forget to enable externals in puredata File->Preference->Startup
+
+
+
+
+
 
 
 
