@@ -6,7 +6,7 @@
 tested on linux
 
 A sqlite database is used to share memory between puredata and web server, and the web server is running with python, so we need to install
-* python 
+* python-flask 
 * lua51-sql-sqlite3
 * [puredata](https://puredata.info/downloads/pure-data)
 
