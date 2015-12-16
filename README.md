@@ -43,20 +43,20 @@ GESI interface runs in a web browser at localhost. The database is made by runni
 but the folder containing sounds must be at GESI root directory, like this:
 ```
 gesi
--/**sons**
+-/sons
 --/[environment1]
----/**largo**
+---/largo
 ----/[sound01.wav]
 ----/[sound02.wav]
 ----/...
----/**adagio**
+---/adagio
 ----/[sound101.wav]
 ----/...
----/**moderato**
----/**allegro**
----/**presto**
+---/moderato
+---/allegro
+---/presto
 --/[environment2]
----/**largo**
+---/largo
 ---/...
 --/[environment3]
 --/...
