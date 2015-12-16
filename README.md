@@ -6,7 +6,7 @@ SQLITE database is used to share memory between puredata and web server running 
 * python-flask 
 * lua51-sql-sqlite3
 * pd-vanilla
-* 
+ 
 flask_utils is used to simplify url notation in html templates
 ```
 $ git clone https://github.com/dantezhu/flask_util_js.git
@@ -20,6 +20,7 @@ install  these externals with [deken](https://github.com/pure-data/deken):
 * ggee
 * mrpeach
 * mediasettings
+
 in puredata Edit->Preference->Startup add *pdlua zexy* and in Edit->Preference->Path add *~/pd-externals/mrpeach ~/pd-externals/mediasettings ~/pd-externals/ggee*
 ### Patches
 Download sources:
