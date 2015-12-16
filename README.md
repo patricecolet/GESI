@@ -1,9 +1,9 @@
 # GESI
 ##Gestionnaire d'Environnement Sonore Interactif
 
-###Installation
+###Installation (linux only)
 
-tested on linux
+
 
 A sqlite database is used to share memory between puredata and web server running with python and flask module, so we need to install
 * python-flask 
