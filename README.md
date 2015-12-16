@@ -8,7 +8,7 @@
 SQLITE database is used to share memory between puredata and web server running with python and flask module, so we need to install
 * python-flask 
 * lua51-sql-sqlite3
-* [puredata](https://puredata.info/downloads/pure-data)
+* [puredata](https://puredata.info/downloads/pure-data) vanilla version
 
 we use flask_utils to simplify url notation in html templates
 ```
