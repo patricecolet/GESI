@@ -26,7 +26,18 @@ install  these puredata externals with [deken](https://github.com/pure-data/deke
 
 in puredata Edit->Preference->Startup add *pdlua zexy* and in Edit->Preference->Path add *~/pd-externals/mrpeach ~/pd-externals/mediasettings ~/pd-externals/ggee*
 
-This archive contains everything else
+get scripts and patch, run web server
+```
+$ cd webserver
+$ git clone https://github.com/patricecolet/GESI.git
+$ cd GESI/webserver
+$ sudo python ./gesidb.py &
+```
+, and puredata in another shell
+```
+$ cd GESI/pdpatch
+$ pd gesi-arduino.pd &
+```
 
 
 
