@@ -3,7 +3,7 @@ Gestionnaire d'Environnement Sonore Interactif
 
 ## Installation (GNU/linux only)
 
-# webserver
+### webserver
 
 SQLITE database is used to share memory between puredata and web server running with python and flask module, so we need to install
 * python-flask 
@@ -16,7 +16,7 @@ $ git clone https://github.com/dantezhu/flask_util_js.git
 $ cd flask_util_js/
 $ sudo python setup.py install
 ```
-# Puredata settings
+### Puredata settings
 
 install  these externals with [deken](https://github.com/pure-data/deken):
 * pdlua
@@ -27,7 +27,7 @@ install  these externals with [deken](https://github.com/pure-data/deken):
 
 in puredata Edit->Preference->Startup add *pdlua zexy* and in Edit->Preference->Path add *~/pd-externals/mrpeach ~/pd-externals/mediasettings ~/pd-externals/ggee*
 
-# Patches
+### Patches
 
 get scripts and patches,
 ```
