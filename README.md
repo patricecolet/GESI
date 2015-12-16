@@ -1,15 +1,11 @@
 # GESI
 Gestionnaire d'Environnement Sonore Interactif
-
 ## Installation (GNU/linux only)
-
 ### webserver
-
 SQLITE database is used to share memory between puredata and web server running with python and flask module, so we need to install
 * python-flask 
 * lua51-sql-sqlite3
 * pd-vanilla
-
 we use flask_utils to simplify url notation in html templates
 ```
 $ git clone https://github.com/dantezhu/flask_util_js.git
@@ -17,24 +13,20 @@ $ cd flask_util_js/
 $ sudo python setup.py install
 ```
 ### Puredata settings
-
 install  these externals with [deken](https://github.com/pure-data/deken):
 * pdlua
 * zexy
 * ggee
 * mrpeach
 * mediasettings
-
 in puredata Edit->Preference->Startup add *pdlua zexy* and in Edit->Preference->Path add *~/pd-externals/mrpeach ~/pd-externals/mediasettings ~/pd-externals/ggee*
-
 ### Patches
-
-get scripts and patches,
+Download sources:
 ```
 $ cd webserver
 $ git clone https://github.com/patricecolet/GESI.git
 ```
-run web server
+Run web server:
  ```
 $ cd GESI/webserver
 $ sudo python ./gesidb.py &
@@ -69,9 +61,7 @@ the folder containing sounds must be at GESI root directory, like this:
 --/...
 ```
 An archive containing samples is here: http://megalego.free.fr/gesi/sons.zip.
-
 Create *gesi/sons* folder if it's not there, download and extract sons.zip into *sons* folder.
-
 Now we can rebuild database by accessing localhost/update_gesi in web browser.
 
 
