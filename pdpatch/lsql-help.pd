@@ -1,0 +1,73 @@
+#N canvas 656 434 1085 589 10;
+#X declare -lib pdlua;
+#X obj 218 457 lsql;
+#X msg 32 107 open \$1;
+#X obj 32 86 openpanel;
+#X obj 32 66 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 218 493 print RES;
+#X obj 218 397 list prepend sql;
+#X obj 218 416 list trim;
+#X floatatom 241 476 5 0 0 1 rows_affected - -, f 5;
+#X text 312 14 use ":" instead of commas \, Pd doesn't like commas.
+;
+#X text 394 485 TODO: use finalize to close table and cursores.;
+#X text 27 37 First open DB:;
+#X obj 119 4 declare -lib pdlua;
+#X msg 323 162 select * from entries;
+#X msg 517 408 DROP table entries \, DROP table environments;
+#X msg 326 217 select * from environments;
+#X msg 518 437 DROP table sound_info;
+#X msg 329 280 select * from sound_info;
+#X msg 32 129 open /media/sdext/flask/gesidb/gesidb.db;
+#X msg 524 462 DROP table analog \, DROP table digital;
+#X msg 322 306 select * from analog;
+#N canvas 29 51 789 524 tableCreate 0;
+#X obj 114 423 s \$0sqlite;
+#X msg 259 52 CREATE TABLE sound_info(id integer primary key: sound_id
+integer: samplerate integer : length integer : headersize integer :
+channels integer : resolution integer: endianness varchar(50) : format
+integer);
+#X msg 279 114 CREATE TABLE entries(id integer primary key: title varchar(50)
+: env varchar(50) : density varchar(50) : filename varchar(50): blacklist
+integer) \, CREATE TABLE environments(title varchar(50));
+#X msg 309 237 CREATE TABLE digital(id integer primary key: preset
+integer :dnumber varchar(50) : mode integer : control varchar(50))
+\, sql insert into digital values(NULL : NULL : NULL : NULL : NULL
+);
+#X msg 300 172 CREATE TABLE analog(id integer primary key : preset
+integer : anumber varchar(50) : sensor varchar(50) : control varchar(50))
+\, insert into analog values(NULL : NULL : NULL : NULL : NULL );
+#X msg 306 305 CREATE TABLE readsound(id integer primary key : preset
+integer : sensor varchar(50) : largo integer : adagio integer : moderato
+integer : allegro integer : presto integer : reverse integer : outputs
+integer : voices integer : environments text );
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X restore 302 63 pd tableCreate;
+#X obj 188 301 r \$0sqlite;
+#X msg 328 337 select * from readsound;
+#X msg 326 185 select * from entries where (blacklist = 1);
+#X msg 511 378 DROP table readsound;
+#X connect 0 0 4 0;
+#X connect 0 1 7 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 5 0 6 0;
+#X connect 6 0 0 0;
+#X connect 12 0 5 0;
+#X connect 13 0 5 0;
+#X connect 14 0 5 0;
+#X connect 15 0 5 0;
+#X connect 16 0 5 0;
+#X connect 17 0 0 0;
+#X connect 18 0 5 0;
+#X connect 19 0 5 0;
+#X connect 21 0 5 0;
+#X connect 22 0 5 0;
+#X connect 23 0 5 0;
+#X connect 24 0 5 0;

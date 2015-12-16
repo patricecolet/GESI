@@ -1,0 +1,17 @@
+{% extends "dial_layout.html" %}
+{% block body %} 
+
+<div data-role="dialog" data-title="Add Environment" data-close-btn="none">
+	Add Environment
+		<div data-role="header" data-theme="b" data-title="Add Environment">
+			<input type="text" id="newEnvName"></input>
+		</div>
+		<div>
+			<a href="{{ url_for('pdsend',message='testmess') }}" data-role="button" data-rel="back" data-theme="b" id="newEnv">
+				Sounds good</a>       
+			<a href="docs-dialogs.html" data-role="button" data-rel="back" data-theme="c">Cancel</a>    
+		</div>
+	</div>
+
+
+{% endblock %}

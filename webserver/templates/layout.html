@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>GESI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='jquery.mobile.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='jquery-ui.css') }}">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='jquery.fileupload.css') }}">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='jquery.fileupload-ui.css') }}">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+<style>
+  label { display: block; }
+  select { width: 200px; }
+  </style>
+
+  <script src="{{ url_for('static', filename='jquery-1.11.2.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery.mobile.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery-ui.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery.limitslider.js') }}"></script>
+
+
+  <script>
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+function drawRow(rowData,id) {
+    var className = 'soundInfoList' + id 
+    var row = $("<ul class=" + className + ">");
+    $('#' + id).append(row);
+    row.append($("<li>Samplerate:" + rowData.samplerate + "</li>"));
+    row.append($("<li>Length:" + rowData.length + "</li>"));
+    row.append($("<li>channels:" + rowData.channels + "</li>"));
+    row.append($("</ul>"));
+}
+ </script>
+
+{{ fujs.js }}
+
+  </head>
+ <body>
+  <div data-role="page" id="database">
+   <div data-role="header">
+    <div class="ui-bar ui-bar-b">
+      <a href="{{ url_for('show_entries',env='default',density='largo') }}"\
+       target="_parent" data-role="button">Sons</a>
+      <a href="{{ url_for('sensors') }}" target="_parent"\
+        data-role="button">Capteurs</a>
+      <a href="{{ url_for('actuators') }}" target="_parent"\
+       data-role="button">Actionneurs</a>
+      <h1>Generateur d'Environnement Sonore Interactif</h1>
+      </div>
+   {% for message in get_flashed_messages() %}
+     <div class=flash>{{ message }}</div>
+    {% endfor %}
+    </div>
+
+
+
+    {% block body %}
+    {% endblock %}
+
+   <div data-role="footer">
+    </div>
+   </div>
+
+
+<div data-role="page" data-dialog="true" id="addDial">
+  <div data-role="header">
+    <h1>Create a new environment</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>Enter environment name without spaces</p>
+    <form>
+    <input type="text" id="envName">
+    </form>
+  </div>
+
+  <div data-role="footer">
+    <a href="#addDial" id="addEnv">Sounds Good!</a>
+    <a href="#database" id="addEnvClose">Cancel</a>
+  </div>
+</div> 
+<div data-role="page" data-dialog="true" id="delDial">
+
+  <div data-role="main" class="ui-content">
+    <p>Delete {{ env }} ?</p>
+  </div>
+
+  <div data-role="footer">
+    <a href="#database" id="delEnv">Yes!</a>
+    <a href="#database">Cancel</a>
+  </div>
+</div> 
+
+
+  </body>
+</html>

@@ -1,0 +1,179 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<script>
+var connection = new WebSocket('ws://' + location.host + ':6789');
+
+connection.binaryType = 'arraybuffer';
+
+connection.onopen = function()
+{
+   $("#messages").text('Connected!'); 
+};
+
+
+connection.onmessage = function(e)
+{
+  var s = ""
+  var m = e.data.split("|");
+  var test="TEST: "
+  $.each( m, function(key, mess) {
+    var s = mess.split(" ");
+      var k = 0;
+      if (0 != key) var k = 1;
+      var v = (s[2+k] / s[1+k])*100;
+      test = test + mess +", "+ s[0+k]+"| "+'#' +s[0+k]+'pb';
+      $( '#' +s[0+k]+'pb' ).progressbar({
+        value: v,height: 10
+        });
+    });
+$("#messages").text(test); 
+};
+</script>    
+<div id="messages">Not Connected!</div>
+<div id="accordion" data-role="collapsible-set" data-theme="c" data-content-theme="d">
+ <div data-role="collapsible"  data-mini="true" id="analogSettings">
+  <legend>Analog Sensors</legend>
+{% for number in range(6) %}
+
+  <div data-role="collapsible" class="analogSwitch" \
+    id="A{{ number }}" data-mini="true" >
+   <h3>
+    <label id="checkBoxLbl{{ number }}">
+     <input type="checkbox" name="checkbox{{ number }}"/>ADC{{ number }}
+     </label>
+    </h3>
+   <div data-role="controlgroup" data-mini="true" data-type="horizontal">
+    <label for="asen">Sensor</label>
+    <select name="asen" class="amenu" id="A{{ number }}sensor">
+      <option value="pot">Potentiometer</option>
+      <option value="ir">InfraRed</option>
+     </select>
+    <label for="acontrol">Control</label>
+    <select name="amenu" class="amenu" id="A{{ number }}control">
+      <option>Sample</option>
+      <option>Setting</option>
+    </select>
+   </div>
+  <div id="A{{ number }}pb" class="AnalogSensor"></div>
+  <div id="A{{ number }}settings" class="AnalogSettings"></div>
+  </div>
+{% endfor %}
+ </div>
+</div>
+
+ <div data-role="collapsible"  data-mini="true" id="digitalSettings">
+  <legend>Digital Sensors</legend>
+{% for number in range(6) %}
+  <div data-role="collapsible"  data-mini="true" class="digitalSwitch" \
+    id="D{{ number }}">
+   <legend>Digital{{ number }}</legend>
+    <div data-role="controlgroup" data-mini="true" data-type="horizontal">
+     <label for="dsen">Sensor</label>
+     <select name="dsen" class="dmenu" id="gpio {{ number }}">
+      <option value="1">Write</option>
+      <option value="0">Read</option>
+      <option value="2">Ping</option>
+      <option value="3">PWM</option>
+      </select>
+     <label for="dcontrol">Control</label>
+     <select name="dcontrol"  class="dmenu" id="dcontrol {{ number }}">
+      <option>Sample</option>
+      <option>Setting</option>
+      </select>
+     </div>
+    <div id="D{{ number }}pb" class="digitalMonitor"></div>
+    <div id="D{{ number }}settings" class="digitalSettings"></div>
+    </div>
+{% endfor %}
+  </div>
+<script>
+
+$(document).ready(function(){
+{% for number in range(6) %}
+  $('#checkBoxLbl{{ number }}').click(function(e) {
+        e.stopPropagation();
+        if ($(this).hasClass('ui-icon-checkbox-on')) {
+            $(this).closest('label').attr("data-icon", "checkbox-off");
+            $(this).addClass('ui-icon-checkbox-off');
+            $(this).removeClass('ui-icon-checkbox-on');
+            $(this).closest('label').addClass('ui-checkbox-off');
+            $(this).closest('label').removeClass('ui-checkbox-on');
+        } else {
+            $(this).closest('label').attr("data-icon", "checkbox-on");
+            $(this).addClass('ui-icon-checkbox-on');
+            $(this).removeClass('ui-icon-checkbox-off');
+            $(this).closest('label').addClass('ui-checkbox-on');
+            $(this).closest('label').removeClass('ui-checkbox-off');
+        }
+  });   
+{% endfor %}
+}); 
+
+$("#analogSettings").collapsible({expand: function(){
+{% for an in analog %}
+$('#{{ an.anumber }}').collapsible('expand');
+$('#{{ an.anumber }}sensor').val('{{ an.sensor}}').selectmenu('refresh',true);
+$('#{{ an.anumber }}control').val('{{ an.control}}').selectmenu('refresh',true);
+ $("#messages").text('-{{ an.sensor}}-'+'-{{ an.anumber}}-'); 
+if ('{{ an.control}}' == 'Sample') {
+ $.ajax({
+    url: $SCRIPT_ROOT + '/sample_settings',
+        type: 'POST',
+        data: '{{ an.anumber }}',
+        contentType: 'application/json;charset=UTF-8',
+        success: function(evt) {
+  $('#{{ an.anumber }}settings').html(evt);
+        }
+});
+ }
+{% endfor %}
+}});
+$(".analogSwitch").collapsible({expand: function(){
+   var c = $( this ).attr('id');
+   var url = flask_util.url_for('pdsend', {message: 'monitor ' + c + ' 1' });
+   $.post(url);              
+  }}).collapsible({collapse: function(){
+   var c = $( this ).attr('id');
+   var url = flask_util.url_for('pdsend', {message: 'monitor ' + c + ' 0' });
+   $.post(url);
+}});
+
+ $( ".AnalogSensor" ).progressbar({
+   value: 1, height: 10
+     });
+
+$( '.amenu' ).selectmenu({width: 150}).on( "selectmenuclose", function( event, ui ) {
+     var url = flask_util.url_for('pdsend', {message:  $(this).attr('id') + '  ' + $(this).val() });
+     $.post(url);   
+     });
+var pin;
+$( '.dmenu' ).selectmenu({width: 150}).on( "selectmenuclose", function( event, ui ) {
+     pin = parseFloat($(this).attr('id').split(' ')[1]);
+     var mode = $(this).val()*24+pin;
+     var url = flask_util.url_for('pdsend', {message: 'gpio set 0 D'+pin + '  ' + mode + ' Sample'});
+     $.post(url);   
+     });
+{% for dn in digital %}
+$('#{{ dn.dnumber }}').collapsible('expand');
+$('#{{ dn.dnumber }}sensor').val('{{ dn.sensor}}').selectmenu('refresh',true);
+$('#{{ dn.dnumber }}control').val('{{ dn.control}}').selectmenu('refresh',true);
+ $("#messages").text('-{{ dn.sensor}}-'+'-{{ dn.dnumber}}-'); 
+if ('{{ dn.control}}' == 'Sample') {
+ $.ajax({
+    url: $SCRIPT_ROOT + '/sample_settings',
+        type: 'POST',
+        data: '{{ dn.dnumber }}',
+        contentType: 'application/json;charset=UTF-8',
+        success: function(evt) {
+  $('#{{ dn.dnumber }}settings').html(evt);
+        }
+});
+ }
+{% endfor %}
+$(".digitalMonitor").progressbar();
+
+ 
+</script>
+
+{% endblock %}

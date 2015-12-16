@@ -1,0 +1,57 @@
+
+{% for d in density %}
+<div id="ranges{{ anumber }}"></div>
+<div id="samplemess"></div>
+ <label><input type="checkbox" name="checkbox-1" id="reverse{{ anumber }}"/> Reverse </label>
+ <div data-role="collapsible"  id="env-{{ anumber }}">
+   <h3>Environments</h3>
+{% for e in env %}
+<input type="checkbox" id="{{ anumber }}-{{ e.title }}" name="{{ anumber }}-{{ e.title }}" value="off">
+ <label for="{{ anumber }}-{{ e.title }}">{{ e.title }}</label>
+{%  endfor %}
+</div>
+<script>
+    $(function() {
+         $('#env-{{ anumber }}').collapsible();
+         $('reverse{{ anumber }}').button();
+
+{% for e in env %}
+
+         $('#{{ anumber }}-{{ e.title }}').button().click(function(){
+           var value = $('#{{ anumber }}-{{ e.title }}').val();
+           if (value == "on") {value ="off"}
+          else {value ="on"}
+          $('#{{ anumber }}-{{ e.title }}').val(value);
+           var url = flask_util.url_for('pdsend', {message: 'sensor env ' + value + ' {{ e.title }} ' + '{{ anumber }}'});
+           $.post(url)          
+          });
+{%  endfor %}
+{% for i in playlist %}
+ $('#{{ anumber }}-{{ i }}').attr('checked', true).button('refresh',true);
+ $('#samplemess').append('{{ anumber }}-{{ i }} ');
+{%  endfor %}
+$('#ranges{{ anumber }}').limitslider({
+        values: [ {{ d.largo }}, {{ d.adagio }}, {{ d.moderato }}, {{ d.allegro }}, {{ d.presto }}],
+        step:       1,
+        label:      true,
+        title:       true,
+        showRanges: true,
+        ranges:     [false, true, true, true, true, true]
+        });
+    });
+$( '#ranges{{ anumber }}' ).limitslider({
+  change: function() {
+   var values = $( '#ranges{{ anumber }}' ).limitslider("values");
+
+if (values) {
+ values = values.toString().replace(/,/g, ' ');
+}
+       var url = flask_util.url_for('pdsend', 
+        {message: 'readsound set 0 {{ d.sensor }} '+ values});
+       $.post(url);
+       }
+});
+
+</script>
+
+{%  endfor %}

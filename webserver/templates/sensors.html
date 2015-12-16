@@ -1,0 +1,187 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<script>
+
+  var socket = 'ws://' + location.host + ':6789';
+
+function start(socket){
+  connection = new WebSocket(socket);
+
+  connection.binaryType = 'arraybuffer';
+
+  connection.onopen = function()
+  {
+    $("#messages").append('Connected!');
+  };
+
+ connection.onmessage = function(e)
+ {
+  var test="TEST: "
+  var sockMess = new Array();
+  sockMess = e.data.split("%");
+  if (sockMess[0] == 'sensors') 
+   {
+   var s = "";
+   var v = 0;
+   var m = sockMess[1].split("|");
+   $.each( m, function(key, mess) {
+      var s = mess.split(" ");
+      var v = parseInt(s[3]);
+      test += mess +", "+ s[2]+"| "+'#' +s[2]+'pb';
+      $( '#' + s[2] + '-pb' ).progressbar("option", "value", v);
+     });
+   }
+   else if (sockMess[0] == 'actuators') {
+    
+    $("#test").text(sockMess[1]);
+    }
+  $("#messages").text(test);
+  }
+  connection.onclose = function(){
+        setTimeout(function(){start(socket)}, 5000);
+   }
+ }
+
+start(socket);
+
+ </script>    
+
+ <div id="messages">Not Connected!</div>
+ 
+  <div data-role="fieldcontain"  style="text-align:center;">
+	<select name="add-sensor"   id="add-sensor" class="add-sensor">
+		<option selected disabled>Ajouter Un Capteur</option>
+		<option value="fir">Infrarouge Lointain</option>
+		<option value="capSwitch">Interrupteur Capacitif</option>
+		<option value="light">Lumiere</option>
+		<option value="switch">Lumiere</option>
+		<option value="ultraSound">Ultrason</option>
+	</select>
+  </div>
+
+{% for sensor in sensors %}
+   <div data-role="collapsible"  data-mini="true" id="{{ sensor.title }}-col">
+    <legend> {{ sensor.title }} {{ sensor.sensor }} 
+      <label id="{{ sensor.title }}-lbl">
+      </label>
+     </legend>
+     <div data-role="content">
+      <a href="#" class="ui-btn-right del-sensor" data-role="button" data-icon="delete" id="{{ sensor.title }}-del">del</a>
+      </div>
+{% if sensor.sensor == 'ultraSound' or sensor.sensor == 'switch' %}
+      <div class="sensor-monitor" id="GPIO{{ sensor.input }}-pb"></div>
+{% else %}
+      <div class="sensor-monitor" id="ADC{{ sensor.input }}-pb"></div>
+{% endif %}
+    <style>
+th, td { padding: 5px; }
+    </style>
+
+     
+     <table style="margin-left: auto;margin-right: auto;" cellpadding="10">
+      <tr>
+       <th>Port</th>
+{% if sensor.sensor == 'fir' %}
+       <th>Window(decisecond)</th>
+{% elif sensor.sensor == 'capSwitch' %}
+       <th>Threshold</th>
+{% else %}
+       <th>Param</th>
+{% endif %}
+       <th>Send To Actuator</th>
+       </tr>
+      <tr>
+       <td>
+        <select name="{{ sensor.title }}-port"   id="{{ sensor.title }}-port" class="sel-port">
+         <option selected disabled>Select</option>
+{% if sensor.sensor == 'ultraSound' or sensor.sensor == 'switch' %}
+{% for num in range(16) %}
+         <option value="{{ num }}"
+{% if sensor.input == num|string %} selected="selected" {% endif %}
+>GPIO {{ num }}</option>
+{% endfor %} 
+{% else %}
+{% for num in range(6) %}
+         <option value="{{ num }}"
+{% if sensor.input == num|string %} selected="selected" {% endif %}
+>ADC {{ num }}</option>
+{% endfor %} 
+{% endif %}     
+         </select>
+        </td>
+       <td>
+        <input type="number" step="1" min="0" id="{{ sensor.title }}-window" value="{{ sensor.window }}">
+        </td>
+       <td>
+        <select name="{{ sensor.title }}-send"   id="{{ sensor.title }}-send" class="send2">
+         <option selected disabled>Select</option>
+{% for r in readsound %} 
+         <option value="{{ r.title }}"
+{% if sensor.send2 == r.title %} selected="selected" {% endif %}>{{ r.title }}
+         </option>
+{% endfor %}      
+        </select>
+       </td>
+      </tr>
+     </table>
+    </div>
+{% endfor %}
+
+
+
+
+
+<script>
+$(function() {
+
+     $( "#add-sensor" ).selectmenu({
+         change: function( event, ui ) {
+             var selected = ui.item.value;
+             var url = flask_util.url_for('add_sensor',{sensor: selected});
+            $.post(url);
+            var url = flask_util.url_for('pdsend', {message: 'sensorsInit 0' });
+            $.post(url);
+            window.location='/sensors';
+         }
+     });
+
+   $( ".del-sensor" ).on('click',function() {
+       var url = flask_util.url_for('del_sensor', {name: this.id.split("-")[0] });
+       $.post(url);
+       var url = flask_util.url_for('pdsend', {message: 'sensorsInit 0' });
+       $.post(url);
+       window.location='/sensors';
+       });
+
+
+     $( ".sel-port" ).selectmenu({
+         change: function( event, ui ) {
+             var selected = ui.item.value;
+             var url = flask_util.url_for('update_data',{table: 'sensors', col: 'input', row: this.id.split("-")[0], data: selected});
+             $.post(url); 
+             var url = flask_util.url_for('pdsend', {message: 'sensorsInit 0' });
+             $.post(url);
+         }
+     }); 
+
+     $( ".send2" ).selectmenu({
+         change: function( event, ui ) {
+             var selected = ui.item.value;
+             var url = flask_util.url_for('update_data',{table: 'sensors', col: 'send2', row: this.id.split("-")[0], data: selected});
+             $.post(url);
+             var url = flask_util.url_for('pdsend', {message: 'sensorsInit 0' });
+             $.post(url); 
+         }
+     }); 
+
+
+ });
+
+ $( ".sensor-monitor" ).progressbar({
+   value: 1, height: 10
+     });  
+
+</script>
+
+{% endblock %}

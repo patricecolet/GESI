@@ -1,0 +1,226 @@
+{% extends "layout.html" %}
+{% block body %}
+
+ <script>
+
+  var socket = 'ws://' + location.host + ':6789';
+
+function start(socket){
+  connection = new WebSocket(socket);
+
+  connection.binaryType = 'arraybuffer';
+
+  connection.onopen = function()
+  {
+    $("#messages").append('Connected!');
+  };
+
+ connection.onmessage = function(e)
+ {
+  var test="TEST: "
+  var sockMess = new Array();
+  sockMess = e.data.split("%");
+  if (sockMess[0] == 'sensors') 
+   {
+   var s = "";
+   var v = 0;
+   var m = sockMess[1].split("|");
+   $.each( m, function(key, mess) {
+      var s = mess.split(" ");
+      var v = parseInt(s[3]);
+      test += mess;
+      $( '#' + s[2] + '-pb' ).progressbar("option", "value", v);
+     });
+   }
+   else if (sockMess[0] == 'actuators') {
+    var string = String(sockMess[1]).split(" ");
+    $('#' + string[1] + '-snd').text(string[2]);
+    $('#' + string[1] + '-environ').text(string[3]);
+    $('#' + string[1] + '-density').text(string[4]);
+    $('#test').text('Action: ' + string);
+    }
+
+  $("#messages").text(test);
+  }
+  connection.onclose = function(){
+        setTimeout(function(){start(socket)}, 5000);
+   }
+ }
+
+start(socket);
+
+  </script>
+
+ <div id="messages">Not Connected!</div>
+ <div id="test"></div>
+
+ <button class="ui-btn small-btn" id="addReadsound">Add Sound Player</button>
+
+ <div id="accordion" data-role="collapsible-set" data-theme="c" data-content-theme="d">
+{% for readsound in readsound %}
+   <div data-role="collapsible"  data-mini="true" id="{{ readsound.title }}-col">
+    <legend> {{ readsound.title }}
+      <label id="{{ readsound.title }}-lbl">
+      </label>
+     </legend>
+     <div data-role="content">
+      <a href="#" class="ui-btn-right del-actuator" data-role="button" data-icon="delete" id="{{ readsound.title }}-del">del</a>
+      </div>
+{% for s in sensors %} {%  if s.send2 == readsound.title %}
+{% if s.sensor == 'ultraSound' or s.sensor == 'switch' %}
+{%  set input = ['GPIO', s.input]|join %} 
+     <div id="{{ input }}-pb" class="sensor-monitor"></div>
+{%  else %}
+{%  set input = ['ADC', s.input]|join('') %} {%  endif %} 
+     <div id="{{ input }}-pb" class="sensor-monitor"></div>
+{%  endif %} {%  endfor %}
+    <div data-role="collapsible">
+     <legend>Ranges</legend>
+     <div id="ranges-{{ readsound.title }}"></div>
+     <div id="samplemess"></div>
+     <div data-role="header" class="ui-bar ui-bar-b" id="{{ readsound.title }}-env-values">
+    </div>
+   </div>
+  <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" data-mini="true">
+   <p> Voices </p>
+   <input type="number" step="1" min="1" max="4" id="{{ readsound.title }}-voices" value="{{ readsound.voices }}" class="voices" />
+   </fieldset>
+   <div data-role="collapsible"  id="" class="rs-env">
+    <h3>Environments</h3>
+  {% for e in env %} <input type="checkbox" id="{{ readsound.title }}-{{ e.title }}" name="{{ e.title }}" class="rs-env-cb" />
+     <label for="{{ readsound.title }}-{{ e.title }}">{{ e.title }}</label>
+  {%  endfor %}
+    </div>
+<div class="ao">
+    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain" data-mini="true">
+	<legend>Audio Out:</legend>
+		<input type="checkbox" name="1" id="{{ readsound.title }}-ao1" class="ao-cb" />
+		<label for="{{ readsound.title }}-ao1">DAC 1</label>
+		<input type="checkbox" name="2" id="{{ readsound.title }}-ao2" class="ao-cb" />
+		<label for="{{ readsound.title }}-ao2">DAC 2</label>
+		<input type="checkbox" name="3" id="{{ readsound.title }}-ao3" class="ao-cb" />
+		<label for="{{ readsound.title }}-ao3">DAC 3</label>
+		<input type="checkbox" name="4" id="{{ readsound.title }}-ao4" class="ao-cb" />
+		<label for="{{ readsound.title }}-ao4">DAC 4</label>
+		<input type="checkbox" name="5" id="{{ readsound.title }}-ao5" class="ao-cb" />
+		<label for="{{ readsound.title }}-ao5">DAC 5</label>
+		<input type="checkbox" name="6" id="{{ readsound.title }}-ao6" class="ao-cb" />
+		<label for="{{ readsound.title }}-ao6">DAC 6</label>
+		<input type="checkbox" name="7" id="{{ readsound.title }}-ao7" class="ao-cb" />
+		<label for="{{ readsound.title }}-ao7">DAC 7</label>
+		<input type="checkbox" name="8" id="{{ readsound.title }}-ao8" class="ao-cb" />
+		<label for="{{ readsound.title }}-ao8">DAC 8</label>
+   </fieldset>
+</div>
+ <div class="ui-grid-b" data-role="footer" dta-theme="a">
+   <div id="{{ readsound.title }}-snd" class="ui-block-a">sound.wav</div>
+   <div id="{{ readsound.title }}-environ"  class="ui-block-b">environment</div>
+   <div id="{{ readsound.title }}-density"  class="ui-block-c">dynamique</div>
+  </div>
+ </div>
+ {% endfor %}
+
+ </div>
+ <script>
+     $('#addReadsound').click(function() {
+       var url = flask_util.url_for('add_actuator', {actuator: 'readsound' });
+       $.post(url);
+       var url = flask_util.url_for('pdsend', {message: 'readSoundInit 0' });
+       $.post(url);
+       window.location='/actuators';
+        });
+     $('.del-actuator').click(function() {
+       var url = flask_util.url_for('del_actuator', {name: this.id.split("-")[0] });
+       $.post(url);
+       var url = flask_util.url_for('pdsend', {message: 'readSoundInit 0' });
+       $.post(url);
+       window.location='/actuators';
+        });
+     $('.rs-env-cb').change(function() {
+        var selected = [];
+        $('.rs-env input:checked').each(function() {
+            selected.push($(this).attr('name'));
+            });
+       var id = this.id.split("-")[0];
+       var url = flask_util.url_for('update_data', {table: 'readsound', col: 'environments',
+          row: id, data: selected });
+       $.post(url);
+        });
+     $('.ao-cb').change(function() {
+        var selected = [];
+        $('.ao input:checked').each(function() {
+            selected.push($(this).attr('name'));
+            });
+       var id = this.id.split("-")[0];
+       var url = flask_util.url_for('update_data', {table: 'readsound', col: 'outputs',
+          row: id, data: selected });
+       $.post(url);
+        });
+
+var mHandle = "largo";
+{% for r in readsound %}
+ $('#ranges-{{ r.title }}').limitslider({
+        values: [ {{ r.largo }}, {{ r.adagio }}, {{ r.moderato }}, {{ r.allegro }}, {{ r.presto }}],
+        step:       1,
+        label:      true,
+        title:       true,
+        showRanges: true,
+        ranges:     [false, true, true, true, true, true],
+        slide: function( event, ui ) {
+         if(ui.values[0] == ui.value) mHandle = 'largo'
+         else if(ui.values[1] == ui.value) mHandle = 'adagio'
+         else if(ui.values[2] == ui.value) mHandle = 'moderato'
+         else if(ui.values[3] == ui.value) mHandle = 'allegro'
+         else if(ui.values[4] == ui.value) mHandle = 'presto'
+         }
+        });
+$('#{{ r.title }}-env-values').html('<table width="100%"><tr><td>\
+ Largo:{{ r.largo }}</td><td>Adagio:{{ r.adagio }}</td>\
+ <td>Moderato:{{ r.moderato }}</td><td>Allegro:{{ r.allegro }}</td>\
+ <td>Presto:{{ r.presto }}</td><tr></table>');
+  $( '#ranges-{{ r.title }}' ).limitslider({
+    change: function(event,ui) { 
+     var url = flask_util.url_for('update_data',{table: 'readsound', col:mHandle, data:ui.value, row:'{{ r.title }}'});
+     $.post(url);
+       var url = flask_util.url_for('pdsend', {message: '{{ r.title }} loadbang' });
+       $.post(url);
+     $('#{{ r.title }}-env-values').html('<table width="100%"><tr><td>\
+      Largo:' + ui.values[0] + '</td><td>Adagio:' + ui.values[1] + '</td>\
+      <td>Moderato:' + ui.values[2] + '</td><td>Allegro:' + ui.values[3] + '</td>\
+      <td>Presto:' + ui.values[4] + '</td><tr></table>');
+     }
+  });
+     var e = new Array();
+     var s = [{% for e in env %} "{{ e.title }}",{%- endfor %}];
+     var r = "{{ r.environments }}";
+     e = r.split(' ');
+     for (i = 0; i < e.length; i++) { 
+       for (j = 0; j < s.length; j++) { 
+         if (e[i] == s[j]) {
+           $('#{{ r.title }}-' + s[j]).prop('checked', true);
+          }
+        }
+      }
+     var ao = new Array();
+     var r = "{{ r.outputs }}";
+     ao = r.split(' ');
+     for (i = 0; i < ao.length; i++) { 
+        $('#{{ r.title }}-ao' + ao[i]).prop('checked', true);
+        }
+$('#{{ r.title }}-voices').click(function(){
+    var value = parseInt($(this).val(), 10);
+    var url = flask_util.url_for('update_data',{table: 'readsound', col: 'voices', row: '{{ r.title }}', data: value});
+    $.post(url);
+    var url = flask_util.url_for('pdsend', {message: 'readSoundInit 0' });
+    $.post(url); 
+});
+
+{% endfor %}
+
+ $( ".sensor-monitor" ).progressbar({
+   value: 1, height: 10
+     });  
+
+
+  </script>
+{% endblock %}
