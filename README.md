@@ -67,7 +67,7 @@ An archive containing samples is here: http://megalego.free.fr/gesi/sons.zip.
 
 Create *gesi/sons* folder if it's not there, download and extract sons.zip into *sons* folder.
 
-Now we can rebuild database by accessing localhost/update in web browser, after a few minutes...
+Now we can rebuild database by accessing localhost/update_gesi in web browser, after a few minutes...
 
 
 
