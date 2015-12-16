@@ -1,7 +1,7 @@
-### GESI
+# GESI
 ##Gestionnaire d'Environnement Sonore Interactif
 
-#GESI Framework
+###Installation
 
 tested on linux
 
