@@ -39,7 +39,32 @@ $ cd GESI/pdpatch
 $ pd gesi-arduino.pd &
 ```
 
+GESI interface runs in a web browser at localhost. The database is made by running update python script in web browser,
+but the folder containing sounds must be at GESI root directory, like this:
 
+gesi
+-/**sons**
+--/[environment1]
+---/**largo**
+----/[sound01.wav]
+----/[sound02.wav]
+----/...
+---/**adagio**
+----/[sound101.wav]
+----/...
+---/**moderato**
+---/**allegro**
+---/**presto**
+--/[environment2]
+---/**largo**
+---/...
+--/[environment3]
+--/...
+
+an archive containing samples is here: http://megalego.free.fr/gesi/sons.zip
+create *gesi/sons* folder if it's not there, download and extract sons.zip into *sons* folder.
+
+Now we can rebuild database by accessing localhost/update in web browser, after a few minutes...
 
 
 
