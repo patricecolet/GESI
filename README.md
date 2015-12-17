@@ -25,7 +25,6 @@ in puredata Edit->Preference->Startup add *pdlua zexy* and in Edit->Preference->
 ### Patches
 Download sources:
 ```
-$ cd webserver
 $ git clone https://github.com/patricecolet/GESI.git
 ```
 Run web server:
