@@ -40,7 +40,7 @@ $ pd gesi-arduino.pd &
 GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
 the folder containing sounds must be at GESI root directory, like this:
 ```
--/gesidb
+-/webserver
 -/pdpatch
 -/sons
 --/[environment1]
