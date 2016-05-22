@@ -30,9 +30,9 @@ Run web server:
 $ cd GESI/webserver
 $ sudo python ./gesidb.py &
 ```
-and puredata in another shell.
+and puredata:
 ```
-$ cd GESI/pdpatch
+$ cd ../pdpatch
 $ pd gesi-arduino.pd &
 ```
 ### Database
@@ -59,7 +59,7 @@ the folder containing sounds must be at ~/.gesi/ directory, like this:
 --/...
 ```
 An archive containing samples is here: http://megalego.free.fr/gesi/sons.zip.
-Create *.gesi* directory in */home/user* folder if it's not there, download and extract sons.zip into */home/user/.gesi/sons* folder.
+Create *.gesi* directory in */home/user* folder if it's not there, download and extract sons.zip into */home/user/.gesi/* folder.
 Now we can rebuild database by accessing localhost/update_gesi in web browser.
 
 
