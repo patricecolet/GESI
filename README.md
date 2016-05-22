@@ -16,7 +16,6 @@ $ pip install flask_util_js
 install  these externals with [deken](https://github.com/pure-data/deken):
 * pdlua
 * zexy
-* ggee
 * mrpeach
 * mediasettings
 
