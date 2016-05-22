@@ -1,6 +1,4 @@
-#N canvas 534 124 522 265 10;
-#X declare -lib pdlua zexy iemlib1;
-#X declare -path iem/mediasettings;
+#N canvas 534 139 522 265 10;
 #N canvas 29 51 450 300 cpu 0;
 #X obj 128 148 cputime;
 #X obj 128 38 loadbang;
@@ -93,10 +91,6 @@
 #X obj 15 163 r sql-open;
 #X msg 5 137 sql select * from readsound where preset=\$1;
 #N canvas 912 415 690 602 \$0readsounds 0;
-#X obj 10 10 readsound 1003 readsound1 4096 mono1 /home/patco/Documents/test/pdpatch/gesi/pdpatch/../webserver/gesidb.db
-;
-#X obj 50 50 readsound 1003 readsound2 4096 mono1 /home/patco/Documents/test/pdpatch/gesi/pdpatch/../webserver/gesidb.db
-;
 #X restore 294 29 pd \$0readsounds;
 #X msg 70 93 clear;
 #X obj 5 58 t a b;
@@ -326,8 +320,70 @@
 #X connect 15 0 9 0;
 #X connect 15 0 13 0;
 #X restore 23 109 pd network;
-#N canvas 884 366 269 240 sql 0;
-#N canvas 767 183 556 504 analysis 0;
+#N canvas 470 604 269 240 sql 1;
+#X obj 19 105 lsql;
+#X obj 51 80 r sql-open;
+#X obj 19 127 print RES;
+#X floatatom 56 107 5 0 0 1 rows_affected - -, f 5;
+#N canvas 883 129 566 520 TABLES 1;
+#X obj 53 452 list prepend sql;
+#X obj 53 471 list trim;
+#X msg 97 94 select * from environments;
+#X msg 419 216 DROP table sound_info;
+#X msg 105 113 select * from sound_info;
+#N canvas 992 277 688 595 tableCreate 1;
+#X msg 106 68 CREATE TABLE entries(id integer primary key: title varchar(50)
+: env varchar(50) : density varchar(50) : filename varchar(50): blacklist
+integer) \, CREATE TABLE environments(title varchar(50));
+#X obj 95 580 outlet;
+#X msg 304 500 CREATE TABLE digital(id integer primary key: preset
+integer :dnumber varchar(50) : mode integer : control varchar(50))
+\, insert into digital values(NULL : NULL : NULL : NULL : NULL );
+#X msg 120 128 CREATE TABLE sensors(id integer primary key : preset
+integer : title varchar(50) : sensor char(50) : send2 text : input
+text : window integer : refresh integer) \, insert into sensors values(NULL
+: NULL : NULL : NULL : NULL : NULL : NULL : NULL );
+#X msg 131 209 CREATE TABLE readsound(id integer primary key : preset
+integer : title varchar(50) : largo integer : adagio integer : moderato
+integer : allegro integer : presto integer : voices integer : outputs
+text : environments text );
+#X msg 86 6 CREATE TABLE sound_info(id integer primary key autoincrement
+unique : sound_id integer: samplerate integer : length integer : headersize
+integer : channels integer : resolution integer: endianness varchar(50)
+: format integer);
+#X connect 0 0 1 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X restore 53 9 pd tableCreate;
+#X msg 112 133 select * from readsound;
+#X msg 89 75 select * from entries where (blacklist = 1);
+#X msg 398 159 DROP table readsound;
+#X obj 52 497 outlet, f 8;
+#X msg 412 197 DROP table environments;
+#X msg 405 178 DROP table entries;
+#X msg 117 155 select * from sensors;
+#X msg 81 56 select * from entries where (blacklist = 0);
+#X msg 425 236 DROP table sensors;
+#X text 174 35 read tables;
+#X text 409 139 erase tables;
+#X connect 0 0 1 0;
+#X connect 1 0 9 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 0 0 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;
+#X connect 12 0 0 0;
+#X connect 13 0 0 0;
+#X connect 14 0 0 0;
+#X restore 14 9 pd TABLES;
+#N canvas 678 260 556 504 ANALYSIS 1;
 #X obj 44 7 r netreceive;
 #X obj 280 106 readsf~;
 #X obj 44 26 route analysis;
@@ -336,8 +392,6 @@
 #X obj 284 42 f;
 #X obj 311 42 + 1;
 #X obj 44 46 route done;
-#X msg 101 263 sql insert into sound_info values( '\$1' : '\$2' : '\$4'
-: '\$5' : '\$6' : '\$7' : '\$8' : '\$9' );
 #X obj 171 66 t l;
 #X obj 44 108 list;
 #X obj 44 130 route bang;
@@ -389,7 +443,7 @@
 #X connect 18 0 19 0;
 #X connect 18 1 0 0;
 #X restore 101 176 pd drip;
-#N canvas 29 51 494 403 sound_info 0;
+#N canvas 31 63 494 403 sound_info 0;
 #X obj 11 170 lsql;
 #X obj 11 111 list prepend sql;
 #X obj 11 130 list trim;
@@ -432,114 +486,63 @@
 #X connect 18 0 4 0;
 #X connect 18 1 17 1;
 #X restore 101 242 pd sound_info;
-#X obj 101 153 t a b;
+#X obj 109 150 t a b;
 #X msg 216 182 clear;
 #X msg 99 401 CREATE TABLE sound_info(sound_id integer : samplerate
 integer : length integer : headersize integer : channels integer :
 resolution integer: endianness varchar(50) : format integer);
-#X obj 101 327 outlet;
+#X obj 100 356 outlet;
+#X obj 54 379 print RECEIVE;
+#X obj 431 211 f;
+#X obj 461 211 + 1;
+#X msg 449 186 0;
+#X obj 375 240 list prepend;
+#X obj 375 186 t a b;
+#X msg 101 296 sql insert into sound_info values( NULL : '\$1' : '\$2'
+: '\$3' : '\$5' : '\$6' : '\$7' : '\$8' : '\$9' );
 #X connect 0 0 2 0;
 #X connect 2 0 7 0;
 #X connect 3 0 1 0;
-#X connect 4 0 9 0;
-#X connect 4 0 10 1;
+#X connect 4 0 8 0;
+#X connect 4 0 9 1;
 #X connect 5 0 6 0;
 #X connect 6 0 5 1;
 #X connect 7 0 4 1;
-#X connect 7 0 10 0;
+#X connect 7 0 9 0;
 #X connect 7 1 4 0;
-#X connect 8 0 17 0;
-#X connect 9 0 4 1;
-#X connect 10 0 11 0;
-#X connect 11 1 14 0;
-#X connect 12 0 13 0;
-#X connect 12 1 13 1;
-#X connect 13 0 8 0;
-#X connect 14 0 12 0;
-#X connect 14 1 15 0;
-#X connect 15 0 13 1;
-#X restore 32 51 pd analysis;
-#X obj 19 105 lsql;
-#X obj 51 80 r sql-open;
-#N canvas 515 69 566 520 createTABLES 0;
-#X obj 53 452 list prepend sql;
-#X obj 53 471 list trim;
-#X msg 97 94 select * from environments;
-#X msg 419 216 DROP table sound_info;
-#X msg 105 113 select * from sound_info;
-#N canvas 192 358 688 595 tableCreate 0;
-#X msg 86 6 CREATE TABLE sound_info(id integer primary key: sound_id
-integer: samplerate integer : length integer : headersize integer :
-channels integer : resolution integer: endianness varchar(50) : format
-integer);
-#X msg 106 68 CREATE TABLE entries(id integer primary key: title varchar(50)
-: env varchar(50) : density varchar(50) : filename varchar(50): blacklist
-integer) \, CREATE TABLE environments(title varchar(50));
-#X obj 95 580 outlet;
-#X msg 304 500 CREATE TABLE digital(id integer primary key: preset
-integer :dnumber varchar(50) : mode integer : control varchar(50))
-\, insert into digital values(NULL : NULL : NULL : NULL : NULL );
-#X msg 120 128 CREATE TABLE sensors(id integer primary key : preset
-integer : title varchar(50) : sensor char(50) : send2 text : input
-text : window integer : refresh integer) \, insert into sensors values(NULL
-: NULL : NULL : NULL : NULL : NULL : NULL : NULL );
-#X msg 131 209 CREATE TABLE readsound(id integer primary key : preset
-integer : title varchar(50) : largo integer : adagio integer : moderato
-integer : allegro integer : presto integer : voices integer : outputs
-text : environments text );
+#X connect 8 0 4 1;
+#X connect 9 0 10 0;
+#X connect 10 1 13 0;
+#X connect 11 0 12 0;
+#X connect 11 1 12 1;
+#X connect 12 0 23 0;
+#X connect 13 0 11 0;
+#X connect 13 1 14 0;
+#X connect 14 0 12 1;
+#X connect 18 0 19 0;
+#X connect 18 0 21 1;
+#X connect 19 0 18 1;
+#X connect 20 0 18 1;
+#X connect 22 0 21 0;
+#X connect 22 1 18 0;
+#X connect 23 0 16 0;
+#X connect 23 0 17 0;
+#X restore 30 36 pd ANALYSIS;
 #X connect 0 0 2 0;
-#X connect 1 0 2 0;
-#X connect 3 0 2 0;
-#X connect 4 0 2 0;
-#X connect 5 0 2 0;
-#X restore 53 9 pd tableCreate;
-#X msg 112 133 select * from readsound;
-#X msg 89 75 select * from entries where (blacklist = 1);
-#X msg 398 159 DROP table readsound;
-#X obj 52 497 outlet, f 8;
-#X msg 412 197 DROP table environments;
-#X msg 405 178 DROP table entries;
-#X msg 117 155 select * from sensors;
-#X msg 81 56 select * from entries where (blacklist = 0);
-#X msg 425 236 DROP table sensors;
-#X text 174 35 read tables;
-#X text 409 139 erase tables;
-#X connect 0 0 1 0;
-#X connect 1 0 9 0;
-#X connect 2 0 0 0;
-#X connect 3 0 0 0;
+#X connect 0 1 3 0;
+#X connect 1 0 0 0;
 #X connect 4 0 0 0;
 #X connect 5 0 0 0;
-#X connect 6 0 0 0;
-#X connect 7 0 0 0;
-#X connect 8 0 0 0;
-#X connect 10 0 0 0;
-#X connect 11 0 0 0;
-#X connect 12 0 0 0;
-#X connect 13 0 0 0;
-#X connect 14 0 0 0;
-#X restore 14 9 pd createTABLES;
-#X obj 19 127 print RES;
-#X floatatom 56 107 5 0 0 1 rows_affected - -, f 5;
-#X connect 0 0 1 0;
-#X connect 1 0 4 0;
-#X connect 1 1 5 0;
-#X connect 2 0 1 0;
-#X connect 3 0 1 0;
 #X restore 23 138 pd sql;
-#N canvas 698 51 418 326 init 0;
+#N canvas 698 68 418 326 init 1;
 #X obj 15 9 loadbang;
 #X obj 15 51 del 2000;
 #X obj 30 31 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 15 77 getdir;
-#X obj 143 223 declare -lib pdlua zexy iemlib1;
-#X obj 141 254 declare -path iem/mediasettings;
-#X msg 15 101 \; pd dsp 1 \; sql-open open \$1/../webserver/gesidb.db
+#X msg 15 71 \; pd dsp 1 \; sql-open open /home/pi/.gesi/gesidb.db
 \; INIT 0 \;;
 #X connect 0 0 1 0;
 #X connect 1 0 3 0;
-#X connect 3 0 6 0;
 #X restore 23 62 pd init;
 #N canvas 706 570 450 300 webserver 0;
 #X floatatom 201 242 5 0 0 0 - - -, f 5;

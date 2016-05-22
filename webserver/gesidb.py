@@ -26,15 +26,15 @@ def inject_fujs():
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
-    SOUND_PATH='/media/sdext/sons',
+    SOUND_PATH='/home/pi/.gesi/sons',
     SOUND_UPLOAD='/media/sdext/sons/uploads',
-    DATABASE=os.path.join(app.root_path, 'gesidb.db'),
+    DATABASE='/home/pi/.gesi/gesidb.db',
     DEBUG=True,
     SECRET_KEY='development key',
     USERNAME='gesi',
     PASSWORD='6351',
     DENSITY=['largo','adagio','moderato','allegro','presto'],
-    ALLOWED_EXTENSIONS= set(['wav', 'aif','WAV','AIF']),
+    ALLOWED_EXTENSIONS= tuple(['wav', 'aif','WAV','AIF']),
     SUFFIXES= ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
 ))
 
@@ -116,13 +116,13 @@ def update_gesi():
                     path = filename.split("/")
                     if len(path) > 6:
                         env = query_db('select * from environments where title = ?',
-                           [path[4]], one=True)
+                           [path[5]], one=True)
                         if env is None:
                             db.execute('insert into environments (title) values (?)',
-                               [path[4]])
+                               [path[5]])
                         db.execute('insert into entries (title,env, density,\
                             filename,blacklist) values (?, ?, ?, ?, ?)',\
-                            [name, path[4], path[5], filename,0])
+                            [name, path[5], path[6], filename,0])
                         db.commit()
                 else:
                 

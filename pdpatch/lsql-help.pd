@@ -1,4 +1,4 @@
-#N canvas 656 434 1085 589 10;
+#N canvas 161 91 1085 589 10;
 #X declare -lib pdlua;
 #X obj 218 457 lsql;
 #X msg 32 107 open \$1;
@@ -22,7 +22,7 @@
 #X msg 32 129 open /media/sdext/flask/gesidb/gesidb.db;
 #X msg 524 462 DROP table analog \, DROP table digital;
 #X msg 322 306 select * from analog;
-#N canvas 29 51 789 524 tableCreate 0;
+#N canvas 408 153 789 524 tableCreate 0;
 #X obj 114 423 s \$0sqlite;
 #X msg 259 52 CREATE TABLE sound_info(id integer primary key: sound_id
 integer: samplerate integer : length integer : headersize integer :
@@ -31,10 +31,6 @@ integer);
 #X msg 279 114 CREATE TABLE entries(id integer primary key: title varchar(50)
 : env varchar(50) : density varchar(50) : filename varchar(50): blacklist
 integer) \, CREATE TABLE environments(title varchar(50));
-#X msg 309 237 CREATE TABLE digital(id integer primary key: preset
-integer :dnumber varchar(50) : mode integer : control varchar(50))
-\, sql insert into digital values(NULL : NULL : NULL : NULL : NULL
-);
 #X msg 300 172 CREATE TABLE analog(id integer primary key : preset
 integer : anumber varchar(50) : sensor varchar(50) : control varchar(50))
 \, insert into analog values(NULL : NULL : NULL : NULL : NULL );
@@ -42,6 +38,9 @@ integer : anumber varchar(50) : sensor varchar(50) : control varchar(50))
 integer : sensor varchar(50) : largo integer : adagio integer : moderato
 integer : allegro integer : presto integer : reverse integer : outputs
 integer : voices integer : environments text );
+#X msg 309 237 CREATE TABLE digital(id integer primary key: preset
+integer :dnumber varchar(50) : mode integer : control varchar(50))
+\, insert into digital values(NULL : NULL : NULL : NULL : NULL );
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 3 0 0 0;
