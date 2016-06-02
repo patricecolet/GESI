@@ -1,0 +1,1798 @@
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Deactivate
+Jack: JackClient::Deactivate res = 0
+Jack: JackPosixThread::Kill
+Jack: jack_client_close
+Jack: JackClient::Close ref = 8
+Jack: JackClient::Deactivate
+Jack: JackSocketClientChannel::Stop
+Jack: JackPosixThread::Kill
+Jack: JackClientSocket::Close
+Jack: JackClientSocket::Close
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_pure_data_0
+Jack: JackLibClient::~JackLibClient
+Jack: JackShmReadWritePtr1::~JackShmReadWritePtr1 7
+Jack: Succeeded in unlocking 422 byte memory area
+Jack: JackLibGlobals Destroy 182fcf0
+Jack: ~JackLibGlobals
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_system
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_freewheel
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_dbusapi
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Sink
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Source
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_cloop
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_ploop
+Jack: no message buffer overruns
+Jack: JackPosixThread::Stop
+Jack: JackPosixThread::ThreadHandler : exit
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 1
+Jack: Succeeded in unlocking 1186 byte memory area
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 0
+Jack: Succeeded in unlocking 82274202 byte memory area
+Jack: jack_client_close res = 0
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5401
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5401
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Deactivate
+Jack: JackClient::Deactivate res = 0
+Jack: JackPosixThread::Kill
+Jack: jack_client_close
+Jack: JackClient::Close ref = 8
+Jack: JackClient::Deactivate
+Jack: JackSocketClientChannel::Stop
+Jack: JackPosixThread::Kill
+Jack: JackClientSocket::Close
+Jack: JackClientSocket::Close
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_pure_data_0
+Jack: JackLibClient::~JackLibClient
+Jack: JackShmReadWritePtr1::~JackShmReadWritePtr1 7
+Jack: Succeeded in unlocking 422 byte memory area
+Jack: JackLibGlobals Destroy bd9cf0
+Jack: ~JackLibGlobals
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_system
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_freewheel
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_dbusapi
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Sink
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Source
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_cloop
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_ploop
+Jack: no message buffer overruns
+Jack: JackPosixThread::Stop
+Jack: JackPosixThread::ThreadHandler : exit
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 1
+Jack: Succeeded in unlocking 1186 byte memory area
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 0
+Jack: Succeeded in unlocking 82274202 byte memory area
+Jack: jack_client_close res = 0
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Deactivate
+Jack: JackClient::Deactivate res = 0
+Jack: JackPosixThread::Kill
+Jack: jack_client_close
+Jack: JackClient::Close ref = 8
+Jack: JackClient::Deactivate
+Jack: JackSocketClientChannel::Stop
+Jack: JackPosixThread::Kill
+Jack: JackClientSocket::Close
+Jack: JackClientSocket::Close
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_pure_data_0
+Jack: JackLibClient::~JackLibClient
+Jack: JackShmReadWritePtr1::~JackShmReadWritePtr1 7
+Jack: Succeeded in unlocking 422 byte memory area
+Jack: JackLibGlobals Destroy 1992cf0
+Jack: ~JackLibGlobals
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_system
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_freewheel
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_dbusapi
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Sink
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Source
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_cloop
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_ploop
+Jack: no message buffer overruns
+Jack: JackPosixThread::Stop
+Jack: JackPosixThread::ThreadHandler : exit
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 1
+Jack: Succeeded in unlocking 1186 byte memory area
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 0
+Jack: Succeeded in unlocking 82274202 byte memory area
+Jack: jack_client_close res = 0
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5401
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5401
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/jquery.mobile.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/jquery-ui.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/jquery.fileupload.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/jquery.fileupload-ui.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/bootstrap.min.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/jquery-1.11.2.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/jquery.mobile.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/jquery-ui.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/jquery.limitslider.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/upload/canvas-to-blob.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/upload/load-image.min.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/upload/jquery.fileupload.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/upload/jquery.fileupload-process.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/upload/jquery.fileupload-audio.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/upload/jquery.fileupload-validate.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /static/images/ajax-loader.gif HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:11:22] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:11:23] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:11:23] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:12:10] "GET /admin HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+TypeError: admin() missing 1 required positional argument: 'id'
+127.0.0.1 - - [01/Jun/2016 22:12:10] "GET /admin?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:12:10] "GET /admin?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:12:10] "GET /admin?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:12:10] "GET /admin?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:12:10] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:12:11] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+Jack: JackClient::Deactivate
+Jack: JackClient::Deactivate res = 0
+Jack: JackPosixThread::Kill
+Jack: jack_client_close
+Jack: JackClient::Close ref = 8
+Jack: JackClient::Deactivate
+Jack: JackSocketClientChannel::Stop
+Jack: JackPosixThread::Kill
+Jack: JackClientSocket::Close
+Jack: JackClientSocket::Close
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_pure_data_0
+Jack: JackLibClient::~JackLibClient
+Jack: JackShmReadWritePtr1::~JackShmReadWritePtr1 7
+Jack: Succeeded in unlocking 422 byte memory area
+Jack: JackLibGlobals Destroy 88fcf0
+Jack: ~JackLibGlobals
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_system
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_freewheel
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_dbusapi
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Sink
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Source
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_cloop
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_ploop
+Jack: no message buffer overruns
+Jack: JackPosixThread::Stop
+Jack: JackPosixThread::ThreadHandler : exit
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 1
+Jack: Succeeded in unlocking 1186 byte memory area
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 0
+Jack: Succeeded in unlocking 82274202 byte memory area
+Jack: jack_client_close res = 0
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [01/Jun/2016 22:16:50] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:16:50] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:16:50] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:16:50] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Deactivate
+Jack: JackClient::Deactivate res = 0
+Jack: JackPosixThread::Kill
+Jack: jack_client_close
+Jack: JackClient::Close ref = 8
+Jack: JackClient::Deactivate
+Jack: JackSocketClientChannel::Stop
+Jack: JackPosixThread::Kill
+Jack: JackClientSocket::Close
+Jack: JackClientSocket::Close
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_pure_data_0
+Jack: JackLibClient::~JackLibClient
+Jack: JackShmReadWritePtr1::~JackShmReadWritePtr1 7
+Jack: Succeeded in unlocking 422 byte memory area
+Jack: JackLibGlobals Destroy 980cf0
+Jack: ~JackLibGlobals
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_system
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_freewheel
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_dbusapi
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Sink
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Source
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_cloop
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_ploop
+Jack: no message buffer overruns
+Jack: JackPosixThread::Stop
+Jack: JackPosixThread::ThreadHandler : exit
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 1
+Jack: Succeeded in unlocking 1186 byte memory area
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 0
+Jack: Succeeded in unlocking 82274202 byte memory area
+Jack: jack_client_close res = 0
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [01/Jun/2016 22:17:34] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:17:35] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:17:35] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:17:35] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5401
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5401
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+127.0.0.1 - - [01/Jun/2016 22:17:46] "GET /admin HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 110, in admin
+    return render_template('admin.html', error=error)
+NameError: name 'error' is not defined
+127.0.0.1 - - [01/Jun/2016 22:17:46] "GET /admin?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:17:46] "GET /admin?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:17:46] "GET /admin?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:17:46] "GET /admin?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:17:46] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+Pd: signal 2
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [01/Jun/2016 22:20:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:20:49] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:20:50] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:20:50] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+127.0.0.1 - - [01/Jun/2016 22:21:06] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:21:06] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:22:06] "GET /?env=default&density=largo HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:22:07] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:22:07] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:22:07] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:22:08] "GET /?env=default&density=adagio HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:22:08] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:22:09] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:22:09] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:22:09] "GET /?env=default&density=moderato HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:22:09] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 22:22:09] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 22:22:09] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 23:25:16] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:25:16] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:29:22] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:29:22] "GET /flask_util.js HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [01/Jun/2016 23:35:39] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:35:39] "GET /flask_util.js HTTP/1.1" 200 -
+Pd: signal 2
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [01/Jun/2016 23:36:18] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:36:18] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:36:19] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [01/Jun/2016 23:36:19] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+127.0.0.1 - - [01/Jun/2016 23:36:27] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:36:27] "GET /flask_util.js HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+Pd: signal 2
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [01/Jun/2016 23:40:30] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 210, in show_entries
+    db = get_db()
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 96, in get_db
+    g.sqlite_db = connect_db()
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 87, in connect_db
+    rv = sqlite3.connect(app.config['DATABASE'])
+sqlite3.OperationalError: unable to open database file
+127.0.0.1 - - [01/Jun/2016 23:40:30] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:40:30] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:40:30] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:40:30] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:40:30] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:40:30] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Deactivate
+Jack: JackClient::Deactivate res = 0
+Jack: JackPosixThread::Kill
+Jack: jack_client_close
+Jack: JackClient::Close ref = 8
+Jack: JackClient::Deactivate
+Jack: JackSocketClientChannel::Stop
+Jack: JackPosixThread::Kill
+Jack: JackClientSocket::Close
+Jack: JackClientSocket::Close
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_pure_data_0
+Jack: JackLibClient::~JackLibClient
+Jack: JackShmReadWritePtr1::~JackShmReadWritePtr1 7
+Jack: Succeeded in unlocking 422 byte memory area
+Jack: JackLibGlobals Destroy 1ebacf0
+Jack: ~JackLibGlobals
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_system
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_freewheel
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_dbusapi
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Sink
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Source
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_cloop
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_ploop
+Jack: no message buffer overruns
+Jack: JackPosixThread::Stop
+Jack: JackPosixThread::ThreadHandler : exit
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 1
+Jack: Succeeded in unlocking 1186 byte memory area
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 0
+Jack: Succeeded in unlocking 82274202 byte memory area
+Jack: jack_client_close res = 0
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Pd: signal 2
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [01/Jun/2016 23:48:12] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 209, in show_entries
+    db = get_db()
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 95, in get_db
+    g.sqlite_db = connect_db()
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 86, in connect_db
+    rv = sqlite3.connect(app.config['DATABASE'])
+sqlite3.OperationalError: unable to open database file
+127.0.0.1 - - [01/Jun/2016 23:48:12] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:48:12] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:48:12] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:48:12] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:48:12] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Pd: signal 2
+127.0.0.1 - - [01/Jun/2016 23:53:51] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 209, in show_entries
+    db = get_db()
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 95, in get_db
+    g.sqlite_db = connect_db()
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 86, in connect_db
+    rv = sqlite3.connect(app.config['DATABASE'])
+sqlite3.OperationalError: unable to open database file
+127.0.0.1 - - [01/Jun/2016 23:53:52] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:53:52] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:53:52] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:53:52] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:53:52] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Pd: signal 2
+127.0.0.1 - - [01/Jun/2016 23:54:05] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 209, in show_entries
+    db = get_db()
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 95, in get_db
+    g.sqlite_db = connect_db()
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 86, in connect_db
+    rv = sqlite3.connect(app.config['DATABASE'])
+sqlite3.OperationalError: unable to open database file
+127.0.0.1 - - [01/Jun/2016 23:54:05] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:54:05] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:54:05] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:54:05] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:54:05] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Traceback (most recent call last):
+  File "webserver/gesidb.py", line 417, in <module>
+    app.run(host='0.0.0.0', port=80, debug=True)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 772, in run
+    run_simple(host, port, self, **options)
+  File "/usr/lib/python3.5/site-packages/werkzeug/serving.py", line 674, in run_simple
+    s.bind((hostname, port))
+OSError: [Errno 98] Address already in use
+Pd: signal 2
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+Traceback (most recent call last):
+  File "webserver/gesidb.py", line 417, in <module>
+    app.run(host='0.0.0.0', port=80, debug=True)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 772, in run
+    run_simple(host, port, self, **options)
+  File "/usr/lib/python3.5/site-packages/werkzeug/serving.py", line 674, in run_simple
+    s.bind((hostname, port))
+OSError: [Errno 98] Address already in use
+127.0.0.1 - - [01/Jun/2016 23:58:32] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 210, in show_entries
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [01/Jun/2016 23:58:32] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:58:32] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:58:32] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:58:32] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [01/Jun/2016 23:58:32] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Deactivate
+Jack: JackClient::Deactivate res = 0
+Jack: JackPosixThread::Kill
+Jack: jack_client_close
+Jack: JackClient::Close ref = 8
+Jack: JackClient::Deactivate
+Jack: JackSocketClientChannel::Stop
+Jack: JackPosixThread::Kill
+Jack: JackClientSocket::Close
+Jack: JackClientSocket::Close
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_pure_data_0
+Jack: JackLibClient::~JackLibClient
+Jack: JackShmReadWritePtr1::~JackShmReadWritePtr1 7
+Jack: Succeeded in unlocking 422 byte memory area
+Jack: JackLibGlobals Destroy aaccf0
+Jack: ~JackLibGlobals
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_system
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_freewheel
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_dbusapi
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Sink
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Source
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_cloop
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_ploop
+Jack: no message buffer overruns
+Jack: JackPosixThread::Stop
+Jack: JackPosixThread::ThreadHandler : exit
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 1
+Jack: Succeeded in unlocking 1186 byte memory area
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 0
+Jack: Succeeded in unlocking 82274202 byte memory area
+Jack: jack_client_close res = 0
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 00:54:17] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 210, in show_entries
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [02/Jun/2016 00:54:17] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:54:17] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:54:17] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:54:17] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:54:17] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Deactivate
+Jack: JackClient::Deactivate res = 0
+Jack: JackPosixThread::Kill
+Jack: jack_client_close
+Jack: JackClient::Close ref = 8
+Jack: JackClient::Deactivate
+Jack: JackSocketClientChannel::Stop
+Jack: JackPosixThread::Kill
+Jack: JackClientSocket::Close
+Jack: JackClientSocket::Close
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_pure_data_0
+Jack: JackLibClient::~JackLibClient
+Jack: JackShmReadWritePtr1::~JackShmReadWritePtr1 7
+Jack: Succeeded in unlocking 422 byte memory area
+Jack: JackLibGlobals Destroy 14b9cf0
+Jack: ~JackLibGlobals
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_system
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_freewheel
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_dbusapi
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Sink
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Source
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_cloop
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_ploop
+Jack: no message buffer overruns
+Jack: JackPosixThread::Stop
+Jack: JackPosixThread::ThreadHandler : exit
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 1
+Jack: Succeeded in unlocking 1186 byte memory area
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 0
+Jack: Succeeded in unlocking 82274202 byte memory area
+Jack: jack_client_close res = 0
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 00:58:26] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 210, in show_entries
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [02/Jun/2016 00:58:27] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:58:27] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:58:27] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:58:27] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:58:27] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5401
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5401
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Deactivate
+Jack: JackClient::Deactivate res = 0
+Jack: JackPosixThread::Kill
+Jack: jack_client_close
+Jack: JackClient::Close ref = 8
+Jack: JackClient::Deactivate
+Jack: JackSocketClientChannel::Stop
+Jack: JackPosixThread::Kill
+Jack: JackClientSocket::Close
+Jack: JackClientSocket::Close
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_pure_data_0
+Jack: JackLibClient::~JackLibClient
+Jack: JackShmReadWritePtr1::~JackShmReadWritePtr1 7
+Jack: Succeeded in unlocking 422 byte memory area
+Jack: JackLibGlobals Destroy 13aecf0
+Jack: ~JackLibGlobals
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_system
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_freewheel
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_dbusapi
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Sink
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_PulseAudio JACK Source
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_cloop
+Jack: JackPosixSemaphore::Disconnect name = jack_sem.1000_default_ploop
+Jack: no message buffer overruns
+Jack: JackPosixThread::ThreadHandler : exit
+Jack: JackPosixThread::Stop
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 1
+Jack: Succeeded in unlocking 1186 byte memory area
+Jack: JackShmReadWritePtr::~JackShmReadWritePtr 0
+Jack: Succeeded in unlocking 82274202 byte memory area
+Jack: jack_client_close res = 0
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 00:59:49] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 210, in show_entries
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [02/Jun/2016 00:59:49] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:59:49] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:59:49] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:59:49] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 00:59:50] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+Pd-0.47.0 ("test4") compiled 23:54:53 May  2 2016
+port 5400
+TCL_LIBRARY="/usr/local/lib/pd/lib/tcl/library" TK_LIBRARY="/usr/local/lib/pd/lib/tk/library"   wish "/usr/local/lib/pd/tcl//pd-gui.tcl" 5400
+Waiting for connection request... 
+/usr/local/lib/pd/bin/pd-watchdog
+... connected
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_pure_data_0
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = pure_data_0 refnum = 8
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input0 type = 32 bit float mono audio port_index = 45
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:input1 type = 32 bit float mono audio port_index = 46
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output0 type = 32 bit float mono audio port_index = 47
+Jack: JackClient::PortRegister ref = 8 name = pure_data_0:output1 type = 32 bit float mono audio port_index = 48
+Jack: JackClient::Activate
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackClient::kBufferSizeCallback buffer_size = 512
+Jack: JackClient::Init : period = 10666 computation = 100 constraint = 10666
+Jack: JackPosixThread::AcquireRealTimeImp priority = 5
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 2
+Jack: JackClient::kActivateClient name = pure_data_0 ref = 8 
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-1_in dst = pure_data_0:input0
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::Connect src = firewire_pcm:000a35011526fb2a_cap_analog-2_in dst = pure_data_0:input1
+Jack: JackClient::Connect src = pure_data_0:output0 dst = firewire_pcm:000a35011526fb2a_pbk_analog-1_out
+Jack: JackClient::Connect src = pure_data_0:output1 dst = firewire_pcm:000a35011526fb2a_pbk_analog-2_out
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+Jack: JackClient::ClientNotify ref = 8 name = pure_data_0 notify = 18
+127.0.0.1 - - [02/Jun/2016 01:01:33] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 210, in show_entries
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [02/Jun/2016 01:01:33] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:01:33] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:01:33] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:01:33] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:01:34] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:03:17] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 210, in show_entries
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [02/Jun/2016 01:03:17] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:03:17] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:03:17] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:03:17] "GET /?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:03:17] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:03:17] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:16:44] "GET /admin HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 113, in admin
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [02/Jun/2016 01:16:44] "GET /admin?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:16:44] "GET /admin?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:16:44] "GET /admin?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:16:44] "GET /admin?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:16:44] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:21:48] "GET /admin HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 113, in admin
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [02/Jun/2016 01:21:48] "GET /admin?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:21:48] "GET /admin?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:21:48] "GET /admin?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:21:48] "GET /admin?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:21:48] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:21:48] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:41] "GET /admin HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 113, in admin
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [02/Jun/2016 01:22:42] "GET /admin?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:42] "GET /admin?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:42] "GET /admin?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:42] "GET /admin?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:42] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:42] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:44] "GET /admin HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 113, in admin
+    cur = db.execute(query)
+sqlite3.OperationalError: no such table: entries
+127.0.0.1 - - [02/Jun/2016 01:22:44] "GET /admin?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:44] "GET /admin?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:44] "GET /admin?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:44] "GET /admin?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:44] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:22:44] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/jquery.mobile.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/jquery-ui.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/jquery.fileupload.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/jquery.fileupload-ui.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/jquery-1.11.2.min.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/jquery.mobile.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/jquery-ui.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/jquery.limitslider.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:24:41] "GET /static/images/ajax-loader.gif HTTP/1.1" 304 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 01:28:02] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:28:02] "GET /flask_util.js HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 01:28:21] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:28:21] "GET /flask_util.js HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 01:29:34] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:29:35] "GET /flask_util.js HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 01:30:14] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:30:14] "GET /flask_util.js HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 01:30:38] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:30:39] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:38:56] "GET /?density=largo&env=default HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:38:56] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:38:56] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 01:38:56] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 01:39:05] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:39:05] "GET /flask_util.js HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/jquery.mobile.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/jquery-ui.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/jquery.fileupload.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/jquery.fileupload-ui.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/jquery-1.11.2.min.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/jquery.mobile.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/jquery-ui.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/jquery.limitslider.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:44:12] "GET /static/images/ajax-loader.gif HTTP/1.1" 304 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 01:48:30] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 01:48:30] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 01:48:36] "GET /admin HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3.5/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3.5/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/patco/src/GESI/webserver/gesidb.py", line 120, in admin
+    cur = db.execute('select * from actuators')
+sqlite3.OperationalError: no such table: actuators
+127.0.0.1 - - [02/Jun/2016 01:48:36] "GET /admin?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:48:36] "GET /admin?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:48:36] "GET /admin?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:48:36] "GET /admin?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:48:36] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:48:36] "GET /admin?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 01:49:45] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:49:45] "GET /static/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:45] "GET /static/jquery.mobile.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:45] "GET /static/jquery-ui.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:45] "GET /static/jquery.fileupload.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:45] "GET /static/jquery.fileupload-ui.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:46] "GET /static/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:46] "GET /static/jquery-1.11.2.min.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:46] "GET /static/jquery.mobile.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:46] "GET /static/jquery-ui.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:46] "GET /static/jquery.limitslider.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:46] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:49:46] "GET /static/images/ajax-loader.gif HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jun/2016 01:49:51] "GET /sensors HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:49:52] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:49:52] "GET /static/images/ui-bg_glass_100_f6f6f6_1x400.png HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 01:49:52] "GET /static/images/ui-icons_ef8c08_256x240.png HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 01:49:58] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:49:58] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:07] "GET /sensors HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:07] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:09] "GET /actuators HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:09] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:10] "GET /sensors HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:11] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:19] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:19] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:53] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:50:54] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:51:12] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:51:12] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:51:29] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:51:29] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:52:01] "GET /update_gesi HTTP/1.1" 302 -
+127.0.0.1 - - [02/Jun/2016 01:52:02] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:52:22] "GET /?env=default&density=largo HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:52:22] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 01:52:22] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 01:52:22] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:01:44] "POST /pdsend/play%20237 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:01:52] "GET /sound_info?id=237 HTTP/1.1" 200 -
+ * Detected change in '/home/patco/src/GESI/webserver/gesidb.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 100-444-887
+127.0.0.1 - - [02/Jun/2016 02:03:20] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:20] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:26] "GET /actuators HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:26] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:32] "GET /sensors HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:32] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:36] "GET /actuators HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:36] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:38] "GET /sensors HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:39] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:45] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:03:45] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:04:21] "GET /?env=default&density=largo HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:04:21] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:04:22] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:04:22] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:05:07] "GET /sound_info?id=237 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:17:13] "GET /admin HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:17:13] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:04] "GET /?env=default&density=largo HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:05] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:05] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:20:05] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:20:09] "POST /pdsend/play%20237 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:30] "POST /pdsend/play%20238 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:38] "POST /pdsend/play%20239 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:41] "POST /pdsend/play%20240 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:44] "POST /pdsend/play%20241 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:46] "POST /pdsend/play%20242 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:47] "POST /pdsend/play%20243 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:51] "POST /pdsend/play%20244 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:53] "POST /pdsend/play%20245 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:54] "POST /pdsend/play%20246 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:57] "POST /pdsend/play%20247 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:20:59] "POST /pdsend/play%20248 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:06] "GET /?env=default&density=adagio HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:06] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:06] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:21:06] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:21:08] "POST /pdsend/play%20233 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:12] "POST /pdsend/play%20234 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:14] "POST /pdsend/play%20235 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:18] "GET /?env=default&density=moderato HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:19] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:19] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:21:19] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:21:21] "POST /pdsend/play%20232 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:23] "GET /?env=default&density=allegro HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:23] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:23] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:21:23] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:21:25] "POST /pdsend/play%20249 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:26] "GET /?env=default&density=presto HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:26] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:21:26] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:21:27] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:21:28] "POST /pdsend/play%20236 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:14] "GET /?env=pat&density=presto HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:14] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:15] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:26:15] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:26:17] "POST /pdsend/play%20299 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:18] "POST /pdsend/play%20300 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:19] "POST /pdsend/play%20301 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:21] "POST /pdsend/play%20302 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:21] "POST /pdsend/play%20303 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:22] "POST /pdsend/play%20304 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:23] "POST /pdsend/play%20305 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:24] "POST /pdsend/play%20306 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:26] "GET /?env=pat&density=allegro HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:26] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:27] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:26:27] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:26:28] "POST /pdsend/play%20311 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:29] "POST /pdsend/play%20312 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:29] "POST /pdsend/play%20313 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:30] "POST /pdsend/play%20314 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:31] "POST /pdsend/play%20315 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:32] "GET /?env=pat&density=moderato HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:32] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:32] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:26:32] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:26:34] "POST /pdsend/play%20264 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:35] "POST /pdsend/play%20265 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:36] "POST /pdsend/play%20266 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:36] "POST /pdsend/play%20267 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:37] "POST /pdsend/play%20268 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:38] "POST /pdsend/play%20269 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:39] "POST /pdsend/play%20270 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:39] "POST /pdsend/play%20271 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:40] "POST /pdsend/play%20272 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:42] "POST /pdsend/play%20273 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:43] "POST /pdsend/play%20274 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:45] "POST /pdsend/play%20275 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:45] "POST /pdsend/play%20276 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:46] "POST /pdsend/play%20277 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:47] "POST /pdsend/play%20278 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:49] "POST /pdsend/play%20279 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:51] "POST /pdsend/play%20280 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:52] "POST /pdsend/play%20281 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:53] "POST /pdsend/play%20282 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:26:54] "POST /pdsend/play%20283 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:27:24] "GET /sound_info?id=264 HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:27:32] "GET /?env=pat&density=adagio HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:27:33] "GET /flask_util.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jun/2016 02:27:33] "GET /fonts/glyphicons-halflings-regular.woff HTTP/1.1" 404 -
+127.0.0.1 - - [02/Jun/2016 02:27:33] "GET /fonts/glyphicons-halflings-regular.ttf HTTP/1.1" 404 -
+Pd: signal 2

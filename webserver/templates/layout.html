@@ -51,6 +51,8 @@ function drawRow(rowData,id) {
       <a href="{{ url_for('actuators') }}" target="_parent"\
        data-role="button">Actionneurs</a>
       <h1>Generateur d'Environnement Sonore Interactif</h1>
+      <a href="{{ url_for('admin') }}" target="_parent"\
+       data-role="button">Admin</a>
       </div>
    {% for message in get_flashed_messages() %}
      <div class=flash>{{ message }}</div>

@@ -12,38 +12,43 @@ from flask_util_js import FlaskUtilJs
 
 
 
-# create our little application :)
+# create flask application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 fujs = FlaskUtilJs(app)
 
-
 @app.context_processor
 def inject_fujs():
     return dict(fujs=fujs)
 
+# get user home path where resides .gesi data folder
+user = os.getenv("SUDO_USER")
+home =  '/home/' + user
+gpath = os.path.dirname(home + '/.gesi/')
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
-    SOUND_PATH='/home/pi/.gesi/sons',
-    SOUND_UPLOAD='/media/sdext/sons/uploads',
-    DATABASE='/home/pi/.gesi/gesidb.db',
-    DEBUG=True,
-    SECRET_KEY='development key',
-    USERNAME='gesi',
-    PASSWORD='6351',
-    DENSITY=['largo','adagio','moderato','allegro','presto'],
+    SOUND_PATH=         gpath + '/sons',
+    SOUND_UPLOAD=       gpath + '/sons/uploads',
+    DATABASE=           gpath + '/gesidb.db',
+    DEBUG=              True,
+    SECRET_KEY=         'development key',
+    USERNAME=           'gesi',
+    PASSWORD=           '6351',
+    DENSITY=            ['largo','adagio','moderato','allegro','presto'],
     ALLOWED_EXTENSIONS= tuple(['wav', 'aif','WAV','AIF']),
-    SUFFIXES= ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+    SUFFIXES=           ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
 ))
 
 
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
+#filter files by extension
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in (app.config['ALLOWED_EXTENSIONS'])
+
 
 def get_file_size(file):
     statinfo = os.stat(file)
@@ -97,10 +102,28 @@ def get_db():
 def init_db():
     with app.app_context():
         db = get_db()
-        with app.open_resource('schema.sql', mode='r') as f:
+        with app.open_resource(app.config['DATABASE'], mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
 
+
+
+
+@app.route('/admin')
+def admin():
+    error = None
+    query = 'select * from entries'  
+    db = get_db()
+    #flash(gpath)
+    cur = db.execute(query)
+    entries = cur.fetchall()
+    cur = db.execute('select * from environments')
+    envs = cur.fetchall()
+    cur = db.execute('select * from sensors')
+    s = cur.fetchall()
+    cur = db.execute('select * from readsound')
+    r = cur.fetchall()
+    return render_template('admin.html',entries=entries,envs=envs,sensors=s,reader=r)
 
 @app.route('/update_gesi')
 def update_gesi():
@@ -138,12 +161,12 @@ def update_gesi():
     for id in sound_id:
         pdsend('analysis ' + str(id))
     pdsend('analysis done')          
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('admin'))
 
 
-@app.route('/analysis/<id>')
-def analysis(id):
-    db = get_db()
+#@app.route('/analysis/<id>')
+#def analysis(id):
+#    db = get_db()
 
 
 @app.teardown_appcontext
@@ -184,7 +207,6 @@ def update_data():
     db.commit()
     return redirect(url_for('actuators'))
 
-#@app.route('/<param>', methods=['GET'])
 @app.route('/', methods=['GET'])
 def show_entries():
 #    pdsend('test')

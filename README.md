@@ -5,7 +5,7 @@ Gestionnaire d'Environnement Sonore Interactif
 SQLITE database is used to share memory between puredata and web server running with python and flask module, so we need to install
 * python-flask 
 * lua-sql-sqlite3
-* [pd-vanilla ](https://puredata.info/downloads/pure-data)
+* [pd-vanilla 0.47](https://puredata.info/downloads/pure-data)
  
 flask_utils is used to simplify url notation in html templates
 ```
@@ -13,13 +13,13 @@ $ pip install flask_util_js
 
 ```
 ### Puredata settings
-install  these externals with [deken](https://github.com/pure-data/deken):
+install these externals with deken (Help->find external):
 * pdlua
 * zexy
 * mrpeach
-* mediasettings
+* iemlib
 
-in puredata Edit->Preference->Startup add *pdlua zexy* and in Edit->Preference->Path add *~/pd-externals/mrpeach ~/pd-externals/mediasettings ~/pd-externals/ggee*
+in puredata Edit->Preference->Startup add *pdlua* and in Edit->Preference->Path add *~/pd-externals/mrpeach ~/pd-externals/iemlib ~/pd-externals/zexy*
 ### Patches
 Download sources:
 ```
@@ -34,6 +34,14 @@ and puredata:
 ```
 $ cd ../pdpatch
 $ pd gesi-arduino.pd &
+```
+don't forget to kill python before restarting...
+```
+$ sudo killall python
+```
+or run this script:
+```
+$ ./GESI.start
 ```
 ### Database
 GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
