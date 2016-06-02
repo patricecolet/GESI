@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Admin</h2>
+  <span> {{entries|length}} entries.</span>
+  <span> {{envs|length}} environments.</span>
+  <span> {{sensors|length}} sensors.</span>
+  <span> {{actuators|length}} readers.</span>
+  <div>
+   <a href="{{ url_for('update_gesi') }}" data-role="button" data-theme="c">Update Database</a>
+  </div>
+{% endblock %}
