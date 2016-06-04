@@ -5,7 +5,7 @@ Gestionnaire d'Environnement Sonore Interactif
 SQLITE database is used to share memory between puredata and web server running with python and flask module, so we need to install
 * python-flask 
 * lua-sql-sqlite3
-* [pd-vanilla 0.47](https://puredata.info/downloads/pure-data)
+* [pd-vanilla 0.47](http://msp.ucsd.edu/software.html)
  
 flask_utils is used to simplify url notation in html templates
 ```
