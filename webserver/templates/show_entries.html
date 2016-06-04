@@ -3,87 +3,105 @@
 
 
 
-<div data-role="content">
+  <div data-role="content">
 <!--
 <select name="flip-1" id="flip-1" data-role="slider" class="switch">
 	<option value=0>Off</option>
 	<option value=1>On</option>
 </select>
 -->
-  <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
-   <legend>Environment:</legend>
+   <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
+    <legend>Environment:</legend>
 {% for path in envs %}
      <input name="{{ path.title }}" class="env-nav" id="{{ path.title }}-i" 
   {% if path.title == env %}  checked="checked" 
   {% endif %} type="radio">
      <label for="{{ path.title }}-i">{{ path.title }}</label>
 {% endfor %}
-   </fieldset>
+    </fieldset>
 
 
 
-  <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-     <a href="#addDial" date-rel="dialog" class="ui-btn small-btn">Add Environment</a>
-     <a href="#delDial" date-rel="dialog" class="ui-btn small-btn">Remove Environment</a>
-     <a href="#blacklist" date-rel="dialog" class="ui-btn small-btn">Blacklisted Files</a>
+   <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+    <a href="#addDial" date-rel="dialog" class="ui-btn small-btn">Add Environment</a>
+    <a href="#delDial" date-rel="dialog" class="ui-btn small-btn">Remove Environment</a>
+    <a href="#blacklist" date-rel="dialog" class="ui-btn small-btn">Blacklisted Files</a>
     </fieldset>
 
    <fieldset data-role="controlgroup" data-type="horizontal" data-theme="b">
     <legend>Density:</legend>
  {% for d in densities %}
-     <input name="density-nav" class="density-nav" id="{{ d }}" 
-  {% if d == density %}  checked="checked" 
+    <input name="density-nav" class="density-nav" id="{{ d[0] }}" 
+  {% if d[0] == density %}  checked="checked" 
   {% endif %} type="radio">
-     <label for="{{ d }}">{{ d }}</label>
+    <label for="{{ d[0] }}">{{ d[0] }}</label>
 {% endfor %}
-     </fieldset>
+    </fieldset>
 
 <!-- The fileinput-button span is used to style the file input field as button -->
 
-<span class="btn btn-success fileinput-button">
-<i class="glyphicon glyphicon-plus"></i>
-  <span>Add files...</span>
+   <span class="btn btn-success fileinput-button">
+    <i class="glyphicon glyphicon-plus"></i>
+    <span>Add files...</span>
 <!-- The file input field used as target for the file upload widget -->
-<input id="fileupload" type="file" name="file" multiple>
-</span>
-<br>
-<br>
+    <input id="fileupload" type="file" name="file" multiple>
+    </span>
+   <br>
+   <br>
 <!-- The global progress bar -->
-<div id="progress" class="progress">
-<div class="progress-bar progress-bar-success"></div>
-</div>
+  <div id="progress" class="progress">
+   <div class="progress-bar progress-bar-success"></div>
+    </div>
 
 <!-- The container for the uploaded files -->
-<div id="files"></div>
-
-
-   <table>   
-  {% for entry in entries %}
+   <div id="files"></div>
+    <table>  
      <tr>
       <td>
-       <div data-role="collapsible"  data-mini="true" class="sound_info">
-        <h4>{{ entry.title }}</h4>
-        <div id="{{ entry.id }}" class="info"></div>
-        </div>
-      </td>
-     <td>
-      <button class="ui-btn ui-icon-audio ui-btn-icon-left l_play" \n
-          id={{ entry.id }}></button>
-      </td>
+       <table>   
+{% for entry in entries %}
+        <tr>
+         <td>
+          <div data-role="collapsible"  data-mini="true" class="sound_info">
+           <h4>{{ entry.title }}</h4>
+           <div id="{{ entry.id }}" class="info">
+            <table style="td {padding: 10px;text-align: left;}">
+             <tr><td>Rate:</td><td>{{ entry.samplerate }}hz</td></tr>
+             <tr><td>Length:</td><td>{{ ((entry.length / (entry.samplerate/1000)) | int)/1000 }}s</td></tr>
+             <tr><td>Channels:</td><td>{{ entry.channels }}</td></tr>
+             <tr><td>Resolution:</td><td>{{ entry.resolution * 8 }}bits</td></tr>
+{% for r in real %}
+{% if r.sound_id == entry.id %} 
+             <tr><td>volume:</td><td>{{ r.volume }}</td></tr>
+             <tr><td>pitch:</td><td>{{ r.pitch }}</td></tr>
+             <tr><td>pan:</td><td>{{ r.pan }}</td></tr>
+             <tr><td>start:</td><td>{{ r.start }}</td></tr>
+             <tr><td>stop:</td><td>{{ r.stop }}</td></tr>
 
-     <td>
-      <form>
-        <button class="ui-btn ui-icon-delete ui-btn-icon-left typ  del-snd" id="{{ entry.id }}">
-         </button>
-       </form>
+{% endif %}
+{% endfor %}
+             </table>
+            </div>
+           </div>
+          </td>
+         <td>
+          <button class="ui-btn ui-icon-audio ui-btn-icon-left l_play" \n
+           id={{ entry.id }}></button>
+          </td>
+         <td>
+          <form>
+           <button class="ui-btn ui-icon-delete ui-btn-icon-left typ  del-snd" id="{{ entry.id }}">
+           </button>
+          </form>
+         </td>
+        </tr>
+{% endfor %}
+       </table>
       </td>
      </tr>
-{% endfor %}
     </table>
- </div>
-
-
- <script>
+   </div>
+<script>
 $(".ui-dialog").dialog('close');
 
    $('#addEnv').click(function() {
@@ -110,6 +128,7 @@ $(".ui-dialog").dialog('close');
       });
 
    $(".density-nav").click(function() {
+      
        window.location = '/?env={{ env }}' + '&density=' + $( this ).attr('id') 
       });
 
@@ -118,23 +137,12 @@ $(".ui-dialog").dialog('close');
         var url = flask_util.url_for('pdsend', {message: 'play ' + $button.attr('id') });
         $.post(url)
        });
-       $(".sound_info").collapsible({expand: function(){
-         $.getJSON($SCRIPT_ROOT + '/sound_info', {
-           id: $(".info", this ).attr('id')
-              }, function(data) {
-               drawRow(data.info, data.id);
-              });               
-           }}).collapsible({collapse: function(){
-             var c = $(".info", this ).attr('id');
-              $(".soundInfoList" + c).remove();
-        }});
 
    $(".del-snd").click(function() {
         var $button = $( this );
         var url = flask_util.url_for('add2blacklist', {id: $button.attr('id') });
         $.post(url)
       });
-
 
 </script>
   <style>

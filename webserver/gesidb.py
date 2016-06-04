@@ -1,13 +1,13 @@
 #! /usr/bin/env python
 import os
-import fnmatch
+#import fnmatch
 import sqlite3
 import json
 import re
 from flask import Flask, request, g, redirect, url_for, abort, \
      render_template, flash, jsonify, send_from_directory, session
 
-from werkzeug.utils import secure_filename
+#from werkzeug.utils import secure_filename
 from flask_util_js import FlaskUtilJs
 
 
@@ -106,69 +106,6 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
-
-
-
-@app.route('/admin')
-def admin():
-    error = None
-    query = 'select * from entries'  
-    db = get_db()
-    #flash(gpath)
-    cur = db.execute(query)
-    entries = cur.fetchall()
-    cur = db.execute('select * from environments')
-    envs = cur.fetchall()
-    cur = db.execute('select * from sensors')
-    s = cur.fetchall()
-    cur = db.execute('select * from readsound')
-    r = cur.fetchall()
-    return render_template('admin.html',entries=entries,envs=envs,sensors=s,reader=r)
-
-@app.route('/update_gesi')
-def update_gesi():
-    sound_id = []
-    db = get_db()
-    for dirpath, dirnames, files in os.walk(app.config['SOUND_PATH']):
-        for name in files:
-            if name.lower().endswith(app.config['ALLOWED_EXTENSIONS']):
-                title = query_db('select * from entries where title = ?',
-                [name], one=True)
-                if title is None:
-                    filename = "/".join([dirpath ,  name])
-                    path = filename.split("/")
-                    if len(path) > 6:
-                        env = query_db('select * from environments where title = ?',
-                           [path[5]], one=True)
-                        if env is None:
-                            db.execute('insert into environments (title) values (?)',
-                               [path[5]])
-                        db.execute('insert into entries (title,env, density,\
-                            filename,blacklist) values (?, ?, ?, ?, ?)',\
-                            [name, path[5], path[6], filename,0])
-                        db.commit()
-                else:
-                
-                    cur = query_db('select id from entries where title = ?',
-                        [name], one=True)
-                    id = dict(cur)['id']
-                    test = query_db('select * from entries where title = ?',
-                       [id], one=True)
-                    if test is None:
-
-                        sound_id.append(id)
-
-    for id in sound_id:
-        pdsend('analysis ' + str(id))
-    pdsend('analysis done')          
-    return redirect(url_for('admin'))
-
-
-#@app.route('/analysis/<id>')
-#def analysis(id):
-#    db = get_db()
-
-
 @app.teardown_appcontext
 def close_db(error):
     """Closes the database again at the end of the request."""
@@ -197,6 +134,50 @@ def logout():
     return redirect(url_for('show_entries'))
 
 
+@app.route('/admin')
+def admin():
+    error = None
+    query = 'select * from entries'  
+    db = get_db()
+    #flash(gpath)
+    cur = db.execute(query)
+    entries = cur.fetchall()
+    cur = db.execute('select distinct title from environments')
+    envs = cur.fetchall()
+    cur = db.execute('select * from sensors')
+    s = cur.fetchall()
+    cur = db.execute('select * from readsound')
+    r = cur.fetchall()
+    return render_template('admin.html',entries=entries,envs=envs,sensors=s,reader=r)
+
+@app.route('/update_gesi')
+def update_gesi():
+    entries = []
+    db = get_db()
+    for dirpath, dirnames, files in os.walk(app.config['SOUND_PATH']):
+        for name in files:
+            if name.lower().endswith(app.config['ALLOWED_EXTENSIONS']):
+                title = query_db('select * from entries where title = ?',
+                [name], one=True)
+                if title is None:
+                    filename = "/".join([dirpath ,  name])
+                    path = filename.split("/")
+                    if len(path) > 7:
+                        db.execute('insert into entries (title,filename,blacklist,\
+                            samplerate,length,headersize,channels,resolution,endianness,format) values (\
+                            ?,?,?,?,?,?,?,?,?,?)',\
+                            [name, filename,0,44100,44100,100,1,16,'b',1])
+                        db.commit()
+                        entries.append([path[5],path[6],filename])
+    for entry in entries:
+     #   id = dict(sql_id)['id']
+        sound_id = query_db('select id from entries where filename = ?',[entry[2]], one=True)
+        sid = str(dict(sound_id)['id'])
+        #flash(str(sound_id))
+        pdsend('analysis ' + sid + ' ' +' '.join(entry) )
+    pdsend('analysis done')          
+    return redirect(url_for('admin'))
+
 @app.route('/update_data', methods=['POST'])
 def update_data():
     param=dict(request.args.items())
@@ -214,15 +195,18 @@ def show_entries():
     #flash(param)
     if param == {}:
         param={'env':'default','density':'largo'}
-    query =  'select id, title, env, density from entries where blacklist = 0'
-    query = query + ' and env = "' + param['env'] + '"'
-    query = query + ' and density= "' + param['density']+ '"'  
+    query = 'from environments where title = "' + param['env'] + '" and density= "' + param['density']+ '"'
     db = get_db()
-    cur = db.execute(query)
-    entries = cur.fetchall()
-    cur = db.execute('select title from environments')
+    cur = db.execute('select * from entries where id in (select sound_id ' + query + ')')
+    ent = cur.fetchall()
+    cur = db.execute('select * ' + query)
+    real = cur.fetchall()
+    cur = db.execute('select distinct title from environments')
     envs = cur.fetchall()
-    return render_template('show_entries.html', entries=entries, env=param['env'],density=param['density'], envs = envs, densities=(app.config['DENSITY']))
+    cur = db.execute('select distinct density from environments where title="'+ param['env'] +'"')
+    dens = cur.fetchall()
+    return render_template('show_entries.html',entries=ent,real=real, env=param['env'],densities=dens,envs=envs,density=param['density'])
+    
 
 @app.route('/dialog/<method>', methods=['GET'])
 def dialog(method):
@@ -262,17 +246,6 @@ def add2blacklist(id):
     pdsend(id)
 
     return redirect(url_for('show_entries', env=env, density=density))
-
-@app.route('/sound_info', methods=['GET'])
-def sound_info():
-    id = request.args.get('id')
-    con = sqlite3.connect(app.config['DATABASE'])
-    con.row_factory = dict_factory
-    cur = con.cursor()
-    q = cur.execute('select samplerate, length, channels from sound_info where sound_id =?', [id])
-    info = q.fetchone()
-    #pdsend(str(info))
-    return jsonify(info=info, id=id)
 
 @app.route('/actuators')
 def actuators():
