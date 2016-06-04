@@ -13,7 +13,7 @@ $ pip install flask_util_js
 
 ```
 ----
-On windows use installers and start pip from cmd
+On windows use installers and start pip from admin cmd
 
 ```
 C:\Program Files(x86)\Python 3.5\Scripts>py get-pip.py
