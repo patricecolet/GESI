@@ -12,6 +12,16 @@ flask_utils is used to simplify url notation in html templates
 $ pip install flask_util_js
 
 ```
+----
+On windows use installers and start pip from cmd
+
+```
+C:\Program Files(x86)\Python 3.5\Scripts>py get-pip.py
+
+```
+and install Virtual Environment for having flask to work.
+----
+
 ### Puredata settings
 install these externals with deken (Help->find external):
 * pdlua
