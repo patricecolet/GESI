@@ -1,4 +1,4 @@
-#N canvas 293 658 522 265 10;
+#N canvas 293 668 522 265 10;
 #N canvas 29 51 450 300 cpu 0;
 #X obj 128 148 cputime;
 #X obj 128 38 loadbang;
@@ -62,28 +62,31 @@
 #X connect 16 0 17 0;
 #X connect 17 0 10 0;
 #X restore 138 169 pd audioOut;
-#N canvas 29 51 450 300 preview 0;
-#X obj 30 57 r netreceive;
-#X obj 30 76 route play;
+#N canvas 31 63 442 373 preview 1;
+#X obj 161 5 r netreceive;
 #X obj 30 181 lsql;
-#X obj 30 114 list prepend sql;
-#X obj 30 133 list trim;
-#X obj 39 156 r sql-open;
-#X msg 30 95 select filename from entries where id = \$1;
-#X obj 30 223 readsf~;
-#X msg 30 201 open \$1 \, 1;
-#X obj 31 266 throw~ mono1;
-#X obj 115 266 throw~ mono2;
-#X connect 0 0 1 0;
-#X connect 1 0 6 0;
-#X connect 2 0 8 0;
-#X connect 3 0 4 0;
-#X connect 4 0 2 0;
+#X obj 30 124 list prepend sql;
+#X obj 30 143 list trim;
+#X obj 35 162 r sql-open;
+#X msg 30 63 select filename from entries where id = \$1, f 14;
+#X obj 136 248 readsf~;
+#X msg 30 203 open \$1 \, 1, f 5;
+#X obj 81 274 throw~ mono1;
+#X obj 200 273 throw~ mono2;
+#X obj 161 24 route play stop;
+#X msg 316 120 0;
+#X connect 0 0 10 0;
+#X connect 1 0 7 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
 #X connect 5 0 2 0;
-#X connect 6 0 3 0;
-#X connect 7 0 9 0;
-#X connect 7 0 10 0;
-#X connect 8 0 7 0;
+#X connect 6 0 8 0;
+#X connect 6 0 9 0;
+#X connect 7 0 6 0;
+#X connect 10 0 5 0;
+#X connect 10 1 11 0;
+#X connect 11 0 6 0;
 #X restore 138 63 pd preview;
 #X obj 138 128 writeadc;
 #N canvas 171 361 415 454 readsound 0;
@@ -209,11 +212,8 @@
 #X obj 6 14 r netreceive;
 #X msg 6 107 sql select * from sensors where preset=\$1;
 #N canvas 830 436 690 602 \$0sensors 0;
-#X obj 10 10 fir 1003 None None 0 0 /home/patco/.gesi/gesidb.db;
-#X obj 50 50 fir 1003 None None 0 0 /home/patco/.gesi/gesidb.db;
-#X obj 90 90 capSwitch 1003 None None 0 0 /home/patco/.gesi/gesidb.db
-;
-#X obj 130 130 light 1003 None None 0 0 /home/patco/.gesi/gesidb.db
+#X obj 10 10 fir 1003 None 0 0 0 /home/patco/.gesi/gesidb.db;
+#X obj 50 50 switch 1003 None None 0 0 /home/patco/.gesi/gesidb.db
 ;
 #X restore 159 48 pd \$0sensors;
 #X obj 42 336 print SENSORS;
@@ -321,12 +321,12 @@
 #X connect 15 0 9 0;
 #X connect 15 0 13 0;
 #X restore 23 109 pd network;
-#N canvas 535 735 269 171 sql 0;
+#N canvas 535 799 269 171 sql 1;
 #X obj 19 105 lsql;
 #X obj 51 80 r sql-open;
 #X obj 19 127 print RES;
 #X floatatom 56 107 5 0 0 1 rows_affected - -, f 5;
-#N canvas 883 138 457 556 TABLES 0;
+#N canvas 1161 197 675 756 TABLES 1;
 #X obj 53 452 list prepend sql;
 #X obj 53 471 list trim;
 #X msg 97 94 select * from environments;
@@ -371,7 +371,10 @@ unique : sound_id integer : title varchar(50) : density varchar(50)
 #X msg 144 232 DELETE from entries where id = '\$1';
 #X floatatom 144 215 5 0 0 0 - - -, f 5;
 #X text 191 213 delete contents;
-#X msg 151 490 select distinct title from environments;
+#X msg 132 566 select count() from environments where title='pat';
+#X msg 151 490 select * from (select distinct density from environments
+where title in (select distinct title from environments)):(select distinct
+title from environments);
 #X connect 0 0 1 0;
 #X connect 1 0 7 0;
 #X connect 2 0 0 0;
@@ -391,6 +394,7 @@ unique : sound_id integer : title varchar(50) : density varchar(50)
 #X connect 19 0 0 0;
 #X connect 20 0 19 0;
 #X connect 22 0 0 0;
+#X connect 23 0 0 0;
 #X restore 14 9 pd TABLES;
 #N canvas 1318 165 556 632 ANALYSIS 0;
 #X obj 44 7 r netreceive;
