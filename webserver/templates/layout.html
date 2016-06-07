@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='jquery-ui.css') }}">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='jquery.fileupload.css') }}">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='jquery.fileupload-ui.css') }}">
-  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
 
 <style>
   label { display: block; }
@@ -19,8 +18,10 @@
 
   <script src="{{ url_for('static', filename='jquery-1.11.2.min.js') }}"></script>
   <script src="{{ url_for('static', filename='jquery.mobile.js') }}"></script>
-  <script src="{{ url_for('static', filename='jquery-ui.js') }}"></script>
-  <script src="{{ url_for('static', filename='jquery.limitslider.js') }}"></script>
+<!--  <script src="{{ url_for('static', filename='jquery-ui.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery.limitslider.js') }}"></script> -->
+  <script src="{{ url_for('static', filename='jquery.ui.touch-punch.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='jquery.klavier.min.js') }}"></script>
 
 
   <script>
@@ -35,69 +36,70 @@ function drawRow(rowData,id) {
     row.append($("<li>channels:" + rowData.channels + "</li>"));
     row.append($("</ul>"));
 }
- </script>
 
+ </script>
+<script id="panel-init">
+
+
+$(function() {
+  $( "body>[data-role='panel']" ).panel();
+  });
+</script>
 {{ fujs.js }}
 
   </head>
  <body>
-  <div data-role="page" id="database">
+  <div data-role="page" id="mainpage">
+{% block panel %}
+{% endblock %}
    <div data-role="header">
     <div class="ui-bar ui-bar-b">
-      <a href="{{ url_for('show_entries',env='default',density='largo') }}"\
+     <a href="{{ url_for('show_entries',env='default',density='largo') }}"\
        target="_parent" data-role="button">Sons</a>
-      <a href="{{ url_for('sensors') }}" target="_parent"\
+     <a href="{{ url_for('sensors') }}" target="_parent"\
         data-role="button">Capteurs</a>
-      <a href="{{ url_for('actuators') }}" target="_parent"\
+     <a href="{{ url_for('actuators') }}" target="_parent"\
        data-role="button">Actionneurs</a>
-      <h1>Generateur d'Environnement Sonore Interactif</h1>
-      <a href="{{ url_for('admin') }}" target="_parent"\
+     <h1>Generateur d'Environnement Sonore Interactif</h1>
+     <a href="{{ url_for('admin') }}" target="_parent"\
        data-role="button">Admin</a>
-      </div>
-   {% for message in get_flashed_messages() %}
-     <div class=flash>{{ message }}</div>
-    {% endfor %}
-    </div>
+     </div><!-- /bar mainpage-->
+{% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+{% endfor %}
+    </div><!-- /header mainpage-->
+{% block body %}
+{% endblock %}
 
+   <div data-role="footer"></div>
+   </div><!-- /page mainpage-->
 
-
-    {% block body %}
-    {% endblock %}
-
+<!-- add dialog-->
+   <div data-role="page" data-dialog="true" id="addDial">
+    <div data-role="header">
+     <h1>Create a new environment</h1>
+     </div><!-- /header addDial-->
+    <div data-role="main" class="ui-content">
+     <p>Enter environment name without spaces</p>
+     <form>
+      <input type="text" id="envName">
+     </form>
+    </div><!-- /main addDial-->
    <div data-role="footer">
-    </div>
-   </div>
-
-
-<div data-role="page" data-dialog="true" id="addDial">
-  <div data-role="header">
-    <h1>Create a new environment</h1>
-  </div>
-
-  <div data-role="main" class="ui-content">
-    <p>Enter environment name without spaces</p>
-    <form>
-    <input type="text" id="envName">
-    </form>
-  </div>
-
-  <div data-role="footer">
     <a href="#addDial" id="addEnv">Sounds Good!</a>
-    <a href="#database" id="addEnvClose">Cancel</a>
-  </div>
-</div> 
-<div data-role="page" data-dialog="true" id="delDial">
+    <a href="#mainpage" id="addEnvClose">Cancel</a>
+   </div><!-- /page addDial-->
 
-  <div data-role="main" class="ui-content">
+
+<!-- delete dialog-->
+  <div data-role="page" data-dialog="true" id="delDial">
+   <div data-role="main" class="ui-content">
     <p>Delete {{ env }} ?</p>
-  </div>
-
-  <div data-role="footer">
-    <a href="#database" id="delEnv">Yes!</a>
-    <a href="#database">Cancel</a>
-  </div>
-</div> 
-
-
+    </div><!-- /main delDial-->
+   <div data-role="footer">
+   <a href="#mainpage" id="delEnv">Yes!</a>
+   <a href="#mainpage">Cancel</a>
+    </div><!-- /footer delDial-->
+   </div><!-- /page delDial-->
   </body>
-</html>
+ </html>

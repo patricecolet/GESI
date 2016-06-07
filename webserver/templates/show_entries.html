@@ -1,17 +1,69 @@
 {% extends "layout.html" %}
+
+{% block panel %}
+     <div data-role="panel" data-display="overlay" id="edit-snd" data-theme="b">
+      <table style="td {padding: 10px;text-align: left;}">
+       <th id="snd-id" style="display:none"></th><th id="snd-title"></th>
+       <tr>
+        <td colspan="2" >
+         <div data-role="controlgroup"  data-type="horizontal" data-theme="b">
+          <button class="ui-btn ui-corner-all ui-icon-audio ui-shadow ui-btn-icon-left l_play snd-control" value="play"></button>
+          <button class="ui-btn ui-icon-grid ui-btn-icon-left ui-corner-all snd-control" value="stop"></button>
+          </div>
+         </td>
+        </tr>
+       <tr><td>Rate:</td><td id="snd-samplerate"></td></tr>
+ {# <!--    <tr><td>Length:</td><td id="snd-length">{{ ((entry.length / (entry.samplerate/1000)) | int)/1000 }}s</td></tr>  --> #}
+       <tr><td>Channels:</td><td id="snd-channels"></td></tr>
+       <tr><td>Resolution:</td><td id="snd-resolution"></td></tr>
+       </table>
+      <br>    
+      <form class="snd-edit"> 
+       <label for="snd-volume">Volume:</label>
+       <input type="range" id="snd-volume" name="snd-volume" min="0" max="100" value="0" class="snd-edit">
+       <label for="snd-pan">Pan:</label>
+       <input type="range" id="snd-pan" name="snd-pan" min="0" max="100" value="0">   
+       </form>    
+      <form class="snd-edit"> 
+       <div data-role=rangeslider">
+        <label for="snd-start">Start:</label>
+        <input type="range" id="snd-start" name="snd-start" min="0" max="44100000" value="0">
+        <label for="snd-stop">Stop:</label>
+        <input type="range" id="snd-stop" name="snd-stop" min="0" max="44100000" value="0">
+        </div>
+       </form>    
+      <form class="sndtab-edit" style="display:none">
+       <label for="snd-pitch">Pitch:</label>
+       <input type="range" id="snd-pitch" name="snd-pitch" min="0" max="127" value="0" class="snd-edit">
+       </form>
+         <div data-role="controlgroup"  data-mini="true" data-type="horizontal" data-theme="b">
+          <button class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-left ram">RAM</button>
+          <a href="#save-snd" id="save-snd" class="ui-btn ui-shadow ui-corner-all ui-icon-action ui-btn-icon-left">Save as...</a>
+          <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-check ui-btn-icon-left">Save</a>
+          <a href="#panel" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-left">Close panel</a>
+         </div>
+      </div><!-- /panel edit-->
+
+     <div data-role="panel" data-display="overlay" id="save-snd" data-theme="b">
+      <ul data-role="listview" id="save-snd-browse">
+       </ul>
+      </div><!-- /panel saveas -->
+{% endblock %}
+
 {% block body %}
-
-
-
-  <div data-role="content">
+   <div data-role="content" data-theme="b">
 <!--
 <select name="flip-1" id="flip-1" data-role="slider" class="switch">
 	<option value=0>Off</option>
 	<option value=1>On</option>
 </select>
 -->
-   <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
-    <legend>Environment:</legend>
+
+
+<!-- environment menu buttons -->
+
+    <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
+     <legend>Environment:</legend>
 {% for path in envs %}
      <input name="{{ path.title }}" class="env-nav" id="{{ path.title }}-i" 
   {% if path.title == env %}  checked="checked" 
@@ -19,32 +71,35 @@
      <label for="{{ path.title }}-i">{{ path.title }}</label>
 {% endfor %}
     </fieldset>
-
-
-
+<!--
    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
     <a href="#addDial" date-rel="dialog" class="ui-btn small-btn">Add Environment</a>
     <a href="#delDial" date-rel="dialog" class="ui-btn small-btn">Remove Environment</a>
     <a href="#blacklist" date-rel="dialog" class="ui-btn small-btn">Blacklisted Files</a>
     </fieldset>
+-->
 
-   <fieldset data-role="controlgroup" data-type="horizontal" data-theme="b">
-    <legend>Density:</legend>
+
+<!-- density menu buttons -->
+    <fieldset data-role="controlgroup" data-type="horizontal" data-theme="b">
+     <legend>Density:</legend>
  {% for d in densities %}
-    <input name="density-nav" class="density-nav" id="{{ d[0] }}" 
-  {% if d[0] == density %}  checked="checked" 
-  {% endif %} type="radio">
-    <label for="{{ d[0] }}">{{ d[0] }}</label>
+     <input name="density-nav" class="density-nav" id="{{ d[1] }}" 
+  {% if d[1] == density %}  checked="checked" 
+  {% endif %}
+ type="radio">
+     <label for="{{ d[1] }}" style="background: linear-gradient(to right, #293f50, #648880 {{ d[0] }}%, #f6f1d3);">{{ d[1] }}</label>
 {% endfor %}
-    </fieldset>
+     </fieldset>
+<!-- Upload files -->
 
 <!-- The fileinput-button span is used to style the file input field as button -->
 
-   <span class="btn btn-success fileinput-button">
+   <span class="btn btn-success fileinput-button" data-role="none">
     <i class="glyphicon glyphicon-plus"></i>
     <span>Add files...</span>
 <!-- The file input field used as target for the file upload widget -->
-    <input id="fileupload" type="file" name="file" multiple>
+    <input id="fileupload" type="file" name="file" multiple data-role="none">
     </span>
    <br>
    <br>
@@ -55,53 +110,32 @@
 
 <!-- The container for the uploaded files -->
    <div id="files"></div>
-    <table>  
-     <tr>
-      <td>
-       <table>   
-{% for entry in entries %}
-        <tr>
-         <td>
-          <div data-role="collapsible"  data-mini="true" class="sound_info">
-           <h4>{{ entry.title }}</h4>
-           <div id="{{ entry.id }}" class="info">
-            <table style="td {padding: 10px;text-align: left;}">
-             <tr><td>Rate:</td><td>{{ entry.samplerate }}hz</td></tr>
-             <tr><td>Length:</td><td>{{ ((entry.length / (entry.samplerate/1000)) | int)/1000 }}s</td></tr>
-             <tr><td>Channels:</td><td>{{ entry.channels }}</td></tr>
-             <tr><td>Resolution:</td><td>{{ entry.resolution * 8 }}bits</td></tr>
-{% for r in real %}
-{% if r.sound_id == entry.id %} 
-             <tr><td>volume:</td><td>{{ r.volume }}</td></tr>
-             <tr><td>pitch:</td><td>{{ r.pitch }}</td></tr>
-             <tr><td>pan:</td><td>{{ r.pan }}</td></tr>
-             <tr><td>start:</td><td>{{ r.start }}</td></tr>
-             <tr><td>stop:</td><td>{{ r.stop }}</td></tr>
 
-{% endif %}
+<!-- The container for the uploaded files -->
+   <div id="files"></div>
+
+<!-- edit menu -->
+
+    <div data-role="controlgroup" data-type="horizontal" class="ui-field-contain" >
+     <a href="#edit-snd" id="edit" class="ui-btn ui-corner-all">edit</a>
+     <button id="browse" class="ui-btn ui-corner-all">browse</button>
+    </div>
+
+   <form id="snd-check">
+<!-- The container for theme files -->
+{% for entry in entries %}
+    <fieldset data-role="controlgroup" data-type="horizontal" >
+      <input type="radio" id="{{ entry.title }}" name="file-select" style="margin-top:-12px">
+          <label style="height:15px;visibility:hidden" for="{{ entry.title }}" ></label>
+     <button class="ui-btn ui-corner-all ui-icon-audio ui-btn-icon-left l_play"  style="height:15px" id="{{ entry.id }}"></button>
+     <a href="#"  class="ui-btn ui-corner-all" style="height:15px"> {{ entry.title }}</a>
+     </fieldset><!-- /controlgroup edit-->
 {% endfor %}
-             </table>
-            </div>
-           </div>
-          </td>
-         <td>
-          <button class="ui-btn ui-icon-audio ui-btn-icon-left l_play" \n
-           id={{ entry.id }}></button>
-          </td>
-         <td>
-          <form>
-           <button class="ui-btn ui-icon-delete ui-btn-icon-left typ  del-snd" id="{{ entry.id }}">
-           </button>
-          </form>
-         </td>
-        </tr>
-{% endfor %}
-       </table>
-      </td>
-     </tr>
-    </table>
-   </div>
-<script>
+
+     </form>
+    </div><!-- /content-->
+   <script>
+	
 $(".ui-dialog").dialog('close');
 
    $('#addEnv').click(function() {
@@ -117,7 +151,6 @@ $(".ui-dialog").dialog('close');
      $.post(url);
       });
 
-  $( '#display' ).menu();
   $( '.switch' ).bind( "change", function(event, ui) {
      var url = flask_util.url_for('pdsend', {message: 'switch ' + $(".switch").val() });
      $.post(url)
@@ -138,14 +171,84 @@ $(".ui-dialog").dialog('close');
         $.post(url)
        });
 
+    $(".snd-control").click(function() {
+        var $button = $( this ).attr('value');
+        var $file = $("#snd-id").text();
+        var url = flask_util.url_for('pdsend', {message: $button + ' ' + $file });
+        $.post(url)
+       });
+
+    $(".ram").click(function() {
+        if ( $(".sndtab-edit").css("display") == "none") {
+            $(".sndtab-edit").css("display","inherit");
+            $( this ).switchClass("ui-icon-plus","ui-icon-minus");
+            }
+        else {
+            $(".sndtab-edit").css("display","none");
+            $( this ).switchClass("ui-icon-minus","ui-icon-plus");
+            }
+       });
+
    $(".del-snd").click(function() {
         var $button = $( this );
         var url = flask_util.url_for('add2blacklist', {id: $button.attr('id') });
         $.post(url)
       });
 
-</script>
-  <style>
+   $("#edit").click(function() {
+      $.getJSON($SCRIPT_ROOT + '/get_file_info', {
+         title: $('input[name=file-select]:checked', '#snd-check').attr('id')
+      }, function(data) {
+        $("#snd-id").text(data.id);
+        $("#snd-title").text(data.title);
+        $("#snd-samplerate").text(data.samplerate+'hz');
+        $("#snd-lenght").text(data.lenght);
+        $("#snd-channels").text(data.channels);
+        $("#snd-resolution").text(data.resolution*8+'bits');
+        $("#snd-volume").val(data.volume);
+        $("#snd-pitch").val(data.pitch);
+        $("#snd-pan").val(data.pan);
+        $("#snd-start").val(data.start);
+        $("#snd-stop").val(data.stop);
+      });
+      return true;
+    });
+
+  $("#save-snd").click(function() { alert('test');
+      $.getJSON($SCRIPT_ROOT + '/get_tree', {
+         title: $('input[name=file-select]:checked', '#snd-check').attr('id')
+      }, function(data) {alert(data);
+             for (let d in data) {
+              //  if (!data.hasOwnProperty(d)) { continue; }
+                $("#save-snd-browse").append(
+                    '<li data-role="collapsible" data-iconpos="right" data-inset="false">\n\
+                      <h2>' + d + '</h2>\n\
+                      <ul data-role="listview" data-theme="b">\n\
+                       <li><a href="#">' + data[d] + '</a></li>\n\
+                       <li><a href="#">Eagle</a></li>\n\
+                       <li><a href="#">Sparrow</a></li>\n\
+                       </ul></li>');
+                 }
+             });
+      return true;
+    });
+
+     $('.snd-edit').on('input', function(e) {alert(e['id']);
+ /*      var url = flask_util.url_for('update_data', {table: 'readsound', col: 'environments',
+          row: id, data: selected });
+       $.post(url); */
+        });
+ $(".dndsnd").draggable();
+          $( "#droppable" ).droppable({
+            drop: function( event, ui ) {
+              $( this )
+                .addClass( "ui-state-highlight" )
+                .find( "p" )
+                  .html( "Dropped!" );
+            }
+          });
+    </script>
+   <style>
     fieldset {
       border: 0;
     }
@@ -162,7 +265,7 @@ $(".ui-dialog").dialog('close');
 .small-btn {
    font-size: .8em !important;
 }
-  </style>
+     </style>
 <!-- The basic File Upload plugin -->
 
 <script src="{{ url_for('static', filename='upload/canvas-to-blob.min.js') }}"></script>
@@ -272,5 +375,4 @@ $(data.context.children()[index])
 .parent().addClass($.support.fileInput ? undefined : 'disabled');
 });
 </script>
-
 {% endblock %}

@@ -49,7 +49,6 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in (app.config['ALLOWED_EXTENSIONS'])
 
-
 def get_file_size(file):
     statinfo = os.stat(file)
     size = statinfo.st_size
@@ -64,7 +63,6 @@ def humansize(nbytes):
         i += 1
     f = ('%.2f' % nbytes).rstrip('0').rstrip('.')
     return '%s %s' % (f, app.config['SUFFIXES'][i])
-
 
 def dict_factory(cursor, row):
     d = {}
@@ -133,7 +131,7 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
-
+#admin page for updating database and else
 @app.route('/admin')
 def admin():
     error = None
@@ -150,6 +148,7 @@ def admin():
     r = cur.fetchall()
     return render_template('admin.html',entries=entries,envs=envs,sensors=s,reader=r)
 
+#read sound files in user data directory and add to database
 @app.route('/update_gesi')
 def update_gesi():
     entries = []
@@ -163,6 +162,7 @@ def update_gesi():
                     filename = "/".join([dirpath ,  name])
                     path = filename.split("/")
                     if len(path) > 7:
+                        name = os.path.splitext(name)[0]
                         db.execute('insert into entries (title,filename,blacklist,\
                             samplerate,length,headersize,channels,resolution,endianness,format) values (\
                             ?,?,?,?,?,?,?,?,?,?)',\
@@ -178,6 +178,7 @@ def update_gesi():
     pdsend('analysis done')          
     return redirect(url_for('admin'))
 
+#update database
 @app.route('/update_data', methods=['POST'])
 def update_data():
     param=dict(request.args.items())
@@ -188,6 +189,37 @@ def update_data():
     db.commit()
     return redirect(url_for('actuators'))
 
+
+#get sound info
+@app.route('/get_file_info', methods=['GET'])
+def get_file_info():
+    title = request.args.get('title')
+    pdsend('test '+ title )
+    db = get_db()
+    fileinfo = query_db('select * from (select * from entries where title = ?),\
+        (select * from environments where sound_id in (select id from entries where title = ?))'\
+        ,[title,title], one=True)
+    id = str(dict(fileinfo)['id'])
+    pdsend('test2 '+ id) 
+    return jsonify(fileinfo)
+
+#get sound environment and densities
+@app.route('/get_tree', methods=['GET'])
+def get_tree():
+    db = get_db()
+    fileinfo = query_db('select * from \
+        (select distinct title from environments),\
+        (select distinct density from environments where title in \
+        (select distinct title from environments))')
+    id = str(dict(fileinfo))
+    pdsend('test2 '+ id) 
+
+    return jsonify(fileinfo)
+
+
+
+
+#home page shows sound files database
 @app.route('/', methods=['GET'])
 def show_entries():
 #    pdsend('test')
@@ -205,23 +237,20 @@ def show_entries():
     envs = cur.fetchall()
     cur = db.execute('select distinct density from environments where title="'+ param['env'] +'"')
     dens = cur.fetchall()
-    return render_template('show_entries.html',entries=ent,real=real, env=param['env'],densities=dens,envs=envs,density=param['density'])
+    filenum = db.execute('select count()  from environments where title="'+ param['env'] +'"').fetchone()
+    D = []
+    for d in dens:
+        cur = db.execute('select count(*) from environments where title="' + param['env'] + '" and density= "' + d[0] + '"')
+        dn = cur.fetchone()
+        dnp = dn[0]*100/filenum[0]
+        D.append([dnp,d[0]])
+    return render_template('show_entries.html',entries=ent,real=real, env=param['env'],densities=D,envs=envs,density=param['density'])
     
-
+#renders a dialog box
 @app.route('/dialog/<method>', methods=['GET'])
 def dialog(method):
     return render_template(method + '.html')
 
-
-@app.route('/add_env/<env>', methods=['POST'])
-def add_env(env):
-    db = get_db()
-    qenv = query_db('select * from environments where title = ?',[env], one=True)
-    if qenv is None:
-        db.execute('insert into environments (title) values (?)',[env])
-        pdsend('added environment: ' + env)
-    db.commit()
-    return redirect(url_for('show_entries'))
 
 @app.route('/del_env/<env>', methods=['POST'])
 def del_env(env):
@@ -313,24 +342,6 @@ def add_sensor(sensor):
     db.commit()
     return redirect(url_for('sensors'))
 
-@app.route('/sample_settings',methods=['GET', 'POST'])
-def sampleSettings():
-    if request.method == 'POST':
-        anumber = request.data
-        pdsend('SENSORTEST ' +str(anumber))
-        db = get_db()
-        cur = db.execute('select largo,adagio,moderato,allegro,presto,sensor from readsound where preset=0 and sensor="' + anumber + '"')
-        density = cur.fetchall()
-        cur = db.execute('select * from environments')
-        env = cur.fetchall()
-        db.text_factory = str
-        cur = db.execute('select environments from readsound where preset =0 and sensor=?',[str(anumber)])
-        playlist = cur.fetchone()
-        assert type(playlist[0]) is str
-        tuple = playlist[0].split()
-        #pdsend('PLAYLIST  ' + str(playlist))
-        return render_template('sample_settings.html', density = density, anumber=anumber, env=env, playlist=tuple)
-
 
 @app.route('/pdsend/<message>', methods=['POST'])
 def pdsend(message):
@@ -357,10 +368,12 @@ def upload_file():
                     file.save(file_url)
                     file_size = get_file_size(file_url)
                     param=dict(request.args.items())
+                    name = os.path.splitext(os.path.basename(filename))[0]
                     db = get_db()
-                    db.execute('insert into entries (title,env, density,\
-                            filename,blacklist) values (?, ?, ?, ?, ?)',\
-                            [filename, env, density, file_url,0])
+                    db.execute('insert into entries (title,filename,blacklist,\
+                            samplerate,length,headersize,channels,resolution,endianness,format) values (\
+                            ?,?,?,?,?,?,?,?,?,?)',\
+                            [name, filename,0,44100,44100,100,1,16,'b',1])
                     db.commit()
                     cur = query_db('select id from entries where title = ?',
                         [filename], one=True)

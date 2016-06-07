@@ -71,6 +71,8 @@ start(socket);
       </div>
 {% if sensor.sensor == 'ultraSound' or sensor.sensor == 'switch' %}
       <div class="sensor-monitor" id="GPIO{{ sensor.input }}-pb"></div>
+{% elif sensor.sensor == 'klavier' %}
+      <div class="sensor-monitor" id="KEY{{ sensor.input }}-pb"></div>
 {% else %}
       <div class="sensor-monitor" id="ADC{{ sensor.input }}-pb"></div>
 {% endif %}
