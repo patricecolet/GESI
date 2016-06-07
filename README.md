@@ -34,25 +34,24 @@ in puredata Edit->Preference->Startup add *pdlua* and in Edit->Preference->Path 
 Download sources:
 ```
 $ git clone https://github.com/patricecolet/GESI.git
+
 ```
-Run web server:
+
+On windows we need to install dlls required by lsql, download and extract [archive for windows](http://luadist.org/),
+add bin folder to system environment PATH, and copie lib/lua/luasql into GESI/pdpatch folder
+
+Now we can start server
+
  ```
 $ cd GESI/webserver
-$ sudo python ./gesidb.py &
+$ sudo python ./gesidb.py
 ```
-and puredata:
+and puredata in another shell:
 ```
 $ cd ../pdpatch
-$ pd gesi-arduino.pd &
+$ pd gesi-arduino.pd
 ```
-don't forget to kill python before restarting...
-```
-$ sudo killall python
-```
-or run this script:
-```
-$ ./GESI.start
-```
+
 ### Database
 GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
 the folder containing sounds must be at ~/.gesi/ directory, like this:
