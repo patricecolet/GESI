@@ -45,21 +45,14 @@ On windows we need to install lua-sqlite manually, download windows binaries fro
 Run web server:
  ```
 $ cd GESI/webserver
-$ sudo python ./gesidb.py &
+$ sudo python ./gesidb.py
 ```
-and puredata:
+and puredata in another shell:
 ```
 $ cd ../pdpatch
-$ pd gesi-arduino.pd &
+$ pd gesi-arduino.pd
 ```
-don't forget to kill python before restarting...
-```
-$ sudo killall python
-```
-or run this script:
-```
-$ ./GESI.start
-```
+
 ### Database
 GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
 the folder containing sounds must be at ~/.gesi/ directory, like this:
@@ -87,6 +80,11 @@ An archive containing samples is here: http://megalego.free.fr/gesi/sons.zip.
 Create *.gesi* directory in */home/user* folder if it's not there, download and extract sons.zip into */home/user/.gesi/* folder.
 Now we can rebuild database by accessing localhost/update_gesi in web browser.
 
+###TODO
+start pd instance from web gui
+replace python with puredata server instance, and jinja with lua html template
+add virtual keyboard, mic handling and virtual pot in sensors
+add sequencer, webcast in actuators
 
 
 
