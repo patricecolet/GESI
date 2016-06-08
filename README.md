@@ -37,13 +37,9 @@ $ git clone https://github.com/patricecolet/GESI.git
 ```
 
 ----
+
 On windows we need to install lua-qlite manually, download widows binaries from 
 [luadist.org](luadist.org), extract tree to C:\lua53, add c:\lua53\bin to [PATH environment variable](http://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them), and add c:\lua53\lib\lua\luasqlite folder to puredata PATH settings in preferences.
-
-```
-C:\Program Files(x86)\Python 3.5\Scripts>py get-pip.py
-
-```
 
 ----
 Run web server:
