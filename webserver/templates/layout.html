@@ -12,14 +12,37 @@
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='jquery.fileupload-ui.css') }}">
 
 <style>
+.ui-li-static.ui-collapsible > .ui-collapsible-heading {
+    margin: 0;
+}
+.ui-li-static.ui-collapsible {
+    padding: 0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
+    border-top-width: 0;
+}
+.ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
+.ui-li-static.ui-collapsible > .ui-collapsible-content {
+    border-bottom-width: 0;
+}
   label { display: block; }
-  select { width: 200px; }
+  select { width: 50px; }
+
+.ui-slider .ui-slider-handle {
+    position: absolute;
+    height: 15px;
+    width: 5px;
+    padding-left: 5px; //add this
+}
+.ui-slider {
+    width: 200px;
+}
   </style>
 
   <script src="{{ url_for('static', filename='jquery-1.11.2.min.js') }}"></script>
   <script src="{{ url_for('static', filename='jquery.mobile.js') }}"></script>
-<!--  <script src="{{ url_for('static', filename='jquery-ui.js') }}"></script>
-  <script src="{{ url_for('static', filename='jquery.limitslider.js') }}"></script> -->
+  <script src="{{ url_for('static', filename='jquery-ui.js') }}"></script>
+<!--  <script src="{{ url_for('static', filename='jquery.limitslider.js') }}"></script> -->
   <script src="{{ url_for('static', filename='jquery.ui.touch-punch.min.js') }}"></script>
   <script src="{{ url_for('static', filename='jquery.klavier.min.js') }}"></script>
 

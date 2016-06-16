@@ -1,57 +1,15 @@
 {% extends "layout.html" %}
 
 {% block panel %}
-     <div data-role="panel" data-display="overlay" id="edit-snd" data-theme="b">
-      <table style="td {padding: 10px;text-align: left;}">
-       <th id="snd-id" style="display:none"></th><th id="snd-title"></th>
-       <tr>
-        <td colspan="2" >
-         <div data-role="controlgroup"  data-type="horizontal" data-theme="b">
-          <button class="ui-btn ui-corner-all ui-icon-audio ui-shadow ui-btn-icon-left l_play snd-control" value="play"></button>
-          <button class="ui-btn ui-icon-grid ui-btn-icon-left ui-corner-all snd-control" value="stop"></button>
-          </div>
-         </td>
-        </tr>
-       <tr><td>Rate:</td><td id="snd-samplerate"></td></tr>
- {# <!--    <tr><td>Length:</td><td id="snd-length">{{ ((entry.length / (entry.samplerate/1000)) | int)/1000 }}s</td></tr>  --> #}
-       <tr><td>Channels:</td><td id="snd-channels"></td></tr>
-       <tr><td>Resolution:</td><td id="snd-resolution"></td></tr>
-       </table>
-      <br>    
-      <form class="snd-edit"> 
-       <label for="snd-volume">Volume:</label>
-       <input type="range" id="snd-volume" name="snd-volume" min="0" max="100" value="0" class="snd-edit">
-       <label for="snd-pan">Pan:</label>
-       <input type="range" id="snd-pan" name="snd-pan" min="0" max="100" value="0">   
-       </form>    
-      <form class="snd-edit"> 
-       <div data-role=rangeslider">
-        <label for="snd-start">Start:</label>
-        <input type="range" id="snd-start" name="snd-start" min="0" max="44100000" value="0">
-        <label for="snd-stop">Stop:</label>
-        <input type="range" id="snd-stop" name="snd-stop" min="0" max="44100000" value="0">
-        </div>
-       </form>    
-      <form class="sndtab-edit" style="display:none">
-       <label for="snd-pitch">Pitch:</label>
-       <input type="range" id="snd-pitch" name="snd-pitch" min="0" max="127" value="0" class="snd-edit">
-       </form>
-         <div data-role="controlgroup"  data-mini="true" data-type="horizontal" data-theme="b">
-          <button class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-left ram">RAM</button>
-          <a href="#save-snd" id="save-snd" class="ui-btn ui-shadow ui-corner-all ui-icon-action ui-btn-icon-left">Save as...</a>
-          <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-check ui-btn-icon-left">Save</a>
-          <a href="#panel" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-left">Close panel</a>
-         </div>
-      </div><!-- /panel edit-->
 
-     <div data-role="panel" data-display="overlay" id="save-snd" data-theme="b">
-      <ul data-role="listview" id="save-snd-browse">
-       </ul>
-      </div><!-- /panel saveas -->
 {% endblock %}
 
 {% block body %}
    <div data-role="content" data-theme="b">
+
+<!--
+Switch turns pd DSP on/off
+->
 <!--
 <select name="flip-1" id="flip-1" data-role="slider" class="switch">
 	<option value=0>Off</option>
@@ -81,16 +39,19 @@
 
 
 <!-- density menu buttons -->
-    <fieldset data-role="controlgroup" data-type="horizontal" data-theme="b">
-     <legend>Density:</legend>
+<div data-role="collapsible-set" data-theme="a" data-inset="false" id="dens-sort">
  {% for d in densities %}
-     <input name="density-nav" class="density-nav" id="{{ d[1] }}" 
-  {% if d[1] == density %}  checked="checked" 
-  {% endif %}
- type="radio">
-     <label for="{{ d[1] }}" style="background: linear-gradient(to right, #293f50, #648880 {{ d[0] }}%, #f6f1d3);">{{ d[1] }}</label>
+    <div data-role="collapsible" data-theme="b" data-content-theme="b" id="{{ d.density_index }}">
+     <h2>{{ d[0] }}</h2>
+     <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true">
+{% for entry in entries %}
+
+      <li><a href="#">{{ entry.title }}</a><a href="#edit-snd" class="edit-b" data-position-to="window">{{ entry.title }}</a></li>
 {% endfor %}
-     </fieldset>
+      </ul>
+    </div>
+{% endfor %}
+</div>
 <!-- Upload files -->
 
 <!-- The fileinput-button span is used to style the file input field as button -->
@@ -107,35 +68,70 @@
   <div id="progress" class="progress">
    <div class="progress-bar progress-bar-success"></div>
     </div>
-
 <!-- The container for the uploaded files -->
    <div id="files"></div>
-
-<!-- The container for the uploaded files -->
-   <div id="files"></div>
-
-<!-- edit menu -->
-
-    <div data-role="controlgroup" data-type="horizontal" class="ui-field-contain" >
-     <a href="#edit-snd" id="edit" class="ui-btn ui-corner-all">edit</a>
-     <button id="browse" class="ui-btn ui-corner-all">browse</button>
-    </div>
-
-   <form id="snd-check">
-<!-- The container for theme files -->
-{% for entry in entries %}
-    <fieldset data-role="controlgroup" data-type="horizontal" >
-      <input type="radio" id="{{ entry.title }}" name="file-select" style="margin-top:-12px">
-          <label style="height:15px;visibility:hidden" for="{{ entry.title }}" ></label>
-     <button class="ui-btn ui-corner-all ui-icon-audio ui-btn-icon-left l_play"  style="height:15px" id="{{ entry.id }}"></button>
-     <a href="#"  class="ui-btn ui-corner-all" style="height:15px"> {{ entry.title }}</a>
-     </fieldset><!-- /controlgroup edit-->
-{% endfor %}
-
-     </form>
     </div><!-- /content-->
-   <script>
-	
+
+
+     <div data-role="panel" data-display="overlay" id="save-snd-div" data-theme="b">
+      <ul data-role="listview" id="save-snd-list"  data-mini="true"></ul>
+      </div><!-- /panel saveas -->
+
+<!-- sound editor -->
+     <div data-role="panel" data-display="overlay" id="edit-snd" data-theme="b">
+      <table style="td {padding: 10px;text-align: left;}">
+       <th id="snd-id" style="display:none"></th><th id="snd-title"></th>
+       <tr>
+        <td colspan="2" >
+         <div data-role="controlgroup"  data-type="horizontal" data-theme="b">
+          <button class="ui-btn ui-corner-all ui-icon-audio ui-shadow ui-btn-icon-left l_play snd-control" value="play"></button>
+          <button class="ui-btn ui-icon-grid ui-btn-icon-left ui-corner-all snd-control" value="stop"></button>
+          </div>
+         </td>
+        </tr>
+       <tr><td>Rate:</td><td id="snd-samplerate"></td></tr>
+ {# <!--    <tr><td>Length:</td><td id="snd-length">{{ ((entry.length / (entry.samplerate/1000)) | int)/1000 }}s</td></tr>  --> #}
+       <tr><td>Channels:</td><td id="snd-channels"></td></tr>
+       <tr><td>Resolution:</td><td id="snd-resolution"></td></tr>
+       <tr>
+        <td>
+         <label for="volume-nbx">Volume:</label>
+         </td>
+        <td>
+         <input type="range" type="text" id="volume-nbx" readonly name="volume-nbx" width="3">
+         </td></tr>
+        <tr><td colspan="2">
+        <div id="snd-volume" style="height:15px"></div>
+       </td></tr>
+       <tr>
+        <td>
+         <label for="snd-pan">Pan:</label>
+         </td>
+        <td>
+       <input type="range" id="snd-pan" name="snd-pan" min="0" max="100" value="50" readonly>
+         </td></tr>
+        <tr><td colspan="2">
+        <div id="snd-pan"></div>
+        </td></tr></table>
+       <div data-role=rangeslider">
+        <label for="snd-start">Start:</label>
+        <input type="range" id="snd-start" name="snd-start" min="0" max="44100000" value="0">
+        <label for="snd-stop">Stop:</label>
+        <input type="range" id="snd-stop" name="snd-stop" min="0" max="44100000" value="0">
+        </div>
+       </li>    
+      <li class="sndtab-edit" style="display:none">
+       <label for="snd-pitch">Pitch:</label>
+       <input type="range" id="snd-pitch" name="snd-pitch" min="0" max="127" value="0" class="snd-edit">
+       </li></ul>
+      <div data-role="controlgroup"  data-mini="true" data-type="horizontal" data-theme="b">
+       <button class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-left ram">RAM</button>
+       <a href="#save-snd-div" id="save-snd" class="ui-btn ui-shadow ui-corner-all ui-icon-action ui-btn-icon-left">Save as...</a>
+       <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-check ui-btn-icon-left">Save</a>
+       <a href="#panel" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-left">Close panel</a>
+       </div>
+      </div><!-- /panel edit-->
+   <script>	
 $(".ui-dialog").dialog('close');
 
    $('#addEnv').click(function() {
@@ -195,9 +191,9 @@ $(".ui-dialog").dialog('close');
         $.post(url)
       });
 
-   $("#edit").click(function() {
+   $(".edit-b").click(function(e) {
       $.getJSON($SCRIPT_ROOT + '/get_file_info', {
-         title: $('input[name=file-select]:checked', '#snd-check').attr('id')
+         title:  $( this ).prev("a").text()
       }, function(data) {
         $("#snd-id").text(data.id);
         $("#snd-title").text(data.title);
@@ -205,7 +201,17 @@ $(".ui-dialog").dialog('close');
         $("#snd-lenght").text(data.lenght);
         $("#snd-channels").text(data.channels);
         $("#snd-resolution").text(data.resolution*8+'bits');
-        $("#snd-volume").val(data.volume);
+        $("#snd-volume").slider({
+         value: data.volume,
+         orientation: "horizontal",
+         range: "min",
+         min: 1,
+         max: 100,
+         animate: true,
+         slide: function( event, ui ) {
+        $( "#volume-nbx" ).val( ui.value );
+      }
+    });
         $("#snd-pitch").val(data.pitch);
         $("#snd-pan").val(data.pan);
         $("#snd-start").val(data.start);
@@ -214,32 +220,60 @@ $(".ui-dialog").dialog('close');
       return true;
     });
 
-  $("#save-snd").click(function() { alert('test');
+
+  $("#save-snd").click(function() {
       $.getJSON($SCRIPT_ROOT + '/get_tree', {
          title: $('input[name=file-select]:checked', '#snd-check').attr('id')
-      }, function(data) {alert(data);
-             for (let d in data) {
+      }, function(data) {
+          for (let d in data) {
               //  if (!data.hasOwnProperty(d)) { continue; }
-                $("#save-snd-browse").append(
-                    '<li data-role="collapsible" data-iconpos="right" data-inset="false">\n\
+                $("#save-snd-list").append(
+                    '<li data-role="collapsible" class="collapse" data-inset="false" data-iconpos="right">\n\
                       <h2>' + d + '</h2>\n\
-                      <ul data-role="listview" data-theme="b">\n\
+                      <ul data-role="listview" data-theme="c" id="' + d +'-lv">\n\
                        <li><a href="#">' + data[d] + '</a></li>\n\
                        <li><a href="#">Eagle</a></li>\n\
                        <li><a href="#">Sparrow</a></li>\n\
-                       </ul></li>');
+                       </ul></li>').listview().listview('refresh');
+                 $('#' + d +'-lv').listview().listview('refresh');
+                 $('.collapse').collapsible();
                  }
              });
       return true;
     });
 
      $('.snd-edit').on('input', function(e) {alert(e['id']);
- /*      var url = flask_util.url_for('update_data', {table: 'readsound', col: 'environments',
+      /*  var url = flask_util.url_for('update_data', {table: 'readsound', col: 'environments',
           row: id, data: selected });
        $.post(url); */
         });
- $(".dndsnd").draggable();
-          $( "#droppable" ).droppable({
+// make a sortable list with density collapsed list
+ $( "#dens-sort" ).sortable({
+    start: function(e, ui) {
+
+   /*   console.log($("#dens-sort").sortable("toArray"));  */
+// creates a temporary attribute on the element with the old index
+        $(this).attr('data-previndex', $("#dens-sort").sortable("toArray"));
+    },
+    update: function(e, ui) {
+// gets the new and old index then removes the temporary attribute
+        var newIndex =  $("#dens-sort").sortable("toArray");
+        var oldIndex = $(this).attr('data-previndex');
+        $(this).removeAttr('data-previndex');
+        var i = 1;
+        newIndex.forEach(function(entry) {
+          $("#" + i).attr('id',entry);
+          i++;
+          });
+        var JSONoldIndex = JSON.stringify(oldIndex)
+        var JSONnewIndex = JSON.stringify(newIndex)
+      /*  console.log(JSONnewIndex); */
+        var url = flask_util.url_for('order_density', {e: '{{ env  }}' , d: '{{ density  }}' ,
+          oldId: JSONoldIndex, newId: JSONnewIndex});
+        $.post(url);
+    }
+  });
+ $( "#droppable" ).droppable({
             drop: function( event, ui ) {
               $( this )
                 .addClass( "ui-state-highlight" )
@@ -248,7 +282,9 @@ $(".ui-dialog").dialog('close');
             }
           });
     </script>
+
    <style>
+
     fieldset {
       border: 0;
     }

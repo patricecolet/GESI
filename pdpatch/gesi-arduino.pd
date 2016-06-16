@@ -1,4 +1,4 @@
-#N canvas 293 668 522 265 10;
+#N canvas 1957 131 522 265 10;
 #N canvas 29 51 450 300 cpu 0;
 #X obj 128 148 cputime;
 #X obj 128 38 loadbang;
@@ -62,7 +62,7 @@
 #X connect 16 0 17 0;
 #X connect 17 0 10 0;
 #X restore 138 169 pd audioOut;
-#N canvas 31 63 442 373 preview 1;
+#N canvas 31 73 442 373 preview 0;
 #X obj 161 5 r netreceive;
 #X obj 30 181 lsql;
 #X obj 30 124 list prepend sql;
@@ -321,89 +321,111 @@
 #X connect 15 0 9 0;
 #X connect 15 0 13 0;
 #X restore 23 109 pd network;
-#N canvas 535 799 269 171 sql 1;
+#N canvas 2171 593 269 171 sql 1;
 #X obj 19 105 lsql;
 #X obj 51 80 r sql-open;
 #X obj 19 127 print RES;
 #X floatatom 56 107 5 0 0 1 rows_affected - -, f 5;
-#N canvas 1161 197 675 756 TABLES 1;
-#X obj 53 452 list prepend sql;
-#X obj 53 471 list trim;
-#X msg 97 94 select * from environments;
-#N canvas 957 540 750 492 tableCreate 0;
-#X obj 96 365 outlet;
-#X msg 113 215 CREATE TABLE sensors(id integer primary key : preset
+#N canvas 2610 489 572 352 TABLES 1;
+#X obj 39 255 list prepend sql;
+#X obj 39 274 list trim;
+#N canvas 31 140 750 492 tableCreate 0;
+#X obj 52 468 outlet;
+#X msg 138 242 CREATE TABLE sensors(id integer primary key : preset
 integer : title varchar(50) : sensor char(50) : send2 text : input
 text : window integer : refresh integer) \, insert into sensors values(NULL
 : NULL : NULL : NULL : NULL : NULL : NULL : NULL );
-#X msg 124 296 CREATE TABLE readsound(id integer primary key : preset
+#X msg 149 323 CREATE TABLE readsound(id integer primary key : preset
 integer : title varchar(50) : largo integer : adagio integer : moderato
 integer : allegro integer : presto integer : voices integer : outputs
 text : environments text );
-#X msg 104 122 CREATE TABLE entries(id integer primary key: title varchar(50)
+#X msg 59 43 CREATE TABLE entries(id integer primary key: title varchar(50)
 : filename varchar(50): blacklist integer : samplerate integer : length
 integer : headersize integer : channels integer : resolution integer:
 endianness varchar(50) : format integer);
-#X msg 52 35 CREATE TABLE environments(id integer primary key autoincrement
+#X msg 70 118 CREATE TABLE environments(id integer primary key autoincrement
 unique : sound_id integer : title varchar(50) : density varchar(50)
 : volume integer: pitch integer: start integer: stop integer: pan integer)
 ;
+#X text 59 19 table for managing sound files;
+#X msg 82 180 CREATE TABLE density(id integer primary key : env_title
+varchar(50) : density varchar(50): density_index integer : audio_out
+integer);
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 3 0 0 0;
 #X connect 4 0 0 0;
-#X restore 53 9 pd tableCreate;
-#X msg 106 118 select * from readsound;
+#X connect 6 0 0 0;
+#X restore 39 8 pd tableCreate;
+#X obj 38 300 outlet, f 8;
+#X msg 118 199 select count() from environments where title='pat';
+#N canvas 2523 112 450 300 tableRead 1;
+#X msg 97 94 select * from environments;
+#X msg 118 161 select * from readsound;
 #X msg 89 75 select * from entries where (blacklist = 1);
-#X msg 234 379 DROP table readsound;
-#X obj 52 497 outlet, f 8;
-#X msg 238 401 DROP table environments;
-#X msg 231 358 DROP table entries;
 #X msg 111 140 select * from sensors;
 #X msg 81 56 select * from entries where (blacklist = 0);
-#X msg 242 421 DROP table sensors;
 #X text 174 35 read tables;
-#X text 240 338 erase tables;
-#X msg 150 253 DELETE from entries;
-#X msg 163 295 DELETE from readsound;
-#X msg 156 273 DELETE from environments;
-#X msg 169 316 DELETE from sensors;
-#X msg 144 232 DELETE from entries where id = '\$1';
-#X floatatom 144 215 5 0 0 0 - - -, f 5;
-#X text 191 213 delete contents;
-#X msg 132 566 select count() from environments where title='pat';
-#X msg 151 490 select * from (select distinct density from environments
-where title in (select distinct title from environments)):(select distinct
-title from environments);
-#X connect 0 0 1 0;
+#X msg 102 117 select * from density;
+#X obj 53 493 outlet;
+#X connect 0 0 7 0;
 #X connect 1 0 7 0;
+#X connect 2 0 7 0;
+#X connect 3 0 7 0;
+#X connect 4 0 7 0;
+#X connect 6 0 7 0;
+#X restore 49 30 pd tableRead;
+#N canvas 2989 130 450 300 tableDelete 1;
+#X msg 148 40 DELETE from entries;
+#X msg 161 122 DELETE from readsound;
+#X msg 154 60 DELETE from environments;
+#X msg 160 102 DELETE from sensors;
+#X msg 142 19 DELETE from entries where id = '\$1';
+#X floatatom 142 2 5 0 0 0 - - -, f 5;
+#X text 189 0 delete contents;
+#X obj 70 213 outlet;
+#X msg 159 81 DELETE from density;
+#X connect 0 0 7 0;
+#X connect 1 0 7 0;
+#X connect 2 0 7 0;
+#X connect 3 0 7 0;
+#X connect 4 0 7 0;
+#X connect 5 0 4 0;
+#X connect 8 0 7 0;
+#X restore 58 50 pd tableDelete;
+#N canvas 31 68 450 300 tableErase 0;
+#X msg 254 150 DROP table readsound;
+#X msg 238 77 DROP table environments;
+#X msg 241 56 DROP table entries;
+#X msg 253 130 DROP table sensors;
+#X text 250 36 erase tables;
+#X obj 63 191 outlet;
+#X msg 238 99 DROP table density;
+#X connect 0 0 5 0;
+#X connect 1 0 5 0;
+#X connect 2 0 5 0;
+#X connect 3 0 5 0;
+#X connect 6 0 5 0;
+#X restore 64 71 pd tableErase;
+#X msg 265 81 sql select distinct title from environment;
+#X msg 100 126 sql select distinct title from environment;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
 #X connect 2 0 0 0;
-#X connect 3 0 0 0;
 #X connect 4 0 0 0;
 #X connect 5 0 0 0;
 #X connect 6 0 0 0;
-#X connect 8 0 0 0;
+#X connect 7 0 0 0;
 #X connect 9 0 0 0;
-#X connect 10 0 0 0;
-#X connect 11 0 0 0;
-#X connect 12 0 0 0;
-#X connect 15 0 0 0;
-#X connect 16 0 0 0;
-#X connect 17 0 0 0;
-#X connect 18 0 0 0;
-#X connect 19 0 0 0;
-#X connect 20 0 19 0;
-#X connect 22 0 0 0;
-#X connect 23 0 0 0;
 #X restore 14 9 pd TABLES;
-#N canvas 1318 165 556 632 ANALYSIS 0;
-#X obj 44 7 r netreceive;
-#X obj 280 106 readsf~;
-#X obj 44 26 route analysis;
-#X msg 280 78 open \$1 \, 1;
-#X obj 284 42 f;
-#X obj 311 42 + 1;
-#X obj 44 46 route done;
+#N canvas 2306 190 546 843 ANALYSIS 1;
+#X obj 116 11 r netreceive;
+#X obj 352 110 readsf~;
+#X obj 116 30 route analysis;
+#X msg 352 82 open \$1 \, 1;
+#X obj 356 46 f;
+#X obj 383 46 + 1;
+#X obj 116 50 route done;
 #N canvas 31 249 412 267 sound_info 0;
 #X obj 101 113 soundfile_info;
 #X obj 62 28 inlet;
@@ -438,34 +460,48 @@ title from environments);
 #X connect 12 1 14 0;
 #X connect 14 0 15 0;
 #X connect 15 0 0 0;
-#X restore 76 282 pd sound_info;
-#X msg 164 255 clear;
-#X obj 237 485 outlet;
-#X msg 237 350 sql update entries set samplerate = '\$1': length =
+#X restore 148 286 pd sound_info;
+#X msg 236 259 clear;
+#X obj 149 507 outlet;
+#X msg 340 373 sql update entries set samplerate = '\$1': length =
 '\$3': headersize = '\$4': channels = '\$5': resolution = '\$6': endianness
 = '\$7': format = '\$8', f 22;
-#X obj 230 284 text define entries;
-#X obj 112 151 text set entries;
-#X obj 44 104 t b b;
-#X obj 44 209 text sequence entries, f 8;
-#X obj 355 200 print ANALYSYS;
-#X obj 112 68 list split 1;
-#X msg 230 264 clear;
-#X msg 44 161 line 0 \, auto, f 6;
-#X obj 44 258 t a a;
-#X msg 160 350 \$3;
-#X obj 44 374 list append 44100;
-#X msg 44 395 sql insert into environments values ( NULL : '\$1' :
+#X obj 302 288 text define entries;
+#X obj 184 155 text set entries;
+#X obj 116 108 t b b;
+#X obj 116 213 text sequence entries, f 8;
+#X obj 427 204 print ANALYSYS;
+#X obj 184 72 list split 1;
+#X msg 302 268 clear;
+#X msg 116 165 line 0 \, auto, f 6;
+#X obj 116 262 t a a;
+#X msg 265 367 \$3;
+#X obj 149 387 list append 44100;
+#X msg 149 408 sql insert into environments values ( NULL : '\$1' :
 '\$2' : '\$3' : '100' : '60' : '0' : '\$4' : '0'), f 22;
-#X obj 112 113 list;
-#X obj 112 92 t a a;
-#X obj 44 317 list split 3;
+#X obj 184 117 list;
+#X obj 184 96 t a a;
+#X obj 148 366 list split 3;
+#X msg 185 552 sql insert into density(env_title:density) select *
+from (select distinct title from environments):(select distinct density
+from environments where title in (select distinct title from environments))
+, f 31;
+#X obj 69 78 t b b;
+#X msg 43 767 sql update density set density_index=3 where id=23;
+#X msg 30 729 sql update density set density_index=\$1 where id=\$1
+;
+#X obj 133 680 mod 5;
+#X obj 132 704 + 1;
+#X obj 129 604 until;
+#X obj 129 626 f;
+#X obj 128 651 + 1;
+#X msg 129 583 34;
 #X connect 0 0 2 0;
 #X connect 2 0 6 0;
 #X connect 3 0 1 0;
 #X connect 4 0 5 0;
 #X connect 5 0 4 1;
-#X connect 6 0 13 0;
+#X connect 6 0 27 0;
 #X connect 6 1 16 0;
 #X connect 7 0 20 0;
 #X connect 7 0 10 0;
@@ -489,6 +525,17 @@ title from environments);
 #X connect 24 0 23 0;
 #X connect 24 1 12 1;
 #X connect 25 0 21 0;
+#X connect 26 0 9 0;
+#X connect 27 1 13 0;
+#X connect 28 0 9 0;
+#X connect 29 0 9 0;
+#X connect 30 0 31 0;
+#X connect 30 0 33 1;
+#X connect 31 0 29 0;
+#X connect 32 0 33 0;
+#X connect 33 0 34 0;
+#X connect 34 0 30 0;
+#X connect 35 0 32 0;
 #X restore 30 36 pd ANALYSIS;
 #X connect 0 0 2 0;
 #X connect 0 1 3 0;
@@ -496,15 +543,18 @@ title from environments);
 #X connect 4 0 0 0;
 #X connect 5 0 0 0;
 #X restore 23 138 pd sql;
-#N canvas 251 590 276 190 init 0;
+#N canvas 251 654 276 190 init 0;
 #X obj 15 9 loadbang;
 #X obj 15 29 del 2000;
 #X obj 15 49 home;
 #X msg 15 69 \; pd dsp 1 \; sql-open open \$1/.gesi/gesidb.db \; INIT
 0 \;;
+#X obj 92 34 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
+#X connect 4 0 2 0;
 #X restore 23 62 pd init;
 #N canvas 706 585 450 300 webserver 0;
 #X floatatom 201 242 5 0 0 0 - - -, f 5;

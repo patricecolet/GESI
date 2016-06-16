@@ -152,6 +152,7 @@ def admin():
 @app.route('/update_gesi')
 def update_gesi():
     entries = []
+    envs    = {}
     db = get_db()
     for dirpath, dirnames, files in os.walk(app.config['SOUND_PATH']):
         for name in files:
@@ -169,6 +170,19 @@ def update_gesi():
                             [name, filename,0,44100,44100,100,1,16,'b',1])
                         db.commit()
                         entries.append([path[5],path[6],filename])
+                        if path[5] not in envs:
+                            envs[path[5]] = []
+                            envs[path[5]].append(1)
+                        else:
+                            if path[6] not in envs[path[5]]:
+                                e = envs[path[5]][0]
+                                envs[path[5]][0] = e + 1
+                                envs[path[5]].append(path[6])
+                                db.execute('insert into density (env_title,density,density_index) values (?,?,?)',\
+                                    [path[5], path[6],e])
+                                db.commit()
+
+    
     for entry in entries:
      #   id = dict(sql_id)['id']
         sound_id = query_db('select id from entries where filename = ?',[entry[2]], one=True)
@@ -201,20 +215,21 @@ def get_file_info():
         ,[title,title], one=True)
     id = str(dict(fileinfo)['id'])
     pdsend('test2 '+ id) 
-    return jsonify(fileinfo)
+    test = {'data': [{'id':id}]}
+    return jsonify(**fileinfo)
 
 #get sound environment and densities
 @app.route('/get_tree', methods=['GET'])
 def get_tree():
     db = get_db()
     fileinfo = query_db('select * from \
-        (select distinct title from environments),\
-        (select distinct density from environments where title in \
-        (select distinct title from environments))')
+        (select title from environments),\
+        (select density from environments where title in \
+        (select title from environments))', one=True)
     id = str(dict(fileinfo))
     pdsend('test2 '+ id) 
 
-    return jsonify(fileinfo)
+    return jsonify(**fileinfo)
 
 
 
@@ -235,7 +250,7 @@ def show_entries():
     real = cur.fetchall()
     cur = db.execute('select distinct title from environments')
     envs = cur.fetchall()
-    cur = db.execute('select distinct density from environments where title="'+ param['env'] +'"')
+    cur = db.execute('select density,density_index from density where env_title="'+ param['env'] +'" order by density_index')
     dens = cur.fetchall()
     filenum = db.execute('select count()  from environments where title="'+ param['env'] +'"').fetchone()
     D = []
@@ -244,7 +259,24 @@ def show_entries():
         dn = cur.fetchone()
         dnp = dn[0]*100/filenum[0]
         D.append([dnp,d[0]])
-    return render_template('show_entries.html',entries=ent,real=real, env=param['env'],densities=D,envs=envs,density=param['density'])
+    return render_template('show_entries.html',entries=ent,real=real, env=param['env'],densities=dens,envs=envs,density=param['density'])
+
+    
+#ajax function re order density list in database
+@app.route('/order_density', methods=['POST'])
+def order_density():
+    db = get_db()
+    ido = json.loads(request.args.get('oldId'))
+    idn = json.loads(request.args.get('newId'))
+    e = request.args.get('e')
+    o = [int(c) for c in ido.split(',')]
+    d = []
+    for i in range(0, len(idn)):
+        d.append(db.execute('select density from density where (env_title = ? and density_index = ?)',[e,idn[i]]).fetchone()[0])
+    for i in range(0, len(idn)):
+            db.execute('update density set density_index = ? where (env_title= ? and density = ?)',[i+1,e,d[i]])
+            db.commit()
+    return jsonify(set='set')
     
 #renders a dialog box
 @app.route('/dialog/<method>', methods=['GET'])
