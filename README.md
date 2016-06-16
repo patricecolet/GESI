@@ -19,7 +19,7 @@ On windows use installers and start pip from admin cmd
 C:\Program Files(x86)\Python 3.5\Scripts>py get-pip.py
 
 ```
-and install Virtual Environment for having flask to work.
+
 ----
 
 ### Puredata settings
@@ -34,14 +34,15 @@ in puredata Edit->Preference->Startup add *pdlua* and in Edit->Preference->Path 
 Download sources:
 ```
 $ git clone https://github.com/patricecolet/GESI.git
-
 ```
 
-On windows we need to install dlls required by lsql, download and extract [archive for windows](http://luadist.org/),
-add bin folder to system environment PATH, and copie lib/lua/luasql into GESI/pdpatch folder
+----
 
-Now we can start server
+On windows we need to install lua-sqlite manually, download windows binaries from 
+[luadist.org](luadist.org), extract tree to C:\lua53, add c:\lua53\bin to [PATH environment variable](http://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them), and add c:\lua53\lib\lua\luasqlite folder to puredata path in preferences.
 
+----
+Run web server:
  ```
 $ cd GESI/webserver
 $ sudo python ./gesidb.py
@@ -79,6 +80,11 @@ An archive containing samples is here: http://megalego.free.fr/gesi/sons.zip.
 Create *.gesi* directory in */home/user* folder if it's not there, download and extract sons.zip into */home/user/.gesi/* folder.
 Now we can rebuild database by accessing localhost/update_gesi in web browser.
 
+###TODO
+start pd instance from web gui
+replace python with puredata server instance, and jinja with lua html template
+add virtual keyboard, mic handling and virtual pot in sensors
+add sequencer, webcast in actuators
 
 
 
