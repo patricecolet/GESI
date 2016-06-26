@@ -1,6 +1,12 @@
 # GESI
 Gestionnaire d'Environnement Sonore Interactif
-## Installation (GNU/linux only)
+### Synopsis
+
+GESI is composed in two parts, a python flask webserver for the interface and puredata for sound processing.
+They communicate through websockets and shares a single sqlite3 database.
+This project is made for running into tiny computers like pcduino or raspberry pi 3, where sensors and actuators can be connected and controlled with the GESI interactive sound manager.
+
+## Installation (tested on GNU/linux)
 ### webserver
 SQLITE database is used to share memory between puredata and web server running with python and flask module, so we need to install
 * python-flask 
@@ -38,8 +44,8 @@ $ git clone https://github.com/patricecolet/GESI.git
 
 ----
 
-On windows we need to install lua-sqlite manually, download windows binaries from 
-[luadist.org](luadist.org), extract tree to C:\lua53, add c:\lua53\bin to [PATH environment variable](http://superuser.com/questions/284342/what-are-path-and-other-environment-variables-and-how-can-i-set-or-use-them), and add c:\lua53\lib\lua\luasqlite folder to puredata path in preferences.
+On windows we need to install lua-sqlite manually, download windows mingw binaries from 
+[luadist.org](luadist.org), extract luadist/lib/lua/luasql folder into GESI/pdpatch, then [lsql] should access the dll.
 
 ----
 Run web server:
@@ -52,10 +58,12 @@ and puredata in another shell:
 $ cd ../pdpatch
 $ pd gesi-arduino.pd
 ```
+add console verbose mode in puredata preferences if you run into problems...
 
 ### Database
 GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
-the folder containing sounds must be at ~/.gesi/ directory, like this:
+puredata patch must be running for doing the sound analysis and complete the database.
+ The folder containing sounds must be at ~/.gesi/ directory, like this:
 ```
 ~/.gesi
 -/sons
@@ -78,11 +86,11 @@ the folder containing sounds must be at ~/.gesi/ directory, like this:
 ```
 An archive containing samples is here: http://megalego.free.fr/gesi/sons.zip.
 Create *.gesi* directory in */home/user* folder if it's not there, download and extract sons.zip into */home/user/.gesi/* folder.
-Now we can rebuild database by accessing localhost/update_gesi in web browser.
+Now we can rebuild database by accessing localhost/admin in web browser.
 
 ###TODO
-start pd instance from web gui
-replace python with puredata server instance, and jinja with lua html template
+add path to external in patch instead of preferences
+put interface to GPIO in pure data
 add virtual keyboard, mic handling and virtual pot in sensors
 add sequencer, webcast in actuators
 
