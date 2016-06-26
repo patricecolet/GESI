@@ -90,6 +90,20 @@ $(function() {
 {% for message in get_flashed_messages() %}
     <div class=flash>{{ message }}</div>
 {% endfor %}
+
+
+
+<!--
+Switch turns pd DSP on/off
+->
+<!--
+<select name="flip-1" id="flip-1" data-role="slider" class="switch">
+	<option value=0>Off</option>
+	<option value=1>On</option>
+</select>
+-->
+
+
     </div><!-- /header mainpage-->
 {% block body %}
 {% endblock %}

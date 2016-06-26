@@ -2,33 +2,31 @@
 {% block body %}
 <script>
 
-  var socket = 'ws://' + location.host + ':6789';
+var socket = 'ws://' + location.host + ':6789';
 
-function start(socket){
-  connection = new WebSocket(socket);
-
-  connection.binaryType = 'arraybuffer';
-
-  connection.onopen = function()
+function start(socket) {
+ connection = new WebSocket(socket);
+ connection.binaryType = 'arraybuffer';
+ connection.onopen = function()
   {
-    $("#messages").append('Connected!');
+  $("#messages").append('Connected!');
   };
 
  connection.onmessage = function(e)
- {
+  {
   var sockMess = new Array();
   sockMess = e.data.split("%");
   if (sockMess[0] == 'done') 
    { 
     $("#messages").html('done!');
-   }
-   else if (sockMess[0] == 'error') {
-    
+    }
+   else if (sockMess[0] == 'error') {    
     $("#messages").html('error!');
-  }
-  connection.onclose = function(){
-        setTimeout(function(){start(socket)}, 5000);
+    }
    }
+  connection.onclose = function() {
+   setTimeout(function(){start(socket)}, 5000);
+  }
  }
 
 start(socket);

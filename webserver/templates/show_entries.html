@@ -1,32 +1,18 @@
 {% extends "layout.html" %}
-
 {% block panel %}
-
 {% endblock %}
-
 {% block body %}
    <div data-role="content" data-theme="b">
-
-<!--
-Switch turns pd DSP on/off
-->
-<!--
-<select name="flip-1" id="flip-1" data-role="slider" class="switch">
-	<option value=0>Off</option>
-	<option value=1>On</option>
-</select>
--->
-
 
 <!-- environment menu buttons -->
 
     <fieldset data-role="controlgroup" data-theme="b" data-type="horizontal" >
      <legend>Environment:</legend>
 {% for path in envs %}
-     <input name="{{ path.title }}" class="env-nav" id="{{ path.title }}-i" 
+     <input name="{{ path.env_title }}" class="env-nav" id="{{ path.env_title }}-i" 
   {% if path.title == env %}  checked="checked" 
   {% endif %} type="radio">
-     <label for="{{ path.title }}-i">{{ path.title }}</label>
+     <label for="{{ path.env_title }}-i">{{ path.env_title }}</label>
 {% endfor %}
     </fieldset>
 <!--
@@ -40,13 +26,14 @@ Switch turns pd DSP on/off
 
 <!-- density menu buttons -->
 <div data-role="collapsible-set" data-theme="a" data-inset="false" id="dens-sort">
- {% for d in densities %}
-    <div data-role="collapsible" data-theme="b" data-content-theme="b" id="{{ d.density_index }}">
-     <h2>{{ d[0] }}</h2>
+ {% for p in path %}
+    <div data-role="collapsible" data-theme="b" data-content-theme="b" id="{{ p.density }}">
+     <h2>{{ p.density }}</h2>
      <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true">
-{% for entry in entries %}
-
-      <li><a href="#">{{ entry.title }}</a><a href="#edit-snd" class="edit-b" data-position-to="window">{{ entry.title }}</a></li>
+{% for s in sounds %}
+{% if p.id == s.sub_id %}
+      <li><a href="#">{{ s.title }}</a><a href="#edit-snd" class="edit-b" data-position-to="window">{{ s.title }}</a></li>
+{% endif %}
 {% endfor %}
       </ul>
     </div>
@@ -73,14 +60,19 @@ Switch turns pd DSP on/off
     </div><!-- /content-->
 
 
+<!-- save panel -->
      <div data-role="panel" data-display="overlay" id="save-snd-div" data-theme="b">
-      <ul data-role="listview" id="save-snd-list"  data-mini="true"></ul>
+      <label for="save-snd-val">Save as...</label>
+      <input type="text" data-theme="b" id="save-snd-val" name="save-snd-val"/>
+      <div data-role="collapsible-set" data-theme="b" data-content-theme="a" id="save-snd-list">
+<!-- this content is loaded with javascript -->
+       </div>
       </div><!-- /panel saveas -->
 
 <!-- sound editor -->
      <div data-role="panel" data-display="overlay" id="edit-snd" data-theme="b">
       <table style="td {padding: 10px;text-align: left;}">
-       <th id="snd-id" style="display:none"></th><th id="snd-title"></th>
+       <th id="snd-title" colspan="2"></th>
        <tr>
         <td colspan="2" >
          <div data-role="controlgroup"  data-type="horizontal" data-theme="b">
@@ -90,7 +82,7 @@ Switch turns pd DSP on/off
          </td>
         </tr>
        <tr><td>Rate:</td><td id="snd-samplerate"></td></tr>
- {# <!--    <tr><td>Length:</td><td id="snd-length">{{ ((entry.length / (entry.samplerate/1000)) | int)/1000 }}s</td></tr>  --> #}
+       <tr><td>Length:</td><td id="snd-length"></td></tr>
        <tr><td>Channels:</td><td id="snd-channels"></td></tr>
        <tr><td>Resolution:</td><td id="snd-resolution"></td></tr>
        <tr>
@@ -98,75 +90,92 @@ Switch turns pd DSP on/off
          <label for="volume-nbx">Volume:</label>
          </td>
         <td>
-         <input type="range" type="text" id="volume-nbx" readonly name="volume-nbx" width="3">
-         </td></tr>
-        <tr><td colspan="2">
-        <div id="snd-volume" style="height:15px"></div>
-       </td></tr>
+         <input type="range" id="volume-nbx" name="volume-nbx" style="width:50px" readonly>
+         </td>
+        </tr>
+       <tr>
+        <td colspan="2">
+         <div id="snd-volume" style="height:18px"></div>
+         </td>
+        </tr>
        <tr>
         <td>
-         <label for="snd-pan">Pan:</label>
+         <label for="pan-nbx">Pan:</label>
          </td>
         <td>
-       <input type="range" id="snd-pan" name="snd-pan" min="0" max="100" value="50" readonly>
-         </td></tr>
-        <tr><td colspan="2">
-        <div id="snd-pan"></div>
-        </td></tr></table>
-       <div data-role=rangeslider">
-        <label for="snd-start">Start:</label>
-        <input type="range" id="snd-start" name="snd-start" min="0" max="44100000" value="0">
-        <label for="snd-stop">Stop:</label>
-        <input type="range" id="snd-stop" name="snd-stop" min="0" max="44100000" value="0">
-        </div>
-       </li>    
-      <li class="sndtab-edit" style="display:none">
-       <label for="snd-pitch">Pitch:</label>
-       <input type="range" id="snd-pitch" name="snd-pitch" min="0" max="127" value="0" class="snd-edit">
-       </li></ul>
-      <div data-role="controlgroup"  data-mini="true" data-type="horizontal" data-theme="b">
-       <button class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-left ram">RAM</button>
-       <a href="#save-snd-div" id="save-snd" class="ui-btn ui-shadow ui-corner-all ui-icon-action ui-btn-icon-left">Save as...</a>
-       <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-check ui-btn-icon-left">Save</a>
-       <a href="#panel" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-left">Close panel</a>
-       </div>
-      </div><!-- /panel edit-->
-   <script>	
+         <input type="range" id="pan-nbx" name="pan-nbx" style="width:50px" readonly>
+         </td>
+        </tr>
+       <tr>
+        <td colspan="2">
+         <div id="snd-pan" style="height:18px"></div>
+         </td>
+        </tr>
+       <tr>
+        <td><label for="snd-start">Start:</label></td>
+        <td><input type="range" id="snd-start" name="snd-start" style="width:100px" readonly></td>
+        </tr>
+       <tr>
+        <td><label for="snd-stop">Stop:</label></td>
+         <td><input type="range" id="snd-stop" name="snd-stop" style="width:100px" readonly></td>
+        </tr>
+       <tr>
+        <td colspan="2">
+        <div id="snd-range" style="height:18px"></div>
+        </td>
+       </tr>
+      </table> 
+     <div class="sndtab-edit" style="display:none">
+      <label for="pitch-nbx">Pitch:</label>
+      <input type="range" id="pitch-nbx" name="pitch-nbx" style="width:50px" readonly>
+      <div id="snd-pitch"></div>
+      </div>
+     <div data-role="controlgroup"  data-mini="true" data-type="horizontal" data-theme="b">
+      <button class="ui-btn ui-icon-plus ui-btn-icon-left ram">RAM</button>
+      <a href="#save-snd-div" id="save-snd-as" class="ui-btn ui-icon-action ui-btn-icon-left">Save as...</a>
+      <a href="#" id="save-snd" class="ui-btn ui-icon-check ui-btn-icon-left">Save</a>
+      <a href="#panel" data-rel="close" class="ui-btn ui-icon-delete ui-btn-icon-left">Close panel</a>
+      </div>
+     </div><!-- /panel edit-->
+    <script>
+	
 $(".ui-dialog").dialog('close');
 
+// this add environment is obsolete
    $('#addEnv').click(function() {
      var env = $('#envName').val();
      var url = flask_util.url_for('add_env', {env: env });
      window.location='/';
      $.post(url);
       });
-  
+
+// this del environment is obsolete  
    $('#delEnv').click(function() {
      var url = flask_util.url_for('del_env', {env: '{{ env }}' });
      window.location='/';
      $.post(url);
       });
 
+// this switch DSP is not used yet
   $( '.switch' ).bind( "change", function(event, ui) {
      var url = flask_util.url_for('pdsend', {message: 'switch ' + $(".switch").val() });
      $.post(url)
      });
 
+
+// for navigating through environment with buttons, this refreshes page, and nearly obsolete...
    $('.env-nav').click(function() {
-       window.location = '/?env=' +$( this ).attr('name') + '&density={{ density }}'
+       window.location = '/?env=' +$( this ).attr('name')
       });
 
-   $(".density-nav").click(function() {
-      
-       window.location = '/?env={{ env }}' + '&density=' + $( this ).attr('id') 
-      });
-
+// this class is used to play a sound in pd monitoring patch
     $(".l_play").click(function() {
         var $button = $( this );
         var url = flask_util.url_for('pdsend', {message: 'play ' + $button.attr('id') });
         $.post(url)
        });
 
+// this class is used to control sound in pd monitoring patch
     $(".snd-control").click(function() {
         var $button = $( this ).attr('value');
         var $file = $("#snd-id").text();
@@ -174,6 +183,7 @@ $(".ui-dialog").dialog('close');
         $.post(url)
        });
 
+//this class is used to show hidden parameters when sound is loaded into RAM
     $(".ram").click(function() {
         if ( $(".sndtab-edit").css("display") == "none") {
             $(".sndtab-edit").css("display","inherit");
@@ -185,68 +195,161 @@ $(".ui-dialog").dialog('close');
             }
        });
 
+//this class is used to blacklist a sound
    $(".del-snd").click(function() {
         var $button = $( this );
         var url = flask_util.url_for('add2blacklist', {id: $button.attr('id') });
         $.post(url)
       });
-
+var DENSITY = '';
+var FILE = '';
+//this class loads into html sound informations from database
    $(".edit-b").click(function(e) {
+      FILE = $( this ).prev("a").text();
       $.getJSON($SCRIPT_ROOT + '/get_file_info', {
-         title:  $( this ).prev("a").text()
+         title:  FILE
       }, function(data) {
-        $("#snd-id").text(data.id);
+        var length = data.length.split('s')[0];
+        $("#snd-id").text(data.entry_id);
         $("#snd-title").text(data.title);
         $("#snd-samplerate").text(data.samplerate+'hz');
-        $("#snd-lenght").text(data.lenght);
+        $("#snd-length").text((length/data.samplerate).toPrecision(5)+'s');
         $("#snd-channels").text(data.channels);
         $("#snd-resolution").text(data.resolution*8+'bits');
+//here we attribute slider parameters
         $("#snd-volume").slider({
          value: data.volume,
          orientation: "horizontal",
          range: "min",
-         min: 1,
+         min: 0,
+         max: 127,
+         animate: true,
+         slide: function( event, ui ) {
+          $( "#volume-nbx" ).val( ui.value );
+          var url = flask_util.url_for('update_file_info',
+            { table:'environments', id: data.sound_id,item:'["volume","'+ ui.value+'"]'});
+          $.post(url)
+          }
+        });
+        $("#snd-pitch").slider({
+         value: data.pitch,
+         orientation: "horizontal",
+         range: "min",
+         min: 0,
+         max: 127,
+         animate: true,
+         slide: function( event, ui ) {
+          $( "#pitch-nbx" ).val( ui.value );
+          var url = flask_util.url_for('update_file_info',
+            { table:'environments', id: data.sound_id,item:'["pitch","'+ ui.value+'"]'});
+          $.post(url)
+          }
+        });
+        $("#snd-pan").slider({
+         value: data.pan,
+         orientation: "horizontal",
+         range: "min",
+         min: 0,
          max: 100,
          animate: true,
          slide: function( event, ui ) {
-        $( "#volume-nbx" ).val( ui.value );
-      }
-    });
-        $("#snd-pitch").val(data.pitch);
-        $("#snd-pan").val(data.pan);
-        $("#snd-start").val(data.start);
-        $("#snd-stop").val(data.stop);
-      });
-      return true;
-    });
-
-
-  $("#save-snd").click(function() {
-      $.getJSON($SCRIPT_ROOT + '/get_tree', {
-         title: $('input[name=file-select]:checked', '#snd-check').attr('id')
-      }, function(data) {
-          for (let d in data) {
-              //  if (!data.hasOwnProperty(d)) { continue; }
-                $("#save-snd-list").append(
-                    '<li data-role="collapsible" class="collapse" data-inset="false" data-iconpos="right">\n\
-                      <h2>' + d + '</h2>\n\
-                      <ul data-role="listview" data-theme="c" id="' + d +'-lv">\n\
-                       <li><a href="#">' + data[d] + '</a></li>\n\
-                       <li><a href="#">Eagle</a></li>\n\
-                       <li><a href="#">Sparrow</a></li>\n\
-                       </ul></li>').listview().listview('refresh');
-                 $('#' + d +'-lv').listview().listview('refresh');
-                 $('.collapse').collapsible();
-                 }
-             });
-      return true;
-    });
-
-     $('.snd-edit').on('input', function(e) {alert(e['id']);
-      /*  var url = flask_util.url_for('update_data', {table: 'readsound', col: 'environments',
-          row: id, data: selected });
-       $.post(url); */
+          $( "#pan-nbx" ).val( ui.value );
+          var url = flask_util.url_for('update_file_info',
+            { 
+             table:'environments',
+             id: data.sound_id,
+             item:'["pan","'+ ui.value+'"]'
+            });
+          $.post(url)
+          }
         });
+        $("#snd-range").slider({
+         orientation: "horizontal",
+         range: true,
+         min: 0,
+         max: parseInt(length),
+         animate: true,
+         slide: function( event, ui ) {
+          var item=['start','stop'];
+          for(var i= 0; i < 2; i++) { 
+           $("#snd-" + item[i] ).val(ui.values[i]);
+           var url = flask_util.url_for('update_file_info',
+             {
+              table:'wav_slice',  
+              id: data.sound_id,
+              item:'["' + item[i] + '","' + ui.values[i] + '"]' 
+             });
+           $.post(url)
+           }
+          }
+        });
+//and there we put default values in number boxes
+        $("#volume-nbx").val(data.volume);
+        $("#pan-nbx").val(data.pan);
+        $("#pitch-nbx").val(data.pitch);
+        var start = parseInt(data.start.split('s'));
+        var stop = parseInt(data.stop.split('s'));
+        $("#snd-range").slider('values',0,start);
+        $("#snd-range").slider('values',1,stop);
+        $("#snd-start").val(start);
+        $("#snd-stop").val(stop);
+      });
+  DENSITY = $( this ).parent().parent().parent().parent().attr('id');
+  return true;
+  });
+
+
+// save button  
+$("#save-snd").click(function() {
+console.log($("#dens-sort").find('ui-collapsible-collapsed').attr('id'));
+console.log('test');
+  var url = flask_util.url_for('save_snd', {env: '{{ env  }}' , density: DENSITY, name: FILE });
+  $.post(url)
+  });
+
+// save dialog with ajax in panel  
+$("#save-snd-as").click(function() {
+  var title = $( '#snd-title' ).text();
+  $.getJSON($SCRIPT_ROOT + '/get_tree',
+   { "title" : title },
+   function(data) {
+    var html  = '';
+    $.each(data, function(e) {
+      var collapse = "";
+      if (e != "{{ env  }}") {collapse = "true"} else {collapse = "false"};
+      html += '<div data-role="collapsible" class="collapse" data-collapsed="' + collapse + '" \
+              data-iconpos="right">';
+      html += '<h2>' + e + '</h2>';
+      var f = data[e] + '';
+      html += '<ul data-role="listview" id="' + e + '-lv"  class="save-snd-d">';
+      f.split(',').forEach(function(d) {
+        var active  = "";
+        html += '<li data-theme="a"><a href="#" id="' + e + d + '-btn" class="snd-dens">' + d + '</a></li>';
+        });
+      html += '</ul></div>';
+      });
+    html += '<div><a href="#" id="save-snd-as" class="ui-btn ui-icon-action ui-btn-icon-left">Save</a>';
+    html +='<a href="#edit-snd" data-rel="close" class="ui-btn ui-icon-delete ui-btn-icon-left">Cancel</a></div>';
+    $("#save-snd-list").html(html);
+    $("#save-snd-val").val(title);
+    $("#save-snd-list").listview().listview('refresh');
+    $('.save-snd-d').listview().listview('refresh');
+    $('.collapse').collapsible();
+    $("#{{ env }}" + DENSITY + "-btn").addClass("ui-btn-active");
+    var env     = '{{ env }}';
+    $( ".snd-dens" ).click(function() {
+      $( ".snd-dens" ).removeClass("ui-btn-active");
+      $(this).addClass('ui-btn-active');
+      });
+    $("#save-snd-as").click(function() {
+      console.log("env:{{ env  }},dens:" + DENSITY + ",name:" + $("#save-snd-val").val());
+      var url = flask_util.url_for('save_snd_as', {env: '{{ env  }}' , density: DENSITY, name: $("#save-snd-val").val() });
+        $.post(url)
+      });
+    return true;
+    });
+  });
+
 // make a sortable list with density collapsed list
  $( "#dens-sort" ).sortable({
     start: function(e, ui) {
@@ -268,11 +371,13 @@ $(".ui-dialog").dialog('close');
         var JSONoldIndex = JSON.stringify(oldIndex)
         var JSONnewIndex = JSON.stringify(newIndex)
       /*  console.log(JSONnewIndex); */
-        var url = flask_util.url_for('order_density', {e: '{{ env  }}' , d: '{{ density  }}' ,
+        var url = flask_util.url_for('order_density', {e: '{{ env  }}' , d: DENSITY ,
           oldId: JSONoldIndex, newId: JSONnewIndex});
         $.post(url);
     }
   });
+
+// this class is not used yet
  $( "#droppable" ).droppable({
             drop: function( event, ui ) {
               $( this )
@@ -281,10 +386,17 @@ $(".ui-dialog").dialog('close');
                   .html( "Dropped!" );
             }
           });
+
     </script>
 
    <style>
 
+li.ui-btn-active {
+    background-color:       #22aadd !important;
+    border-color:           #22aadd !important;
+    color:                  #fff !important;
+    text-shadow: 0 0 #0088bb !important;
+}
     fieldset {
       border: 0;
     }

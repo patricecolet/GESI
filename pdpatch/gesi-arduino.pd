@@ -1,4 +1,4 @@
-#N canvas 1957 131 522 265 10;
+#N canvas 1957 146 522 265 10;
 #N canvas 29 51 450 300 cpu 0;
 #X obj 128 148 cputime;
 #X obj 128 38 loadbang;
@@ -287,7 +287,7 @@
 #X connect 34 0 32 0;
 #X restore 270 126 pd gpio;
 #X text 30 1 GESI main patch;
-#N canvas 29 51 450 300 network 0;
+#N canvas 31 58 450 300 network 0;
 #X obj 127 231 netsend 1;
 #X obj 128 207 spigot;
 #X obj 292 98 r netreceive;
@@ -301,9 +301,12 @@
 #X obj 128 140 list trim;
 #X obj 128 120 list prepend send;
 #X obj 128 100 r netsend;
-#X obj 117 57 print net;
+#X obj 187 71 print net;
 #X text 165 259 pd -stderr 2>&1 | pdsend 9999 localhost udp;
 #X obj 30 21 netreceive 3001 1;
+#X obj 188 49 spigot;
+#X obj 229 27 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 0 0 1 1;
 #X connect 0 0 7 1;
 #X connect 1 0 0 0;
@@ -319,72 +322,113 @@
 #X connect 11 0 10 0;
 #X connect 12 0 11 0;
 #X connect 15 0 9 0;
-#X connect 15 0 13 0;
+#X connect 15 0 16 0;
+#X connect 16 0 13 0;
+#X connect 17 0 16 1;
 #X restore 23 109 pd network;
-#N canvas 2171 593 269 171 sql 1;
+#N canvas 1959 561 269 171 sql 0;
 #X obj 19 105 lsql;
 #X obj 51 80 r sql-open;
-#X obj 19 127 print RES;
 #X floatatom 56 107 5 0 0 1 rows_affected - -, f 5;
-#N canvas 2610 489 572 352 TABLES 1;
-#X obj 39 255 list prepend sql;
-#X obj 39 274 list trim;
-#N canvas 31 140 750 492 tableCreate 0;
-#X obj 52 468 outlet;
-#X msg 138 242 CREATE TABLE sensors(id integer primary key : preset
+#N canvas 2482 206 181 268 TABLES 0;
+#X obj 33 188 list prepend sql;
+#X obj 33 207 list trim;
+#N canvas 238 162 1190 666 tableCreate 1;
+#X obj 173 622 outlet;
+#X msg 210 449 CREATE TABLE sensors(id integer primary key : preset
 integer : title varchar(50) : sensor char(50) : send2 text : input
 text : window integer : refresh integer) \, insert into sensors values(NULL
 : NULL : NULL : NULL : NULL : NULL : NULL : NULL );
-#X msg 149 323 CREATE TABLE readsound(id integer primary key : preset
+#X msg 211 544 CREATE TABLE readsound(id integer primary key : preset
 integer : title varchar(50) : largo integer : adagio integer : moderato
 integer : allegro integer : presto integer : voices integer : outputs
 text : environments text );
-#X msg 59 43 CREATE TABLE entries(id integer primary key: title varchar(50)
-: filename varchar(50): blacklist integer : samplerate integer : length
-integer : headersize integer : channels integer : resolution integer:
-endianness varchar(50) : format integer);
-#X msg 70 118 CREATE TABLE environments(id integer primary key autoincrement
-unique : sound_id integer : title varchar(50) : density varchar(50)
-: volume integer: pitch integer: start integer: stop integer: pan integer)
-;
-#X text 59 19 table for managing sound files;
-#X msg 82 180 CREATE TABLE density(id integer primary key : env_title
+#X text 171 87 table for managing sound files;
+#X msg 207 372 CREATE TABLE density(id integer primary key : env_title
 varchar(50) : density varchar(50): density_index integer : audio_out
 integer);
+#X text 208 259 table managing mix into environment;
+#X text 218 353 table managing sub environment (density);
+#X text 184 182 table for wav file parameters;
+#X obj 12 46 t b b b b b b;
+#X obj 12 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 201 283 CREATE TABLE environments(id integer primary key autoincrement
+unique: title varchar(50) : sound_table varchar(50) : sound_id integer
+: sub_id integer : volume integer: pan integer);
+#X msg 184 206 CREATE TABLE wav_slice(id integer primary key : entry_id
+integer: ram integer : pitch integer: fine_pitch integer: start varchar(50):
+stop varchar(50));
+#X msg 171 111 CREATE TABLE entries(id integer primary key: filename
+varchar(50): blacklist integer : samplerate integer : length varchar(50)
+: headersize integer : channels integer : resolution integer: endianness
+varchar(50) : format integer);
+#X obj 600 20 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 694 617 t a;
+#X text 743 52 temporary tables;
+#X msg 694 118 CREATE TABLE wav_slice_temp(id integer primary key :
+entry_id integer: ram integer : pitch integer: fine_pitch integer:
+start varchar(50): stop varchar(50));
+#X msg 707 209 CREATE TABLE environments_temp(id integer primary key
+autoincrement unique: title varchar(50) : sound_table varchar(50) :
+sound_id integer : sub_id integer : volume integer: pan integer);
+#X obj 600 45 t b b b;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
-#X connect 3 0 0 0;
 #X connect 4 0 0 0;
-#X connect 6 0 0 0;
+#X connect 8 0 2 0;
+#X connect 8 1 1 0;
+#X connect 8 2 4 0;
+#X connect 8 3 10 0;
+#X connect 8 4 11 0;
+#X connect 8 5 12 0;
+#X connect 9 0 8 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;
+#X connect 12 0 0 0;
+#X connect 13 0 18 0;
+#X connect 14 0 0 0;
+#X connect 16 0 14 0;
+#X connect 17 0 14 0;
+#X connect 18 0 17 0;
+#X connect 18 1 16 0;
 #X restore 39 8 pd tableCreate;
-#X obj 38 300 outlet, f 8;
-#X msg 118 199 select count() from environments where title='pat';
-#N canvas 2523 112 450 300 tableRead 1;
-#X msg 97 94 select * from environments;
-#X msg 118 161 select * from readsound;
+#X obj 33 232 outlet;
+#N canvas 2858 585 450 300 tableRead 0;
+#X msg 108 118 select * from environments;
+#X msg 129 215 select * from readsound;
 #X msg 89 75 select * from entries where (blacklist = 1);
-#X msg 111 140 select * from sensors;
+#X msg 122 194 select * from sensors;
 #X msg 81 56 select * from entries where (blacklist = 0);
 #X text 174 35 read tables;
-#X msg 102 117 select * from density;
-#X obj 53 493 outlet;
+#X msg 113 171 select * from density;
+#X obj 70 261 outlet;
+#X msg 98 95 select * from wav_slice;
+#X msg 111 142 select * from environments_temp;
 #X connect 0 0 7 0;
 #X connect 1 0 7 0;
 #X connect 2 0 7 0;
 #X connect 3 0 7 0;
 #X connect 4 0 7 0;
 #X connect 6 0 7 0;
-#X restore 49 30 pd tableRead;
-#N canvas 2989 130 450 300 tableDelete 1;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;
+#X restore 56 107 pd tableRead;
+#N canvas 2989 230 450 300 tableDelete 0;
 #X msg 148 40 DELETE from entries;
-#X msg 161 122 DELETE from readsound;
-#X msg 154 60 DELETE from environments;
-#X msg 160 102 DELETE from sensors;
+#X msg 161 151 DELETE from readsound;
+#X msg 154 89 DELETE from environments;
+#X msg 160 131 DELETE from sensors;
 #X msg 142 19 DELETE from entries where id = '\$1';
 #X floatatom 142 2 5 0 0 0 - - -, f 5;
 #X text 189 0 delete contents;
 #X obj 70 213 outlet;
-#X msg 159 81 DELETE from density;
+#X msg 159 110 DELETE from density;
+#X obj 14 13 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 14 33 t b b b b b b;
+#X msg 153 64 DELETE from wav_slice;
 #X connect 0 0 7 0;
 #X connect 1 0 7 0;
 #X connect 2 0 7 0;
@@ -392,59 +436,90 @@ integer);
 #X connect 4 0 7 0;
 #X connect 5 0 4 0;
 #X connect 8 0 7 0;
-#X restore 58 50 pd tableDelete;
-#N canvas 31 68 450 300 tableErase 0;
-#X msg 254 150 DROP table readsound;
-#X msg 238 77 DROP table environments;
+#X connect 9 0 10 0;
+#X connect 10 0 1 0;
+#X connect 10 1 3 0;
+#X connect 10 2 8 0;
+#X connect 10 3 2 0;
+#X connect 10 4 11 0;
+#X connect 10 5 0 0;
+#X connect 11 0 7 0;
+#X restore 60 129 pd tableDelete;
+#N canvas 31 133 450 300 tableErase 0;
+#X msg 254 188 DROP table readsound;
+#X msg 238 115 DROP table environments;
 #X msg 241 56 DROP table entries;
-#X msg 253 130 DROP table sensors;
+#X msg 253 168 DROP table sensors;
 #X text 250 36 erase tables;
 #X obj 63 191 outlet;
-#X msg 238 99 DROP table density;
+#X msg 238 137 DROP table density;
+#X msg 242 78 DROP table wav_slice;
+#X obj 78 27 t b b b b b b;
+#X obj 79 4 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X connect 0 0 5 0;
 #X connect 1 0 5 0;
 #X connect 2 0 5 0;
 #X connect 3 0 5 0;
 #X connect 6 0 5 0;
-#X restore 64 71 pd tableErase;
-#X msg 265 81 sql select distinct title from environment;
-#X msg 100 126 sql select distinct title from environment;
+#X connect 7 0 5 0;
+#X connect 8 0 0 0;
+#X connect 8 1 3 0;
+#X connect 8 2 6 0;
+#X connect 8 3 1 0;
+#X connect 8 4 7 0;
+#X connect 8 5 2 0;
+#X connect 9 0 8 0;
+#X restore 50 29 pd tableErase;
 #X connect 0 0 1 0;
 #X connect 1 0 3 0;
 #X connect 2 0 0 0;
 #X connect 4 0 0 0;
 #X connect 5 0 0 0;
 #X connect 6 0 0 0;
-#X connect 7 0 0 0;
-#X connect 9 0 0 0;
 #X restore 14 9 pd TABLES;
-#N canvas 2306 190 546 843 ANALYSIS 1;
-#X obj 116 11 r netreceive;
-#X obj 352 110 readsf~;
-#X obj 116 30 route analysis;
-#X msg 352 82 open \$1 \, 1;
-#X obj 356 46 f;
-#X obj 383 46 + 1;
-#X obj 116 50 route done;
-#N canvas 31 249 412 267 sound_info 0;
-#X obj 101 113 soundfile_info;
-#X obj 62 28 inlet;
-#X obj 268 221 outlet;
-#X obj 268 197 textfile;
-#X obj 238 95 inlet;
-#X obj 238 164 until;
-#X obj 238 115 route bang;
-#X msg 311 166 rewind;
-#X obj 238 135 t b b;
-#X obj 100 134 list prepend add;
-#X obj 100 154 list trim;
-#X obj 321 221 outlet;
-#X obj 62 49 list split 3;
-#X msg 265 52 read \$1;
-#X obj 101 70 list prepend read;
-#X obj 101 92 list trim;
-#X connect 0 0 9 0;
-#X connect 1 0 12 0;
+#N canvas 2244 499 314 549 ANALYSIS 0;
+#X obj 115 74 r netreceive;
+#X obj 115 93 route analysis;
+#X obj 115 113 route done;
+#N canvas 3249 571 390 358 sound_info 0;
+#X obj 101 132 soundfile_info;
+#X obj 61 45 inlet;
+#X obj 261 314 outlet;
+#X obj 261 290 textfile;
+#X obj 231 188 inlet;
+#X obj 231 257 until;
+#X obj 231 208 route bang;
+#X msg 304 259 rewind;
+#X obj 231 228 t b b;
+#X obj 61 212 list prepend add;
+#X obj 61 232 list trim;
+#X obj 314 314 outlet;
+#X obj 101 89 list prepend read;
+#X obj 101 111 list trim;
+#X msg 13 8 read /home/patco/.gesi/sons/default/largo/Tamb3.wav;
+#N canvas 2810 95 521 433 lenght2list 0;
+#X obj 230 69 list split 1;
+#X obj 73 37 list split 2, f 13;
+#X obj 199 395 outlet;
+#X obj 71 18 inlet;
+#X obj 73 319 list append;
+#X obj 198 375 list append;
+#X text 174 158 convert scientific notation entire number;
+#X obj 120 197 makefilename %05is;
+#X connect 0 0 7 0;
+#X connect 0 1 5 1;
+#X connect 1 0 4 0;
+#X connect 1 1 0 0;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 2 0;
+#X connect 7 0 4 1;
+#X restore 113 155 pd lenght2list;
+#X obj 61 66 list split 5;
+#X obj 61 190 list prepend;
+#X connect 0 0 15 0;
+#X connect 1 0 16 0;
 #X connect 3 0 2 0;
 #X connect 3 1 5 1;
 #X connect 3 1 11 0;
@@ -457,93 +532,91 @@ integer);
 #X connect 8 1 7 0;
 #X connect 9 0 10 0;
 #X connect 10 0 3 0;
-#X connect 12 1 14 0;
-#X connect 14 0 15 0;
-#X connect 15 0 0 0;
-#X restore 148 286 pd sound_info;
-#X msg 236 259 clear;
-#X obj 149 507 outlet;
-#X msg 340 373 sql update entries set samplerate = '\$1': length =
-'\$3': headersize = '\$4': channels = '\$5': resolution = '\$6': endianness
-= '\$7': format = '\$8', f 22;
-#X obj 302 288 text define entries;
-#X obj 184 155 text set entries;
-#X obj 116 108 t b b;
-#X obj 116 213 text sequence entries, f 8;
-#X obj 427 204 print ANALYSYS;
-#X obj 184 72 list split 1;
-#X msg 302 268 clear;
-#X msg 116 165 line 0 \, auto, f 6;
-#X obj 116 262 t a a;
-#X msg 265 367 \$3;
-#X obj 149 387 list append 44100;
-#X msg 149 408 sql insert into environments values ( NULL : '\$1' :
-'\$2' : '\$3' : '100' : '60' : '0' : '\$4' : '0'), f 22;
-#X obj 184 117 list;
-#X obj 184 96 t a a;
-#X obj 148 366 list split 3;
-#X msg 185 552 sql insert into density(env_title:density) select *
-from (select distinct title from environments):(select distinct density
-from environments where title in (select distinct title from environments))
-, f 31;
-#X obj 69 78 t b b;
-#X msg 43 767 sql update density set density_index=3 where id=23;
-#X msg 30 729 sql update density set density_index=\$1 where id=\$1
-;
-#X obj 133 680 mod 5;
-#X obj 132 704 + 1;
-#X obj 129 604 until;
-#X obj 129 626 f;
-#X obj 128 651 + 1;
-#X msg 129 583 34;
-#X connect 0 0 2 0;
-#X connect 2 0 6 0;
-#X connect 3 0 1 0;
-#X connect 4 0 5 0;
-#X connect 5 0 4 1;
-#X connect 6 0 27 0;
-#X connect 6 1 16 0;
-#X connect 7 0 20 0;
-#X connect 7 0 10 0;
-#X connect 8 0 7 1;
-#X connect 10 0 9 0;
-#X connect 13 0 18 0;
-#X connect 13 1 8 0;
-#X connect 14 0 19 0;
-#X connect 14 1 7 1;
-#X connect 16 0 24 0;
-#X connect 16 1 23 1;
-#X connect 17 0 11 0;
-#X connect 18 0 14 0;
-#X connect 19 0 25 0;
-#X connect 19 1 7 0;
-#X connect 19 1 15 0;
-#X connect 20 0 21 1;
-#X connect 21 0 22 0;
-#X connect 22 0 9 0;
-#X connect 23 0 12 0;
-#X connect 24 0 23 0;
-#X connect 24 1 12 1;
-#X connect 25 0 21 0;
-#X connect 26 0 9 0;
-#X connect 27 1 13 0;
-#X connect 28 0 9 0;
-#X connect 29 0 9 0;
-#X connect 30 0 31 0;
-#X connect 30 0 33 1;
-#X connect 31 0 29 0;
-#X connect 32 0 33 0;
-#X connect 33 0 34 0;
-#X connect 34 0 30 0;
-#X connect 35 0 32 0;
-#X restore 30 36 pd ANALYSIS;
-#X connect 0 0 2 0;
-#X connect 0 1 3 0;
+#X connect 12 0 13 0;
+#X connect 13 0 0 0;
+#X connect 14 0 0 0;
+#X connect 15 0 17 1;
+#X connect 16 0 17 0;
+#X connect 16 1 12 0;
+#X connect 17 0 9 0;
+#X restore 115 359 pd sound_info;
+#X msg 217 313 clear;
+#X obj 116 530 outlet;
+#X obj 12 33 text define entries;
+#X obj 183 218 text set entries;
+#X obj 115 171 t b b;
+#X obj 115 276 text sequence entries, f 8;
+#X obj 183 135 list split 1;
+#X msg 12 13 clear;
+#X msg 115 228 line 0 \, auto, f 6;
+#X obj 183 180 list;
+#X obj 183 159 t a a;
+#N canvas 2637 576 284 367 set 0;
+#X obj 61 102 lsql;
+#X obj 96 102 r sql-open;
+#X obj 29 8 inlet;
+#X obj 29 161 list append;
+#X obj 29 336 outlet;
+#X obj 29 30 t a a;
+#X msg 29 226 sql insert into environments values ( NULL : '\$5' :
+'wav_slice' : '\$1' : '\$7' : '100' : '50'), f 20;
+#X msg 61 52 sql select id from density where env_title = '\$3' and
+density = '\$4', f 28;
+#X connect 0 0 3 1;
 #X connect 1 0 0 0;
+#X connect 2 0 5 0;
+#X connect 3 0 6 0;
+#X connect 5 0 3 0;
+#X connect 5 1 7 0;
+#X connect 6 0 4 0;
+#X connect 7 0 0 0;
+#X restore 35 412 pd set env;
+#X obj 83 333 t a a;
+#X obj 116 379 t a a;
+#N canvas 3290 506 450 300 update_entry 0;
+#X obj 141 19 inlet;
+#X obj 141 167 outlet;
+#X msg 140 39 sql update entries set samplerate = '\$1': length = '\$3':
+headersize = '\$4': channels = '\$5': resolution = '\$6': endianness
+= '\$7': format = '\$8' where id = '\$9', f 22;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X restore 116 439 pd update_entry, f 7;
+#X msg 176 435 sql update wav_slice set start = '0s' : stop = '\$3'
+where entry_id = '\$10', f 17;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 8 0;
+#X connect 2 1 10 0;
+#X connect 3 0 17 0;
+#X connect 4 0 3 1;
+#X connect 8 0 12 0;
+#X connect 8 1 4 0;
+#X connect 9 0 16 0;
+#X connect 9 1 3 1;
+#X connect 10 0 14 0;
+#X connect 10 1 13 1;
+#X connect 11 0 6 0;
+#X connect 12 0 9 0;
+#X connect 13 0 7 0;
+#X connect 14 0 13 0;
+#X connect 14 1 7 1;
+#X connect 15 0 5 0;
+#X connect 16 0 15 0;
+#X connect 16 1 3 0;
+#X connect 17 0 18 0;
+#X connect 17 1 19 0;
+#X connect 18 0 5 0;
+#X connect 19 0 5 0;
+#X restore 30 36 pd ANALYSIS;
+#X obj 19 127 print RES_ANALYSIS;
+#X connect 0 0 5 0;
+#X connect 0 1 2 0;
+#X connect 1 0 0 0;
+#X connect 3 0 0 0;
 #X connect 4 0 0 0;
-#X connect 5 0 0 0;
 #X restore 23 138 pd sql;
-#N canvas 251 654 276 190 init 0;
+#N canvas 251 718 276 190 init 0;
 #X obj 15 9 loadbang;
 #X obj 15 29 del 2000;
 #X obj 15 49 home;
