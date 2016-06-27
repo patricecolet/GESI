@@ -29,10 +29,18 @@
  {% for p in path %}
     <div data-role="collapsible" data-theme="b" data-content-theme="b" id="{{ p.density }}">
      <h2>{{ p.density }}</h2>
-     <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true">
+     <ul data-role="listview" data-split-icon="gear" data-split-theme="a">
 {% for s in sounds %}
 {% if p.id == s.sub_id %}
-      <li><a href="#">{{ s.title }}</a><a href="#edit-snd" class="edit-b" data-position-to="window">{{ s.title }}</a></li>
+      <li style="height: 40px" id="{{ s.sound_id }}">
+       <a href="#" class="snd-entry" style="height: 40px">
+        <img src="{{ url_for('get_waveform', entry_id=s.id) }}">
+        {{ s.title }}
+        </a>
+       <a href="#edit-snd" class="edit-b" data-position-to="window">
+        <p>{{ s.title }}</p>
+        </a>
+       </li>
 {% endif %}
 {% endfor %}
       </ul>
@@ -72,7 +80,8 @@
 <!-- sound editor -->
      <div data-role="panel" data-display="overlay" id="edit-snd" data-theme="b">
       <table style="td {padding: 10px;text-align: left;}">
-       <th id="snd-title" colspan="2"></th>
+       <th id="snd-id"></th>
+       <th id="snd-title"></th>
        <tr>
         <td colspan="2" >
          <div data-role="controlgroup"  data-type="horizontal" data-theme="b">
@@ -141,6 +150,8 @@
 	
 $(".ui-dialog").dialog('close');
 
+//$(".snd-entry").prepend('<img src="' + flask_util.url_for('get_waveform', {entry_id: $(".snd-entry").parent().attr('id') }) + '" class="ui-li-thumb">');
+//console.log($(".snd-entry").parent().attr('id'));
 // this add environment is obsolete
    $('#addEnv').click(function() {
      var env = $('#envName').val();
@@ -204,13 +215,13 @@ $(".ui-dialog").dialog('close');
 var DENSITY = '';
 var FILE = '';
 //this class loads into html sound informations from database
-   $(".edit-b").click(function(e) {
-      FILE = $( this ).prev("a").text();
+   $(".edit-b").click(function(e) {console.log($( this ).parent().attr('id'));
+      id = $( this ).parent().attr('id');
       $.getJSON($SCRIPT_ROOT + '/get_file_info', {
-         title:  FILE
+         sound_id:  id
       }, function(data) {
         var length = data.length.split('s')[0];
-        $("#snd-id").text(data.entry_id);
+        $("#snd-id").text(data.sound_id);
         $("#snd-title").text(data.title);
         $("#snd-samplerate").text(data.samplerate+'hz');
         $("#snd-length").text((length/data.samplerate).toPrecision(5)+'s');
@@ -522,5 +533,6 @@ $(data.context.children()[index])
 }).prop('disabled', !$.support.fileInput)
 .parent().addClass($.support.fileInput ? undefined : 'disabled');
 });
+
 </script>
 {% endblock %}

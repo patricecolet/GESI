@@ -1,13 +1,13 @@
 #! /usr/bin/env python
 
 import os
-#import fnmatch
+import io
 import sqlite3
 import json
 import re
 from flask import Flask, request, g, redirect, url_for, abort, \
-     render_template, flash, jsonify, send_from_directory, session
-
+     render_template, flash, jsonify, send_from_directory, session, send_file, Response, make_response
+from werkzeug import Headers
 #from werkzeug.utils import secure_filename
 from flask_util_js import FlaskUtilJs
 
@@ -237,22 +237,22 @@ def update_gesi():
 #get sound info
 @app.route('/get_file_info', methods=['GET'])
 def get_file_info():
-    title = request.args.get('title')
+    sound_id = request.args.get('sound_id')
     db = get_db()
-    env = query_db('SELECT * FROM environments WHERE title = ?',[title])
+    env = query_db('SELECT * FROM environments WHERE sound_id = ?',[sound_id])
  #here we put settings in temporary table
     query_db('DELETE FROM environments_temp')
     query_db('DELETE FROM wav_slice_temp')
-    db.execute('INSERT INTO environments_temp SELECT * FROM environments WHERE title=?',[title])
+    db.execute('INSERT INTO environments_temp SELECT * FROM environments WHERE sound_id=?',[sound_id])
     db.commit()
-    db.execute('INSERT INTO wav_slice_temp SELECT * FROM wav_slice WHERE id=?',[env[0]['sound_id']])
+    db.execute('INSERT INTO wav_slice_temp SELECT * FROM wav_slice WHERE id=?',[sound_id])
     db.commit()
  #and do the query
-    settings = query_db('SELECT * FROM ' + env[0]['sound_table'] + ' WHERE id = ?',[env[0]['sound_id']])
+    settings = query_db('SELECT * FROM ' + env[0]['sound_table'] + ' WHERE id = ?',[sound_id])
     fileinfo = query_db('SELECT * FROM (SELECT * FROM environments WHERE title = ?),\
        (SELECT * FROM ' + env[0]['sound_table'] + ' WHERE id = ?),\
         (SELECT * FROM entries WHERE id = ?)'\
-        ,[title,env[0]['sound_id'],settings[0]['entry_id']], one=True)
+        ,[env[0]['title'],sound_id,settings[0]['entry_id']], one=True)
     return jsonify(**fileinfo)
 
 #update sound info in temp table
@@ -349,6 +349,18 @@ def save_snd_as():
     return jsonify('data')
 
 
+#get sound waveform
+@app.route('/get_waveform', methods=['GET'])
+def get_waveform():
+    db = get_db()
+    i = request.args.get('entry_id')
+    print('ENTRY_ID: ' + i)
+    wave=query_db('SELECT * FROM waveforms WHERE entry_id = ' + i)[0]['svg']
+    response = make_response(wave)
+    response.headers['Content-Type'] = 'image/svg+xml'
+    response.headers['Content-Disposition'] = 'attachment; filename=img.svg'
+    return response
+
 ######################################
 #
 # methods for managing sound library
@@ -387,6 +399,8 @@ def order_density():
             db.execute('update density set density_index = ? WHERE (env_title= ? and density = ?)',[i+1,e,d[i]])
             db.commit()
     return jsonify(set='set')
+
+
     
 # this renders a dialog box (not used yet)
 @app.route('/dialog/<method>', methods=['GET'])

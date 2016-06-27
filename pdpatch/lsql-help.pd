@@ -1,5 +1,5 @@
-#N canvas 161 91 1085 589 10;
-#X declare -lib pdlua;
+#N canvas 161 96 1085 589 10;
+#X declare -stdlib pdlua;
 #X obj 218 457 lsql;
 #X msg 32 107 open \$1;
 #X obj 32 86 openpanel;
@@ -9,11 +9,8 @@
 #X obj 218 397 list prepend sql;
 #X obj 218 416 list trim;
 #X floatatom 241 476 5 0 0 1 rows_affected - -, f 5;
-#X text 312 14 use ":" instead of commas \, Pd doesn't like commas.
-;
 #X text 394 485 TODO: use finalize to close table and cursores.;
 #X text 27 37 First open DB:;
-#X obj 119 4 declare -lib pdlua;
 #X msg 323 162 select * from entries;
 #X msg 517 408 DROP table entries \, DROP table environments;
 #X msg 326 217 select * from environments;
@@ -22,7 +19,7 @@
 #X msg 32 129 open /media/sdext/flask/gesidb/gesidb.db;
 #X msg 524 462 DROP table analog \, DROP table digital;
 #X msg 322 306 select * from analog;
-#N canvas 408 153 789 524 tableCreate 0;
+#N canvas 408 158 789 524 tableCreate 0;
 #X obj 114 423 s \$0sqlite;
 #X msg 259 52 CREATE TABLE sound_info(id integer primary key: sound_id
 integer: samplerate integer : length integer : headersize integer :
@@ -51,6 +48,9 @@ integer :dnumber varchar(50) : mode integer : control varchar(50))
 #X msg 328 337 select * from readsound;
 #X msg 326 185 select * from entries where (blacklist = 1);
 #X msg 511 378 DROP table readsound;
+#X text 312 14 use "`" instead of commas \, Pd doesn't like commas.
+;
+#X obj 119 4 declare -stdlib pdlua;
 #X connect 0 0 4 0;
 #X connect 0 1 7 0;
 #X connect 1 0 0 0;
@@ -58,15 +58,15 @@ integer :dnumber varchar(50) : mode integer : control varchar(50))
 #X connect 3 0 2 0;
 #X connect 5 0 6 0;
 #X connect 6 0 0 0;
+#X connect 10 0 5 0;
+#X connect 11 0 5 0;
 #X connect 12 0 5 0;
 #X connect 13 0 5 0;
 #X connect 14 0 5 0;
-#X connect 15 0 5 0;
+#X connect 15 0 0 0;
 #X connect 16 0 5 0;
-#X connect 17 0 0 0;
-#X connect 18 0 5 0;
+#X connect 17 0 5 0;
 #X connect 19 0 5 0;
+#X connect 20 0 5 0;
 #X connect 21 0 5 0;
 #X connect 22 0 5 0;
-#X connect 23 0 5 0;
-#X connect 24 0 5 0;

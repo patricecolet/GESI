@@ -29,7 +29,7 @@ function M:in_1_sql(atoms)
     end
     local command = table.concat(atoms, " ")
     -- use : instead of ,
-    command = command:gsub(":", ",")
+    command = command:gsub("`", ",")
     local cur = assert (self.con:execute(command))
     if type(cur) == "number" then
         -- report affected rows to second outlet:
