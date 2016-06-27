@@ -61,7 +61,6 @@ Add console verbose mode in puredata preferences if you run into problems...
 
 There are scripts to add to /etc/init.d for running at boot.
 
-use IPTABLES for redirecting port 80
 
 ### Database
 GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
@@ -92,7 +91,9 @@ Create *.gesi* directory in */home/user* folder if it's not there, download and 
 Now we can rebuild database by accessing localhost/admin in web browser.
 
 ###TODO
+
 add path to external in patch instead of preferences
+use IPTABLES for redirecting port 80
 put interface to GPIO in pure data
 add virtual keyboard, mic handling and virtual pot in sensors
 add sequencer, webcast in actuators
