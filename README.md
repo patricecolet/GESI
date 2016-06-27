@@ -35,7 +35,6 @@ install these externals with deken (Help->find external):
 * mrpeach
 * iemlib
 
-in puredata Edit->Preference->Startup add *pdlua* and in Edit->Preference->Path add *~/pd-externals/mrpeach ~/pd-externals/iemlib ~/pd-externals/zexy*
 ### Patches
 Download sources:
 ```
@@ -45,7 +44,7 @@ $ git clone https://github.com/patricecolet/GESI.git
 ----
 
 On windows we need to install lua-sqlite manually, download windows mingw binaries from 
-[luadist.org](luadist.org), extract luadist/lib/lua/luasql folder into GESI/pdpatch, then [lsql] should access the dll.
+[luadist.org](luadist.org), extract luadist/lib/lua/luasql folder into GESI/pdpatch, then [lsql] should access the sqlite3 dll.
 
 ----
 Run web server:
@@ -58,8 +57,12 @@ and puredata in another shell:
 $ cd ../pdpatch
 $ pd gesi-arduino.pd
 ```
-add console verbose mode in puredata preferences if you run into problems...
-
+Add console verbose mode in puredata preferences if you run into problems...
+----
+There are scripts to add to /etc/init.d for running at boot.
+----
+use IPTABLES for redirecting port 80
+----
 ### Database
 GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
 puredata patch must be running for doing the sound analysis and complete the database.
