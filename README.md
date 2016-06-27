@@ -58,11 +58,11 @@ $ cd ../pdpatch
 $ pd gesi-arduino.pd
 ```
 Add console verbose mode in puredata preferences if you run into problems...
-----
+
 There are scripts to add to /etc/init.d for running at boot.
-----
+
 use IPTABLES for redirecting port 80
-----
+
 ### Database
 GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
 puredata patch must be running for doing the sound analysis and complete the database.
