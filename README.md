@@ -43,7 +43,7 @@ $ git clone https://github.com/patricecolet/GESI.git
 
 ----
 
-On windows we need to install lua-sqlite manually, install lua5.3, download windows mingw binaries from 
+On windows we need to install lua-sqlite manually, install lua5.3 windows  [http://luabinaries.sourceforge.net/download.html](32bit binaries), download windows mingw binaries from 
 [luadist.org](luadist.org), extract luadist/lib/lua/luasql folder into GESI/pdpatch, add C:\Program Files(x86)\lua5.3\bin to path environment variable (open cmd and use path <path to liblua>), then [lsql] should access the sqlite3 dll.
 
 ----
