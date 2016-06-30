@@ -50,23 +50,16 @@ On windows we need to install lua-sqlite manually, download windows mingw binari
 [luadist.org](luadist.org), extract luadist/lib/lua/luasql folder into GESI/pdpatch, copy luadist folder into c:\Program Files (x86) and add C:\Program Files(x86)\lua5.3\bin to system path environment variables, then [lsql] should access the sqlite3 dll.
 
 ----
-Run web server:
- ```
-$ cd GESI/webserver
-$ sudo python ./gesidb.py
-```
-and puredata in another shell:
-```
-$ cd ../pdpatch
-$ pd gesi-arduino.pd
-```
-Add console verbose mode in puredata preferences if you run into problems...
 
-There are scripts to add to /etc/init.d for running at boot.
 
 
 ### Database
-GESI interface runs in a web browser at localhost. The database is made by running a python script from web server,
+
+Database, and sounds are stored in a folder located into /home/<user>/.gesi , on windows you need to add HOME environment variable pointing to user folder.
+
+Database tables have to be created manually from puredata in sql subpatch before launching python web server
+
+GESI interface runs in a web browser at localhost. The database is updated by running a python script from web server,
 puredata patch must be running for doing the sound analysis and complete the database.
  The folder containing sounds must be at ~/.gesi/ directory, like this:
 ```
@@ -92,6 +85,21 @@ puredata patch must be running for doing the sound analysis and complete the dat
 An archive containing samples is here: http://megalego.free.fr/gesi/sons.zip.
 Create *.gesi* directory in */home/user* folder if it's not there, download and extract sons.zip into */home/user/.gesi/* folder.
 Now we can rebuild database by accessing localhost/admin in web browser.
+
+
+Run web server:
+ ```
+$ cd GESI/webserver
+$ sudo python ./gesidb.py
+```
+run puredata in another shell:
+```
+$ cd ../pdpatch
+$ pd gesi-arduino.pd
+```
+Add console verbose mode in puredata preferences/path if you run into problems...
+
+There are scripts to add to /etc/init.d for running at boot.
 
 ###TODO
 
