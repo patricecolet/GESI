@@ -95,7 +95,7 @@ $ sudo python ./gesidb.py
 run puredata in another shell:
 ```
 $ cd ../pdpatch
-$ pd gesi-arduino.pd
+$ pd gesidb.pd
 ```
 Add console verbose mode in puredata preferences/path if you run into problems...
 
