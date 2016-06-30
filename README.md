@@ -26,7 +26,6 @@ C:\Program Files(x86)\Python 3.5\Scripts>py get-pip.py
 
 ```
 
-for the moment deken hasn't resolved libraries dependencies, so you need to install pd-extended (uncheck everything at install, and uninstall without removing DLL's in system32) before installing latest pd-vanilla
 ----
 
 ### Puredata settings
@@ -35,6 +34,9 @@ install these externals with deken (Help->find external):
 * zexy
 * mrpeach
 * iemlib
+
+----
+for the moment deken hasn't resolved libraries dependencies, so you need to install pd-extended (uncheck everything at install, and uninstall without removing DLL's in system32) before installing latest pd-vanilla
 
 ### Patches
 Download sources:
