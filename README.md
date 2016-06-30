@@ -34,6 +34,7 @@ install these externals with deken (Help->find external):
 * zexy
 * mrpeach
 * iemlib
+* moocow
 
 ----
 for the moment deken hasn't resolved libraries dependencies, so you need to install pd-extended (uncheck everything at install, and uninstall without removing DLL's in system32) before installing latest pd-vanilla
