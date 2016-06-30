@@ -26,6 +26,7 @@ C:\Program Files(x86)\Python 3.5\Scripts>py get-pip.py
 
 ```
 
+for the moment deken hasn't resolved libraries dependencies, so you need to install pd-extended (uncheck everything at install, and uninstall without removing DLL's in system32) before installing latest pd-vanilla
 ----
 
 ### Puredata settings
