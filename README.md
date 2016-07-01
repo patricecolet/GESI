@@ -37,8 +37,10 @@ install these externals with deken (Help->find external):
 * moocow
 
 ----
-for the moment deken hasn't resolved libraries dependencies, so you need to install pd-extended (uncheck everything at install, and uninstall without removing DLL's in system32) before installing latest pd-vanilla
-
+###windows users:
+* for the moment deken hasn't resolved libraries dependencies, so you need to install pd-extended (uncheck everything at install, and uninstall without removing DLL's in system32) before installing latest pd-vanilla
+* Once pd installed add c:\Program Files(x86)\pd\bin to system path in environment variables then the os will be able to run pd pdsend and pdreceive commands
+* 
 ### Patches
 Download sources:
 ```
