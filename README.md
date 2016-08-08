@@ -43,25 +43,23 @@ When PureData is manually compiled, pd might not find wish, check tcl/tk version
 ```
 ln -s /usr/bin/wish8.5 /usr/bin/wish
 ```
-Some externals can be installed with apt if deken doesn't match architecture:
+Some externals can be installed with apt if deken doesn't match the architecture:
 ```
 apt-get install pd-zexy pd-iemlib
 ```
-For other externals we need to compile them with those command lines:
+For other externals we need to compile and install them with those command lines:
 ```
 mkdir ~/src && cd ~/src
-apt-get install subversion
+apt-get install subversion lua5.2 lua5.2-dev liblua5.2
 svn checkout svn://svn.code.sf.net/p/pure-data/svn/trunk pure-data-svn
-cd pure-data-svn/externals 
-make mrpeach
-make moocow
-make pdlua
+ln -s /usr/include/lua5.2 /usr/include/
+ln -s /usr/lib/arm-linux-gnueabihf/liblua5.2.so /usr/lib/liblua.so
+cd pure-data-svn/externals && make mrpeach && make loaders-pdlua
+cd mrpeach && sudo make install
+cd ../loaders/pdlua && sudo make install
 
 ```
-###windows users:
-* for the moment deken hasn't resolved libraries dependencies, so you need to install pd-extended (uncheck everything at install, and uninstall without removing DLL's in system32) before installing latest pd-vanilla
-* Once pd installed add c:\Program Files(x86)\pd\bin to system path in environment variables then the os will be able to run pd pdsend and pdreceive commands
-* 
+ 
 ### Patches
 Download sources:
 ```
