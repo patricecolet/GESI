@@ -6,7 +6,7 @@ GESI is composed in two parts, a python flask webserver for the interface and pu
 They communicate through websockets and shares a single sqlite3 database.
 This project is made for running into tiny computers like pcduino or raspberry pi 3, where sensors and actuators can be connected and controlled with the GESI interactive sound manager.
 
-## Installation (tested on GNU/linux)
+## Installation
 ### webserver
 SQLITE database is used to share memory between puredata and web server running with python and flask module, so we need to install
 * python-flask 
@@ -37,6 +37,12 @@ install these externals with deken (Help->find external):
 * moocow
 
 ----
+###linux users:
+
+When PureData is manually compiled, pd might not find wish, check tcl/tk version, and create a symbolic link with a terminal to /usr/bin/wish8.5:
+
+sudo ln -s /usr/bin/wish8.5 /usr/bin/wish
+
 ###windows users:
 * for the moment deken hasn't resolved libraries dependencies, so you need to install pd-extended (uncheck everything at install, and uninstall without removing DLL's in system32) before installing latest pd-vanilla
 * Once pd installed add c:\Program Files(x86)\pd\bin to system path in environment variables then the os will be able to run pd pdsend and pdreceive commands
