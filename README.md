@@ -125,7 +125,7 @@ There are scripts to add to /etc/init.d for running at boot.
 
 ###TODO
 
-add path to external in patch instead of preferences
+remove moocow dependance
 use IPTABLES for redirecting port 80
 put interface to GPIO in pure data
 add virtual keyboard, mic handling and virtual pot in sensors
